@@ -1,0 +1,48 @@
+.#{$class-prefix}panel {
+    box-shadow: none;
+}
+.panel-body {
+    padding: $accordion-padding-x;
+}
+
+.#{$class-prefix}panel#{$classname-seperator}control {
+    padding-bottom: $accordion-padding-y;
+
+    a {
+        color: $link-color;
+        text-decoration: none;
+        padding-right: $accordion-padding-x;
+        margin-right: .5*$base-margin;
+
+        &:first-child {
+            border-right: $border-width solid $light-gray;
+        }
+    }
+}
+@include get-class("panel"+$classname-seperator+"heading"){
+    @extend .panel-heading;
+}
+.panel-heading {
+  /*background-color: $accordion-heading-bg;*/
+  background: $accordion-heading-bg;
+}
+
+@include get-class("panel"+$classname-seperator+"title"){
+    @extend .panel-title;
+}
+.panel-title {
+  color: $white;
+}
+
+.panel-group .#{$class-prefix}panel#{$classname-seperator}heading + .panel-collapse > .list-group,
+.panel-group .#{$class-prefix}panel#{$classname-seperator}heading + .panel-collapse > .panel-body {
+    border-top: 0;
+}
+
+.collapse {
+    display: none;
+
+    &.in {
+        display: block;
+    }
+}

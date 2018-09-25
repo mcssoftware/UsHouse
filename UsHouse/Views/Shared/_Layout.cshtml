@@ -1,42 +1,159 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en" class="no-js">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="always">
+    <title>Office of the Clerk, U.S. House of Representatives</title>
+
+    @Styles.Render("~/Content/custom")
+    <link href="@Url.Content("~/Content/assets/vendor/azuremediaplayer-2.1.5/azuremediaplayer.min.css")" rel="stylesheet">
+
+    <script>(function (H) { H.className = H.className.replace(/\bno-js\b/, 'js') })(document.documentElement)</script>
+    <script src="@Url.Content("~/Scripts/modernizr-custom.js")"></script>
+
+    <!--[if lte IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @{ var version = "?v=" + Guid.NewGuid().ToString().ToLower(); }
+    <script src="//amp.azure.net/libs/amp/2.1.5/azuremediaplayer.min.js"></script>
+    <script src="@Url.Content("~/Content/assets/vendor/jwplayer-7.11.0/jwplayer.js")"></script>
+    <script>
+        jwplayer.key = "xiyM/sO0FwaOMQwEomWBbgydaHPXEze/TyjCp9ZQcdU194La";
+    </script>
+    <script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/accessibility-calendar.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-tabcollapse.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/list.js")"></script>
+    <script src="@Url.Content("~/Scripts/list.pagination.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/placeholders.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/calendar.js")"></script>
+    <script src="@Url.Content("~/Scripts/library.js")"></script>
+    <script src="@Url.Content("~/Scripts/site.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/committeeDetail.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/member-list.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/member-detail.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/membersVotes.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/dischargePetitions.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/selectedMemorials.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/membersLeadership.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/floorSummary.js")@version"></script>
+    <script src="@Url.Content("~/Scripts/broadcastEvent.js")@version"></script>
+    @RenderSection("JsonLd", required: false)
+    @RenderSection("Map", required: false)
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+<body id="homepage" class="in-session">
+
+    <div class="survey survey--hidden">
+        <a href="https://www.surveymonkey.com/r/Clerk_site" target="_blank" title="Feedback">
+            <div class="survey__tab">Feedback</div>
+        </a>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Html.Partial("_Header")
+
+    @RenderBody()
+
+    @Html.Partial("_Footer")
+
+    <!--[if lte IE 9]>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+        if (navigator.userAgent.indexOf(".NET") > -1) { // Check if the browser is IE
+            var mega = $('.dropdown-menu.mega-menu');
+
+            $(window).resize(function () {
+                adjustMegaMenus();
+            });
+
+            adjustMegaMenus();
+
+            function adjustMegaMenus() {
+                if ($(window).width() < 768) {
+                    mega.css({
+                        "width": "100%",
+                        "min-width": "0px",
+                        "left": "0",
+                        "transform": "translateX(0%)"
+                    });
+                } else {
+                    mega.css({
+                        "width": "85%",
+                        "min-width": "0px",
+                        "left": "50%",
+                        "transform": "translateX(-50%)"
+                    });
+                }
+            }
+        }
+
+        /*
+         *  OLD FUNCTIONS FOR MAKING THE LCS-STYLE TABS RESPONSIVE
+         *      TODO: ADD INTO CSS (?)
+         */
+        //var tabs = $('.lcs-tabs');
+
+        //$(window).load(function () {
+        //  $(window).resize(function () {
+        //    resizeTabs();
+        //  });
+
+        //  resizeTabs();
+
+        //  function resizeTabs() {
+        //    if ($(window).width() < 1275) {
+        //      removeCols(tabs);
+        //      tabs.addClass('col-md-12');
+        //    } else if ($(window).width() < 1400) {
+        //      removeCols(tabs);
+        //      tabs.addClass('col-md-10');
+        //    } else {
+        //      removeCols(tabs);
+        //      tabs.addClass('col-md-9');
+        //    }
+        //  }
+
+        //  function removeCols(div) {
+        //    div.removeClass(function (index, css) {
+        //      return (css.match(/(^|\s)col-\S+/g) || []).join(' ');
+        //    });
+        //  }
+        //})
+    </script>
+
+    <div id='scrollUp' onclick='scrollToTop()'>
+        <i class='fa fa-chevron-up'></i>
+    </div>
+
+    <script>
+        var scrollToTop = function () {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 'slow')
+        }
+
+        $(document).scroll(function () {
+            if ($(window).scrollTop() >= 200) {
+                $('#scrollUp').fadeIn();
+            }
+            else {
+                $('#scrollUp').fadeOut();
+            }
+        })
+
+        var scrollToElement = function (elementId) {
+            $('html, body').animate({
+                scrollTop: $(elementId).offset().top - 120 + 'px'
+            }, 'fast');
+        }
+    </script>
+
 </body>
 </html>

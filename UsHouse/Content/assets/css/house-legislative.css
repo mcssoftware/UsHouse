@@ -1,0 +1,134 @@
+/** ----------------------------------------------------
+// 	1. General
+// 	2. Votes Search
+//  2.1 Votes Search Details
+// 	3. Discharge Petition
+// ---------------------------------------------------- **/
+
+/************************ 1. General ************************/
+
+/******** Social Share ********/
+.library-h1-wrap{ margin-bottom: 20px; }
+
+/******** Video ********/
+.video.affix {
+    right: 36px;
+    bottom: 20px;
+    z-index: 30000;
+
+    width: 360px;
+    height: 215px;
+}
+.affix.embed-responsive-4by3{ padding-bottom: 0; }
+
+
+/******** Meta icons ********/
+.meta {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-align: right;
+}
+.meta ul{ padding-left: 0;}
+.meta li {
+	display: inline-block;
+	text-transform: uppercase;
+	font-family: 'source_sans_proregular', sans-serif;
+	color: #092541;
+}
+.meta  a {
+	color: #092541;
+	font-size: 14px;
+}
+.meta a:hover { text-decoration: none; }
+.meta .download a:after,
+.meta .print a:after,
+.meta .follow a:after{
+	font-family: 'FontAwesome';
+	color: #17518b;
+	margin-right: 25px;
+	font-size: 16.86px;
+	padding-left: 10px;
+}
+
+.meta .download a:after { content: '\f019'; }
+.meta .print a:after { content: '\f02f'; }
+.meta .follow a:after { content: '\f09e'; }
+
+
+/************************ 2. Votes Search  ************************/
+
+.general-search_content-heading{ margin-top: 20px; }
+.general-search_content-heading .library-h3,
+.general-search_content-heading .library-h2{
+	margin-bottom: 10px;
+	margin-top: 0;
+	padding-left: 15px;
+}
+@media (min-width: 1200px){
+	.general-search_content-heading .library-h3,
+	.general-search_content-heading .library-h2{ 
+		float: left;
+		line-height: 1;
+	    padding-top: 0;
+	    margin-top: 15px; 
+	}
+	.general-search_content-heading .library-h3:first-child,
+	.general-search_content-heading .library-h2:first-child{  
+		padding-right: 10px;
+		border-right: 1px solid #eeeeee;
+	}
+}
+
+.general-search_content-heading .library-h3:first-child,
+.general-search_content-heading .library-h2:first-child{
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.general-search_content-right dt.yays:before{
+	font-family: 'FontAwesome';
+	content: "\f005";
+	color: #ffd366;
+	padding: 0 5px 0 8px;
+}
+
+.general-search_content-right .dl_inline-pairs dt, 
+.general-search_content-right .dl_inline-pairs dd { padding: 3px; }
+
+.general-search_content-data { padding-left: 28px; }
+.general-search_content-data .library-dl{ margin-left: -27px; }
+.general-search_content-right .general-search_content-data dt{ padding-left: 27px; }
+.general-search_content-right .general-search_content-data .yays{ 
+	background: #fff8e6; 
+}
+.general-search_content-right .general-search_content-data dt.yays{  padding-left: 0; }
+.general-search_content-right .general-search_content-data dd.yays{  padding-right: 15px; }
+
+
+/************************ 2.1 Votes Search Details  ************************/
+
+
+.votes-search-detail .block-heading .library-h3{ font-family: 'source_sans_proregular', sans-serif; }
+.votes-search-detail .block-heading .library-h3:first-child{ padding-left: 20px; }
+.votes-search-detail table{ margin-bottom: 30px; }
+.votes-search-detail table:not(.table){ margin-top: 25px; }
+.votes-search-detail .block-content_row{ padding-bottom: 0; }
+.votes-by-party .library-h2.border_bottom{ 
+	border-bottom: none; 
+	padding-bottom: 0;
+}
+
+/************************ 3. Discharge Petition  ************************/
+
+.discharge-petition-detail .library-h2{ margin-bottom: 25px; }
+.discharge-petition-detail .block-content_row{ padding-bottom: 0; }
+.discharge-petition-detail .library-h2{ margin-bottom: 25px; }
+.discharge-petition-detail .block-content_row{ padding-bottom: 0; }
+.discharge-petition-detail .table-heading-date{
+	font-family: 'merriweatherregular', serif;
+	color: #092541;
+	display: block;
+	padding-top: 30px;
+}
+.discharge-petition-detail table .table-heading-date{ padding-top: 20px; }

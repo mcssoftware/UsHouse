@@ -1,0 +1,110 @@
+//
+// Lists
+//
+.list-unstyled {
+    @include list-unstyled;
+
+    &.equal-height-list {
+        @include media-breakpoint-down(sm) {
+            max-width: none !important;
+        }
+    }
+}
+
+.list-no#{$classname-seperator}style{
+    list-style: none;
+    padding-left:0;
+}
+
+// Inline turns list items into inline-block
+.list-inline {
+    @include list-unstyled;
+}
+
+.list-inline-item {
+    display: inline-block;
+
+    &:not(:last-child) {
+        margin-right: $list-inline-padding;
+    }
+}
+/************************ 4. Lists ************************/
+
+/* 4.1 - General Ordered List setup */
+.#{$class-prefix}lists li, .#{$class-prefix}list#{$classname-seperator}ul li {
+    line-height: 2.2;
+    margin-left: 20px;
+}
+
+.#{$class-prefix}lists, .#{$class-prefix}lists ol {
+    counter-reset: item;
+}
+
+.#{$class-prefix}lists {
+    ol {
+        margin-bottom: $base-margin;
+
+        li {
+            margin-top: .6* $base-margin;
+            margin-bottom: .6* $base-margin;
+        }
+    }
+
+    li {
+        display: block;
+        position: relative;
+
+        &:before {
+            font-family: $list-font-family;
+            font-weight: $list-font-weight;
+            counter-increment: item;
+            position: absolute;
+            margin-right: 100%;
+            right: 7px;
+            color: $list-color;
+        }
+    }
+}
+
+/*** list version styles (numers, lower-alpha and lower-roman) **/
+.#{$class-prefix}list#{$classname-seperator}ol#{$classname-seperator}v0 li:before {
+    content: counters(item, ".")".";
+}
+
+.#{$class-prefix}list#{$classname-seperator}ol#{$classname-seperator}v1 li:before {
+    content: counters(item, ".", lower-alpha)".";
+}
+
+.#{$class-prefix}list#{$classname-seperator}ol#{$classname-seperator}v2 li:before {
+    content: counters(item, ".", lower-roman)".";
+}
+
+/* 4.2 - Unordered List setup */
+.#{$class-prefix}list#{$classname-seperator}ul li,
+.#{$class-prefix}list#{$classname-seperator}ul li > ul li,
+.#{$class-prefix}list#{$classname-seperator}ul li > ul ul li {
+    position: relative;
+    list-style: none;
+}
+
+/*bullets from font*/
+.#{$class-prefix}list#{$classname-seperator}ul li:before {
+    font-size: $list-bullet-font-size;
+    color: $list-bullet-color;
+    top: 12px;
+    left: -17px;
+    font-family: $list-bullet-font-family;
+    font-style: normal;
+    font-weight: $list-font-weight;
+    text-decoration: inherit;
+    position: absolute;
+}
+
+.#{$class-prefix}list#{$classname-seperator}ul > li:before,
+.#{$class-prefix}list#{$classname-seperator}ul li > ul ul li:before {
+    content: "\f111";
+}
+
+.#{$class-prefix}list#{$classname-seperator}ul li > ul li:before {
+    content: "\f10c";
+}

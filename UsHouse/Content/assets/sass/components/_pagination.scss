@@ -1,0 +1,293 @@
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 2* $base-margin 0;
+    @include border-radius();
+}
+
+ .pagination >li >a, .pagination >li>span {
+    position: relative;
+    float: left;
+    padding: .6 * $base-padding 1.2 * $base-padding;
+    margin-left: -(.1 * $base-margin);
+    line-height: 1.42857143;
+    color: $bootstrap-blue;
+    text-decoration: none;
+    background-color: $bg-tertiary;
+    border: $border-width solid $border-color-octonary;
+    }
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.toppagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 2* $base-margin 0;
+    @include border-radius();
+}
+
+ .toppagination >li >a, .toppagination >li>span {
+    position: relative;
+    float: left;
+    padding: .6 * $base-padding 1.2 * $base-padding;
+    margin-left: -(.1 * $base-margin);
+    line-height: 1.42857143;
+    color: $bootstrap-blue;
+    text-decoration: none;
+    background-color: $bg-tertiary;
+    border: $border-width solid $border-color-octonary;
+    }
+
+.toppagination>li:first-child>a, .toppagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.bottompagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 2* $base-margin 0;
+    @include border-radius();
+}
+
+ .bottompagination >li >a, .bottompagination >li>span {
+    position: relative;
+    float: left;
+    padding: .6 * $base-padding 1.2 * $base-padding;
+    margin-left: -(.1 * $base-margin);
+    line-height: 1.42857143;
+    color: $bootstrap-blue;
+    text-decoration: none;
+    background-color: $bg-tertiary;
+    border: $border-width solid $border-color-octonary;
+    }
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.page-item {
+    &:first-child {
+        .page-link {
+            margin-left: 0;
+            @include border-left-radius($border-radius);
+        }
+    }
+
+    &:last-child {
+        .page-link {
+            @include border-right-radius($border-radius);
+        }
+    }
+
+    &.active .page-link {
+        z-index: 2;
+        color: $pagination-active-color;
+        background-color: $pagination-active-bg;
+        border-color: $pagination-active-border;
+    }
+
+    &.disabled .page-link {
+        color: $pagination-disabled-color;
+        pointer-events: none;
+        cursor: $cursor-disabled; // While `pointer-events: none` removes the cursor in modern browsers, we provide a disabled cursor as a fallback.
+        background-color: $pagination-disabled-bg;
+        border-color: $pagination-disabled-border;
+    }
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: $pagination-padding-y $pagination-padding-x;
+    margin-left: -(.1* $base-margin);
+    line-height: $pagination-line-height;
+    color: $pagination-color;
+    background-color: $pagination-bg;
+    border: $pagination-border-width solid $pagination-border-color;
+
+    @include hover-focus {
+        color: $pagination-hover-color;
+        text-decoration: none;
+        background-color: $pagination-hover-bg;
+        border-color: $pagination-hover-border;
+    }
+}
+
+//
+// Sizing
+//
+
+.pagination-lg {
+    @include pagination-size($pagination-padding-y-lg, $pagination-padding-x-lg, $base-font-size, $line-height-lg, $border-radius-lg);
+}
+
+.pagination-sm {
+    @include pagination-size($pagination-padding-y-sm, $pagination-padding-x-sm, $base-font-size, $line-height-sm, $border-radius-sm);
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 {
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .pagination#{$classname-seperator}info {
+    font-family: $base-font-family-light;
+    // font-weight: $pagination-info-font-weight;
+    text-align: center;
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .pagination {
+    line-height: 1;
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .bottompagination {
+    line-height: 1;
+}
+.#{$class-prefix}pagination#{$classname-seperator}v0 .toppagination {
+    line-height: 1;
+}
+.#{$class-prefix}pagination#{$classname-seperator}v0 li {
+    line-height: 1.428;
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .pagination li a {
+    color: $link-color;
+    border: 0;
+    background: none;
+}
+.#{$class-prefix}pagination#{$classname-seperator}v0 .toppagination li a {
+    color: $link-color;
+    border: 0;
+    background: none;
+}
+.#{$class-prefix}pagination#{$classname-seperator}v0 .bottompagination li a {
+    color: $link-color;
+    border: 0;
+    background: none;
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .pagination .active a,
+.#{$class-prefix}pagination#{$classname-seperator}v0 .pagination > .active > span {
+    @include hover-focus(true) {
+        color: $pagination-active-color;
+        background: $pagination-active-bg;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .toppagination .active a,
+.#{$class-prefix}pagination#{$classname-seperator}v0 .toppagination > .active > span {
+    @include hover-focus(true) {
+        color: $pagination-active-color;
+        background: $pagination-active-bg;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .bottompagination .active a,
+.#{$class-prefix}pagination#{$classname-seperator}v0 .bottompagination > .active > span {
+    @include hover-focus(true) {
+        color: $pagination-active-color;
+        background: $pagination-active-bg;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .pagination li {
+    display: inline-block;
+    position: relative;
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .toppagination li {
+    display: inline-block;
+    position: relative;
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .bottompagination li {
+    display: inline-block;
+    position: relative;
+}
+/*icon*/
+.#{$class-prefix}pagination#{$classname-seperator}v0 .pagination li.active:after {
+    content: "\f111";
+    font-size: $pagination-active-font-size;
+    color: $pagination-active-after-color;
+    top: 50%;
+    left: 50%;
+    margin: (-2.3* $base-margin) (-1.6* $base-margin);
+    z-index: 1;
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .chevron {
+    color: $pagination-chevron-color;
+}
+/* tablet and desktop reset tab labels*/
+@include media-breakpoint-up(md) {
+    .#{$class-prefix}pagination#{$classname-seperator}v0 .pagination#{$classname-seperator}info {
+        position: absolute;
+        bottom: 15px;
+    }
+
+    .#{$class-prefix}pagination#{$classname-seperator}v0 .pagination {
+        float: right;
+    }
+    .#{$class-prefix}pagination#{$classname-seperator}v0 .toppagination {
+        float: right;
+    }
+    .#{$class-prefix}pagination#{$classname-seperator}v0 .bottompagination {
+        float: right;
+    }
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .pagination li.active:after {
+    font-family: $icon-font-family;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+}
+
+.#{$class-prefix}pagination#{$classname-seperator}v0 .toppagination li.active:after {
+    font-family: $icon-font-family;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+     content: "\f111";
+    font-size: $pagination-active-font-size;
+    color: $pagination-active-after-color;
+    top: 50%;
+    left: 50%;
+    margin: (-2.3* $base-margin) (-1.6* $base-margin);
+    z-index: 1;
+}
+.#{$class-prefix}pagination#{$classname-seperator}v0 .bottompagination li.active:after {
+    font-family: $icon-font-family;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+     content: "\f111";
+    font-size: $pagination-active-font-size;
+    color: $pagination-active-after-color;
+    top: 50%;
+    left: 50%;
+    margin: (-2.3* $base-margin) (-1.6* $base-margin);
+    z-index: 1;
+}
+
+@include media-breakpoint-down(xs) {
+    .pagination > li > a, .pagination > li > span {
+        padding: 6px 8px;
+        font-size: 1.4rem;
+    }
+}

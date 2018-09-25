@@ -1,0 +1,89 @@
+
+@include get-class("panel"){
+    @extend .panel;
+}
+
+@include get-class("panel"+$classname-seperator+"group"){
+    @extend .panel-group;
+}
+
+@include get-class("panel"+$classname-seperator+"title"){
+    @extend .panel-title;
+}
+
+.panel {
+    margin-bottom: 2* $base-margin;
+    background-color: $bg-tertiary;
+    border: $border-width solid transparent;
+    border-radius: 4px;
+    @include box-shadow(0 1px 1px rgba($bg-quaternary,.05));
+}
+
+.panel-group .panel{
+    margin-bottom:0;
+    @include border-radius(4px);
+}
+
+.panel-title {
+    font-family: $accordion-title-font-family;
+    font-size: $font-size-md;
+    line-height: 1.4;
+    color: $text-color-primary;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top:0;
+    padding-bottom:0;
+    border:0;
+
+    a {
+        color: inherit;
+        display: block;
+        padding: $base-padding 1.5 * $base-padding;
+
+        &::after {
+          content: '\f067';
+          position: absolute;
+          right: 1.5em;
+          font-family: 'fontawesome';
+          font-weight: 400;
+        }
+
+        /*&.collapsed::after {
+          content: '\f067';
+        }*/
+
+        &[aria-expanded="true"]::after {
+          content: '\f068';
+        }
+    }
+
+    .fa {
+        font-size: $accordion-icon-font-size;
+        float: right;
+        padding-top: .3* $base-padding;
+    }
+
+    > a:hover, > a:focus {
+        text-decoration: none;
+    }
+}
+
+.panel-default , .panel-default > .panel-heading {
+    border-color: $border-color-octonary;
+}
+
+.sub-nav .panel-default .panel-heading, .left-nav .panel-default .panel-heading{
+    text-transform: uppercase;
+    a::after{
+        content: "\f068";
+        position: absolute;
+        right: 1.5em;
+        font-family: $icon-font-family;
+        font-weight: 400;
+    }
+    a.collapsed::after{
+        content:"\f067";
+    }
+}

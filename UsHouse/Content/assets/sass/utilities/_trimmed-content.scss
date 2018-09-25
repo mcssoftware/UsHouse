@@ -1,0 +1,46 @@
+﻿
+.trimmed-content {
+  display: inline;
+
+  &__clipped-text {
+    display: none;
+  }
+
+  &__full-text {
+    display: inline;
+  }
+
+  &__cutoff-text {
+    display: none;
+    color: $link-color-2;
+    text-decoration: none;
+    cursor: pointer;
+
+    &--trimmed::after {
+      content: "[...]";
+      position: relative;
+    }
+
+    &--expanded::after {
+      content: "[Less Text]";
+      position: relative;
+    }
+  }
+}
+
+
+@include media-breakpoint-down(md) {
+  .trimmed-content {
+    &__clipped-text {
+      display: inline;
+    }
+
+    &__full-text {
+      display: none;
+    }
+
+    &__cutoff-text {
+      display: inline-block;
+    }
+  }
+}

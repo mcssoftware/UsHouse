@@ -1,0 +1,30 @@
+﻿
+$petitions-primary-col-width: 60%;
+$petitions-secondary-col-width: 20%;
+
+.petitions-table {
+  th {
+    width: $petitions-secondary-col-width;
+
+    &:first-child {
+      width: $petitions-primary-col-width;
+    }
+  }
+
+  td {
+    width: $petitions-secondary-col-width;
+
+    &:first-child {
+      width: $petitions-primary-col-width;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .petitions-table {
+    th,
+    td {
+      width: 100%;
+    }
+  }
+}

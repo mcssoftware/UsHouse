@@ -1,0 +1,250 @@
+// Wrapper for the slide container and indicators
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    > .active, > .next, > .prev {
+        display: block;
+    }
+    @mixin carouselinner(){
+    left:0;
+    }
+    >.active, >.next.left, .carousel-inner > .prev.right {
+        left: 0;
+    }
+    @include get-class("carousel"+$classname-seperator+"inner > .prev.right"){
+        @include carouselinner;
+    }
+    
+    > .next, > .prev {
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .next, .active.right {
+        left: 100%;
+    }
+
+    > .prev {
+        left: -100%;
+    }
+
+    > .active.left {
+        left: -100%;
+    }
+}
+
+@include get-class("carousel"+$classname-seperator+"inner") {
+@extend .carousel-inner;
+};
+
+
+.carousel-item,
+.item {
+    position: relative;
+    display: none;
+    width: 100%;
+
+    figure {
+        margin-bottom: 0;
+    }
+
+    @include if-supports-3d-transforms() {
+        @include transition($carousel-transition);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+}
+@include get-class("carousel"+$classname-seperator+"item") {
+    @extend .carousel-item;
+};
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev,
+.item.active,
+.item-next,
+.item-prev {
+    display: block;
+    // display: flex;
+}
+
+.carousel-item-next,
+.item-next,
+.carousel-item-prev,
+.item-prev {
+    position: absolute;
+    top: 0;
+}
+
+
+// CSS3 transforms when supported by the browser
+@include if-supports-3d-transforms() {
+    .carousel-inner > .item {
+        transition: $carousel-transition;
+    }
+}
+
+.#{$class-prefix}carousel#{$classname-seperator}control,
+.carousel-control {
+    position: absolute;
+    bottom: 0;
+    width: 70px;
+    min-height: 100px;
+    font-size: $carousel-control-font-size;
+    color: $carousel-control-color;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba($text-color-quaternary,.6);
+    z-index: 11;
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon,
+    .#{$class-prefix}carousel#{$classname-seperator}chevron-left
+    .#{$class-prefix}carousel#{$classname-seperator}chevron-right {
+        margin-top: 3.2* $base-margin;
+        width: 16px;
+        height: 31px;
+        display: inline-block;
+        visibility: collapse;
+    }
+
+    fa-chevron-left, fa-chevron-right {
+        margin-top: 3.2* $base-margin;
+        width: 16px;
+        height: 31px;
+        display: inline-block;
+    }
+
+    .#{$class-prefix}carousel#{$classname-seperator}chevron-left,
+    .carousel-control-prev-icon {
+        background-position: -2px 0;
+    }
+
+    .#{$class-prefix}carousel#{$classname-seperator}chevron-right,
+    .carousel-control-next-icon {
+        background-position: -2px -39px;
+    }
+}
+
+.carousel-control-prev,
+.carousel-control-next,
+.#{$class-prefix}carousel#{$classname-seperator}control.left,
+.#{$class-prefix}carousel#{$classname-seperator}control.right {
+    background: none;
+    // // Hover/focus state
+    @include hover-focus {
+        color: $carousel-control-color;
+        text-decoration: none;
+        outline: 0;
+        opacity: .9;
+    }
+}
+
+.carousel-control-prev,
+.#{$class-prefix}carousel#{$classname-seperator}control.left{
+    left: 0;
+}
+
+.carousel-control-next,
+.#{$class-prefix}carousel#{$classname-seperator}control.right {
+    right: 0;
+    left: auto;
+}
+
+// Icons for within
+.carousel-control-prev-icon,
+.carousel-control-next-icon,
+.#{$class-prefix}carousel#{$classname-seperator}chevron-left,
+.#{$class-prefix}carousel#{$classname-seperator}chevron-right
+ {
+    display: inline-block;
+    width: $carousel-control-icon-width;
+    height: $carousel-control-icon-width;
+    background: transparent no-repeat center center;
+    background-size: 100% 100%;
+}
+
+.carousel-control-prev-icon,
+.#{$class-prefix}carousel#{$classname-seperator}chevron-left
+ {
+    background-image: $carousel-control-prev-icon-bg;
+}
+
+.carousel-control-next-icon,
+.#{$class-prefix}carousel#{$classname-seperator}chevron-right
+ {
+    background-image: $carousel-control-next-icon-bg;
+}
+
+// Optional captions
+.carousel-caption,
+.#{$class-prefix}carousel#{$classname-seperator}caption {
+    position: relative;
+    font-family: $carousel-caption-font-family;
+    z-index: 10;
+    padding: $base-padding 0 $base-padding 6*$base-padding;
+    color: $carousel-caption-color;
+    background-color: $carousel-caption-bg;
+    width: $carousel-caption-width;
+}
+
+.#{$class-prefix}carousel#{$classname-seperator}caption-title {
+    color: $text-color-tertiary;
+    width: $carousel-caption-title-width;
+    margin-top: 2* $base-margin;
+    margin-bottom: 0.5* $base-margin;
+}
+
+.#{$class-prefix}carousel#{$classname-seperator}caption-description {
+    font-family: $carousel-caption-font-family;
+    font-size: $carousel-caption-font-size;
+    line-height: 1.4;
+    color: $carousel-caption-description-color;
+    width: $carousel-caption-title-width;
+}
+
+@include media-breakpoint-up(xs) {
+    .carousel-caption,
+    .#{$class-prefix}carousel#{$classname-seperator}caption {
+        padding-left: 8*$base-padding;
+    }
+    
+    .carousel .fa-chevron-left,
+    .#{$class-prefix}carousel .fa-chevron-left,
+    .carousel .fa-chevron-right,
+    .#{$class-prefix}carousel .fa-chevron-right
+    {
+        margin-left: -$base-margin;
+    }
+}
+
+/* tablet and desktop reset tab labels*/
+@include media-breakpoint-up(md) {
+    .carousel-caption,
+    .#{$class-prefix}carousel#{$classname-seperator}caption
+    {
+        padding-left: 10*$base-padding;
+        position: absolute;
+        bottom: 0;
+        z-index: 10;
+        background-color: $carousel-caption-bg;
+    }
+
+    .carousel .fa-chevron-left,
+    .#{$class-prefix}carousel .fa-chevron-left,
+    .carousel .fa-chevron-right,
+    .#{$class-prefix}carousel .fa-chevron-right
+    {
+        margin-left: -(0.5*$base-margin);
+    }
+}
+
+.carousel-control .carousel-control-prev-icon,
+.#{$class-prefix}carousel#{$classname-seperator}control .#{$class-prefix}carousel#{$classname-seperator}chevron-left,
+.#{$class-prefix}carousel#{$classname-seperator}control .#{$class-prefix}carousel#{$classname-seperator}chevron-right,
+.carousel-control .carousel-control-next-icon
+{
+    background: $carousel-control-sprite;
+}

@@ -1,0 +1,403 @@
+
+/*************************************************************/
+/*
+ *@summary:  global setups for consistency
+ *@contains:
+        *** 1. #main-content: for page content under main navigation
+            2. #legislative-main-content: for page content under Legislative information menu only
+ ***/
+/*************************************************************/
+@include media-breakpoint-up(md){
+#page-content {
+    margin-top: 110px;
+}
+}
+
+.margin-top-none {
+    margin-top: 0 !important;
+}
+
+/** for contents within legislative information -  margin for subnavigation **/
+#legislative-main-content {
+    padding-top: 3.5*$base-padding;    
+}
+
+@include media-breakpoint-down(sm) {
+    #legislative-main-content{
+        overflow-y:hidden;
+    }
+    /** for the filters should be fixed to top in mobile view*/
+    .filter-fixed-top {
+        background-color: $bg-tertiary;
+    }
+
+    .social-link {
+        padding-left: 1.5*$base-padding;
+    }
+
+    .fixed-filter-heading {
+        .filter-fixed-top-heading {
+            font-size: 2.4rem;
+            margin: 0;
+            padding: $base-padding 0 $base-padding 0;
+        }
+
+        .filter-fixed-top-button {
+            padding: $base-padding 0 $base-padding 0;
+
+            > button {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+
+
+@include media-breakpoint-up(md) {
+    /** if there is sidebar then, move content 25% to right*/
+    .has-sidebar .page-body {
+        margin-left: 25% !important;
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .has-sidebar .filter-fixed-top-heading-div {
+        min-width: 200px;
+        padding-right: 0;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .has-sidebar .page-body{
+        margin-bottom: 0;
+        margin-left: -(1.5*$base-margin);
+        margin-right: -(1.5*$base-margin);
+    }
+}
+
+// Custom breakpoint for dealing with the top filter
+@media screen and (max-width: 515px) {
+  .filter-fixed-top {
+    .filter-fixed-top-heading-div {
+      width: 100%;
+      text-align: center;
+    }
+
+    .filter-fixed-top-button {
+      text-align: center;
+    }
+  }
+
+  /*.filter-fixed-top-heading {
+    .filter-fixed-top-heading-div {
+      width: inherit;
+      text-align: inherit;
+    }
+
+    .filter-fixed-top-button {
+      text-align: inherit;
+    }
+  }*/
+}
+
+
+/************************************/
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.roll-call-starred {
+    background-color: $secondary-lightYellow;
+}
+
+.roll-call-star {
+    margin-left: -(2*$base-margin);
+    top: 2px;
+    position: relative;
+}
+
+@include media-breakpoint-up(md) {
+
+    .roll-call-second-col div {
+        padding-left: 2.5*$base-padding;
+    }
+
+    .roll-call-description {
+        max-width: 85%;
+        line-height: 1.6;
+    }
+    .billtitle{
+       display:table-cell;
+       font-weight: 700;
+       width: 170px;
+    }
+    .billdesc{
+       display:table-cell;
+    }
+
+    .#{$class-prefix}pagination#{$classname-seperator}v0 .pagination#{$classname-seperator}info {
+        bottom: 25px;
+    }
+}
+
+.roll-call-first-row {
+    padding-top: $base-padding;
+    padding-bottom: .5*$base-padding;
+}
+
+.roll-call-second-col div {
+    padding-left: 2.5*$base-padding;
+}
+
+.top-result {
+    margin-top: -(2.5*$base-margin);
+}
+
+.legislative-main {
+    box-shadow: none;
+    margin-top: 4.5*$base-margin;
+}
+
+.votes-table th, .votes-table td {
+    text-align: center;
+}
+
+.#{$class-prefix}form#{$classname-seperator}date {
+    background: $white url(assets/img/#{$class-prefix}core-images/#{$class-prefix}calendar.png) no-repeat right 7px center;
+}
+
+@include media-breakpoint-up(md) {
+    .votes-table th:first-child, .votes-table td:first-child {
+        width: 50%;
+        text-align: left;
+    }
+}
+
+.#{$class-prefix}table#{$classname-seperator}toolbar-footer > .#{$class-prefix}pagination#{$classname-seperator}v0 > .pagination {
+    margin: 0 !important;
+}
+
+/*.votes-table > tbody > tr:nth-of-type(2n), .allvotes-table > tbody > tr:nth-of-type(2n) {
+    background-color: $table-bg-accent-even !important;
+}*/
+.votes-table > tbody > tr.row-seperator {
+    background-color:$bg-tertiary !important;
+    td {
+        padding-bottom:0;
+        padding-top:$base-padding;
+    }
+}
+
+.search-votes {
+    margin-top: -(2.5*$base-margin);
+}
+
+.all-votes-searchBtn {
+    padding-top: 1.5*$base-padding !important;
+    padding-bottom: 1.5*$base-padding !important;
+}
+
+#member-votes {
+    > .oddRow {
+        background-color: $table-bg-accent-odd !important;
+    }
+
+    > .evenRow {
+        background-color: $table-bg-accent-even !important;
+    }
+
+    td:last-child {
+        text-transform: uppercase;
+    }
+}
+
+#membersvotes {
+  @include media-breakpoint-down(sm) {
+    .library-pagination_v0 {
+      width: 100%;
+    }
+  }
+}
+
+.view-petition-button {
+  margin-top: 20px;
+}
+
+@include media-breakpoint-down(md) {
+    .view-petition-button {
+        /*margin-top: 28 * $base-margin;
+        position: absolute;*/
+    }
+
+    .view-details-button{
+        /*margin-top:19 * $base-margin;
+        position: absolute;*/
+    }
+    
+    .discharge-petition-result{
+        /*margin-bottom:10*$base-margin;*/
+    }
+    .roll-call-second-col div {
+        padding-left: 0;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .discharge-petition-result{
+        /*margin-bottom:17.5*$base-margin;*/
+    }
+}
+
+/**** ****** *****/
+.h2-search-btn {
+    margin-top: 2*$base-margin;
+}
+
+.h1-search-btn, .h1-search-btn button {
+    margin-top: 0;
+}
+
+.btn-dropdown-search {
+    margin-right: 1.5*$base-margin;
+    margin-top: 1.5*$base-margin;
+
+    @media screen and (max-width: 515px) {
+       margin-right: 0px;
+    }
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+@include media-breakpoint-up(md) {
+    .legislative-content {
+        margin-top: -(11.5*$base-margin);
+        padding-top: 8*$base-padding;
+    }
+}
+
+@include media-breakpoint-between(md, md) {
+    .legislative-content {
+        margin-top: -(14*$base-margin);
+        padding-top: 10*$base-padding;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .legislative-main {
+        margin-top: 5*$base-margin;
+    }
+    .fixed-filter-heading {
+        position: fixed;
+        margin-top: 5.5 * $base-margin;
+        display: block;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background: rgba($bg-quaternary,.7);
+        z-index: 2;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
+.text-right {
+    text-align: right;
+}
+
+//for filter specific
+@include media-breakpoint-down(sm) {
+    #filter-dropdown.open.dropdown-menu {
+        border-top: $border-width solid $border-color-quinary!important;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        top: 0;
+    }
+
+    #filter-dropdown.dropdown-menu {
+        margin-top: 0;
+        padding-top: 1.5*$base-padding;
+        padding-bottom: 1.5*$base-padding;
+    }
+
+    .member-votes #filter-dropdown.open.dropdown-menu {
+        /*top:15px;*/
+        border-top: 0 !important;
+    }
+}
+
+//For change requirement in 9/21/2017
+.roll-call-second-col,.roll-call-first-col {
+    .heading, .name{
+        margin:0;
+        text-transform:uppercase;
+        color:$text-color-primary;
+    }
+    .heading{
+        font-size:1.8rem;
+        padding-bottom: .5* $base-padding;
+        letter-spacing:0.48px;
+        font-weight: 700;
+    }
+    .first-row {
+        padding-top:1.5 * $base-padding;
+        padding-bottom: .5* $base-padding;
+    }
+    .name{
+        font-size:2.4rem;
+        letter-spacing: 2.16px;
+        line-height: 36px;
+        @include media-breakpoint-down(sm){
+            font-size:2rem;
+        }
+    }
+}
+.roll-call-second-col p,.roll-call-first-col p{
+    margin-bottom :0;
+}
+.row-comment{
+    font-size:1.5rem;
+    font-style:italic; 
+}
+#top-candidate{
+    margin-top:0;
+}
+
+
+//for pagination of page with side nav for not overlapping
+@include media-breakpoint-between(md,md){
+     #membersvotes .library-pagination_v0, .members-profile .#{$class-prefix}pagination#{$classname-seperator}v0 {
+        overflow-x:auto;
+        .pagination_info{
+            text-align: left;
+            position:unset;
+        }
+        .pagination{
+            float:left;
+        }
+    }
+
+}
+@include media-breakpoint-up(lg) {
+    .content{
+        margin-top:0;
+    }
+}
+
+.has-error {
+    color: red;
+}
+
+.input-textbox-error {
+    border-color: red;
+}
+
+.has-congress-error {
+    color: red;
+}

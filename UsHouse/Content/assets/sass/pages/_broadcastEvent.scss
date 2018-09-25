@@ -1,0 +1,102 @@
+
+#video-archives-page-title .library-h1, #video-archives-page-title .library-h1-social-wrap {
+    float: left; }
+  
+  #video-archives-page-title .library-h1-social-wrap {
+    padding-top: 8px;
+    font-size: 1.8rem; }
+  
+  #video-archives-page-title #search-button {
+    padding-top: 16px;
+    padding-bottom: 16px; }
+  
+  #broadcastEventDetail .video {
+    background-color: #000;
+    min-width: 100%;
+    border: 0;
+    min-height: 768px; 
+    overflow:hidden;
+}
+  
+  #broadcastEventDetail .library-nav_tabs {
+    border-bottom: 0.1rem solid #f5f5f5; }
+  
+  #broadcastEventDetail .library-nav_tabs li {
+    float: left; }
+  
+  #broadcastEventDetail .library-nav_tabs li.active {
+    border-bottom: 0.4rem solid #ffd160; }
+  
+  #broadcastEventDetail .library-nav_tabs li a, #broadcastEventDetail .library-nav_tabs li .library-link {
+    background-color: #fff;
+    border-color: #fff; }
+  
+  #broadcastEventDetail .library-nav_tabs li a:before, #broadcastEventDetail .library-nav_tabs li .library-link:before {
+    position: relative;
+    left: 0; }
+  
+  #broadcastEventDetail .tab-content, #broadcastEventDetail #transcript-document {
+    padding-top: 15px;
+    display: block !important; }
+  
+  @media (min-width: 768px) {
+    #broadcastEventDetail .tab-content .library-h1-social-wrap {
+      float: right; } }
+  .video-stream, .time {
+    padding-top: 15px;
+    padding-bottom: 15px; }
+  
+    .video-stream .azuremediaplayer {
+        width:inherit;
+        height:inherit;
+        background-color: #000;
+        .amp-content-title {
+            display:none;
+        }
+     }
+  .video-stream .jwplayer {
+    width: 100% !important; }
+  
+  .video-stream img {
+    height: 200px;
+    background-color: #000;
+    max-width:100%;
+    width:inherit;
+    border: 0; }
+  
+  .time {
+    opacity: .5;
+    background-color: #000;
+    position: absolute;
+    min-height: 50px;
+    min-width: 100px;
+    top: -55px;
+    left: 0;
+    text-align: center;
+    color: #fff;
+    border: #fff 0.1rem solid;
+    border-left: none; }
+  
+  .description {
+    min-height: 145px;
+    background-color: #f5f5f5;
+    padding-top: 15px;
+    padding-bottom: 15px; }
+  
+  .description h4, .description .library-h4, .description p {
+    margin: 0;
+    padding: 0; }
+  
+  .broadcastevent-link {
+    padding-left: 15px; }
+  
+  .broadcastevent-link a, .broadcastevent-link .library-link {
+    padding-left: 8px;
+    padding-right: 8px; }
+  
+  .broadcastevent-links {
+    background-color: #f5f5f5;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 45px; }
+  

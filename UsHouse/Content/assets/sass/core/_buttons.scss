@@ -1,0 +1,113 @@
+
+.btn-group-vertical > .btn-group:after, .btn-group-vertical > .btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+    display: table;
+    content: " ";
+}
+
+.btn-group-vertical > .btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after {
+    clear: both;
+}
+
+@include get-button-class("btn"){
+    @extend .btn;
+}
+.btn {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    font-family: $base-font-family-bold;
+    font-size: $btn-font-size;
+    line-height: $btn-line-height;
+    vertical-align: middle;
+    color: $text-color-primary;
+    margin: 0.5* $base-margin 0;
+    cursor: pointer;
+    background: $body-bg;
+    background-image: none;
+    border: $border-width*4 solid $table-src-input-border-color;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    -webkit-transition: background .5s,border .5s ease;
+    transition: background .5s,border .5s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    @include button-size( 0.6*$base-padding, 1.2*$base-padding,  $btn-font-size,0);    
+
+    //btn icon
+    i {
+        padding: $btn-icon-padding-x $btn-icon-padding-y;
+        font-size: $btn-icon-font-size;
+    }
+
+    @include transition($btn-transition);
+    // Share hover and focus styles; SB 12/8/2017: Removed focus.
+    @include hover {
+        text-decoration: none;
+        background: $btn-hover-bg;
+        border: $btn-hover-border;
+    }
+
+    &:focus,
+    &.focus {
+        outline: 0;
+        box-shadow: $btn-focus-box-shadow;
+    }
+    // Disabled comes first so active can properly restyle
+    &.disabled,
+    &:disabled {
+        cursor: $cursor-disabled;
+        opacity: .65;
+        @include box-shadow(none);
+    }
+}
+
+//
+// Button Sizes
+//
+.btn-lg, .btn.btn-lg{
+    // line-height: ensure even-numbered height of button next to large input
+    @include button-size(2*$base-padding, 3.3*$base-padding, $btn-font-size-lg, $btn-border-radius-lg);
+    @include media-breakpoint-down(xs) {
+            width: 100%;
+    }
+}
+
+.btn-sm, .btn.btn-sm {
+    // line-height: ensure proper height of button next to small input
+    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+}
+
+
+@include media-breakpoint-up(xs) {
+    .btn.btn-sm {
+        padding: 13px 42px;
+    }
+}
+/* Only mobile*/
+@include media-breakpoint-down(xs) {
+    .btn.btn-lg {
+        width: 100%;
+    }
+
+    .btn.btn-sm {
+        width: 49.3%;
+    }
+}
+
+
+//
+// Button Variations
+//
+.btn-houselive {
+  padding: 1em;
+  margin-top: 1em;
+  width: 100%;
+
+  &::after {
+    content: "\f03d";
+    font-family: "fontawesome";
+    margin-left: 0.5em;
+  }
+}

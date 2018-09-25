@@ -1,0 +1,112 @@
+/************************ 12. Footer ************************/
+
+.footer#{$classname-seperator}wrapper {
+    font-family: $footer-font-family;
+    font-size: $footer-font-size;
+    line-height: $footer-line-height;
+    background: $footer-bg;
+    padding: $footer-padding-y $footer-padding-x;
+
+    h3 {
+        color: $footer-heading-color;
+        font-size: $footer-font-size;
+        padding-bottom: 0;
+    }
+
+    a {
+        color: $footer-link-color;
+    }
+}
+/* links area */
+.footer-links {
+    padding-bottom: $footer-padding-y;
+
+    a {
+        display: block;
+    }
+
+    @include media-breakpoint-down(xs) {
+        text-align: center;
+    }
+
+    .vcard,
+    dl dt,
+    dl dd,
+    a {
+        font-size: $footer-font-size;
+        font-weight: $footer-font-weight;
+        line-height: $footer-line-height;
+    }
+
+    .vcard,
+    .vcard a {
+        color: $footer-link-color;
+    }
+
+    .vcard p {
+        margin-bottom: 0;
+    }
+
+    .vcard,
+    dl {
+        margin-bottom: 2*$base-margin;
+    }
+
+    dt {
+        color: $footer-link-color;
+    }
+
+    dd a {
+        color: $footer-heading-color;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .footer-links .col-xs-12 {
+        width: 50%;
+    }
+}
+
+
+/* social & logo area */
+.footer-social {
+    border-top: $footer-social-border-width solid $footer-social-border-color;
+    @include box-shadow($footer-social-box-shadow);
+    padding: 3*$base-padding 0;
+}
+
+.footer-social#{$classname-seperator}logo {
+    text-align: center;
+
+    img {
+        width: 235px;
+        height: auto;
+
+        @include media-breakpoint-up(md) {
+            width: 340px;
+        }
+
+        a {
+            display: block;
+            text-transform: none;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+       text-align: left;
+    }
+}
+
+.footer-social#{$classname-seperator}links {
+    float: left;
+    padding: 2.5*$base-padding 0 0 $base-padding;
+
+    li {
+        display: inline-block;
+    }
+
+    @include media-breakpoint-up(md) {
+        float: right;
+        padding-top: 1.5*$base-padding;
+    }
+}

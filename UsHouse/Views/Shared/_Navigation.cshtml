@@ -1,0 +1,532 @@
+﻿<nav id="main-navbar" class="navbar navbar-static" role="navigation" arial-label="Main Menu">
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header">
+                <div class="logo visible-xs">
+                    <a href="@Url.Action(" Index", "Home" )" title="Office of the Clerk, U.S. House of Representatives">
+                        <img src="@Url.Content("~/Content/assets/img/clerk-logo-web.svg")" title="Office of the Clerk, U.S. House of Representatives" alt="Office of the Clerk, U.S. House of Representatives" />
+                    </a>
+                </div>
+                <button class="navbar-toggle" type="button" data-target=".bs-js-navbar-collapse" id="ui-collapse-485" data-toggle="collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar">&nbsp;</span>
+                    <span class="icon-bar">&nbsp;</span>
+                    <span class="icon-bar">&nbsp;</span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse bs-js-navbar-collapse col-md-12 col-lg-12">
+
+                <ul id="blue-nav" class="nav navbar-nav lcs-nav" role="menubar">
+
+                    <li class="hidden-xs hidden-sm nav-prepend">
+                        <svg role="img" aria-label="Yellow Star" xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="8.5 -3.9 19 17.8">
+                            <polygon points="27.5 3 20.3 3 18.1 -3.9 15.8 3 8.5 3 14.4 7.1 12.2 13.9 18 9.7 23.9 13.9 21.7 7.1 " fill="#FFD262" />
+                        </svg>
+                    </li>
+
+                    <li class="search-mobile hidden-sm hidden-md hidden-lg">
+                        <form action="#" method="post" class="search-mobile_form">
+                            <div class="lcs-search hidden">
+                                <label class="sr-only" for="clerk-search-mobile">Search Office of the Clerk</label>
+                                <input type="text" name="clerk-search-mobile" id="clerk-search-mobile" value="" tabindex="0" placeholder="Search Office of the Clerk">
+                                @*<button class="btn btn-default" type="submit">
+                                    <i class="fa fa-search"></i>
+                                    <span class="sr-only">Search button</span>
+                                </button>*@
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="dropdown">
+                        <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Legislative Information</a>
+                        <div id="legis-info" class="dropdown-menu has-datapicker" aria-labelledby="drop1">
+                            <div class="dropdown-menu_left">
+                                <ul role="menu" aria-label="legislative information">
+                                    <li>
+                                        <h3 class="menu-title">Legislative Information</h3>
+                                    </li>
+                                    <li role="menuitem">
+                                        @*<a tabindex="0" href="@Url.Action(" Index", "FloorSummary" )" title="Legislative Activity">Legislative Activity</a>*@
+                                        <a tabindex="0" href="http://clerk.house.gov/floorsummary/floor.aspx" title="Legislative Activity" target="_blank">Legislative Activity</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" href="@Url.Action(" Index", "Votes" )" title="Votes">Roll Call Votes</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" href="@Url.Action(" Index", "DischargePetition" )" title="Discharge Petitions">Discharge Petitions</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" href="https://live.house.gov" title="HouseLive 2.0" target="_blank">HouseLive 2.0</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" href="http://houselive.gov/" title="Video Archives" target="_blank">Video Archives</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" href="@Url.Action(" Index", "SelectedMemorial" )" title="Selected Memorials">Selected Memorials</a>
+                                    </li>
+                                </ul>
+                                @{
+                                var sessionStatus = "House Not In Session";
+                                var sessionDate = string.Format("Next Session: Tomorrow at");
+
+                                }
+                                <ul class="menu-session-status">
+                                    <li>
+                                        <h5 id="menu-session-event-name" tabindex="0"></h5>
+                                    </li>
+                                    <li>
+                                        <h3 id="menu-session-status" tabindex="0" class="menu-subtitle">@sessionStatus</h3>
+                                    </li>
+                                    <li>
+                                        <h5 id="menu-session-status-date" tabindex="0">@sessionDate</h5>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul class="list-unstyled equal-height-list" role="list" aria-label="House Floor Proceedings">
+                                    <li role="listitem">
+                                        <h3 class="menu-subtitle">House Floor Proceedings</h3>
+                                    </li>
+                                    <li>
+                                        <div id="datepicker"></div>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-small btn-yellow btn-houselive" tabindex="0" href="https://live.house.gov" title="HouseLive 2.0" target="_blank">Watch HouseLive 2.0</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul class="list-unstyled equal-height-list" role="list" aria-label="Additional Resources">
+                                    <li>
+                                        <h3 class="menu-subtitle">Additional Resources</h3>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="https://www.congress.gov/search" title="Legislative Search" target="_blank">Legislative Search</a>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="https://www.congress.gov/congressional-record" title="Congressional Record" target="_blank">Congressional Record</a>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="http://www.senate.gov/index.htm" title="U.S. Senate" target="_blank">U.S. Senate</a>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="https://www.majorityleader.gov/weekly-schedule" title="House Schedule" target="_blank">House Schedule</a>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="http://docs.house.gov/floor" title="Bills This Week" target="_blank">Bills This Week</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Member Information</a>
+                        <div id="member-info" class="dropdown-menu mega-menu" aria-labelledby="drop2">
+                            <div class="dropdown-menu_left">
+                                <ul role="menu" aria-label="member information">
+                                    <li>
+                                        <h3 class="menu-title">Member Information</h3>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" href="@Url.Action(" Index", "Members" )" title="Member Profiles" target="_self">Member Profiles</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "Members" )#Leadership" title="Leadership" target="_self">Leadership</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" href="http://history.house.gov/Institution/Election-Statistics/Election-Statistics/" title="Election Information" target="_blank">Election Information</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" href="http://clerk.house.gov/member_info/vacancies.aspx" title="Current Vacancies" target="_blank">Current Vacancies</a>
+                                    </li>
+                                </ul>
+                                @{
+                                uint memberTotal = 435;
+                                }
+                                <ul class="list-unstyled equal-height-list" style="max-width: 384px">
+                                    <li>
+                                        <div id="menu-member-stats" class="member-stats_chart">
+                                            <dl id="chart">
+                                                <dt>Republicans<span>236</span></dt>
+                                                <dd><span id="data-one" style="width:@((int)Math.Ceiling(((double)236 / memberTotal) * 100))%;">236</span></dd>
+                                                <dt>Democrats<span>193</span></dt>
+                                                <dd><span id="data-two" style="width:@((int)Math.Ceiling(((double)193 / memberTotal) * 100))%;">193</span></dd>
+                                                <dt>Independents<span>0</span></dt>
+                                                <dd><span id="data-three" style="width:@((int)Math.Ceiling(((double)0 / memberTotal) * 100))%;">0</span></dd>
+                                                <dt>Vacancies<span>6</span></dt>
+                                                <dd><span id="data-four" style="width:@((int)Math.Ceiling(((double)6 / memberTotal) * 100))%;">6</span></dd>
+                                            </dl>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul role="list" aria-label="republican leadership" class="list-unstyled equal-height-list" style="line-height: 1.2;">
+                                    <li>
+                                        <h3 class="menu-subtitle">Republican Leadership</h3>
+                                    </li>
+                                    <li role="listitem">
+                                        <b>Rep. Paul D. Ryan</b><br />
+                                        <a href="http://www.speaker.gov" title="Speaker of the House" aria-label="representative paul d ryan, speaker of the house" target="_blank">Speaker of the House</a><br /><br />
+                                    </li>
+                                    <li role="listitem">
+                                        <b>Rep. Kevin McCarthy</b><br />
+                                        <a href="http://majorityleader.gov" title="Majority Leader" aria-label="representative kevin mccarthy, majority leader" target="_blank">Majority Leader</a><br /><br />
+                                    </li>
+                                    <li role="listitem">
+                                        <b>Rep. Steve Scalise</b><br />
+                                        <a href="http://www.majoritywhip.gov" title="Majority Whip" aria-label="representative steve scalise, majority whip" target="_blank">Majority Whip</a><br /><br />
+                                    </li>
+                                    <li role="listitem">
+                                        <b>Rep. Cathy McMorris Rodgers</b><br />
+                                        <a href="http://www.gop.gov" title="Conference Chair" aria-label="representative cathy mcmoris rodgers, conference chair" target="_blank">Conference Chair</a><br /><br />
+                                    </li>
+                                    <li role="listitem">
+                                        <b>Rep. Luke Messer</b><br />
+                                        <a href="http://policy.house.gov" title="Policy Committee Chairman" aria-label="representative luke messer, policy committee chairman" target="_blank">Policy Committee Chairman</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul role="list" aria-label="democratic leadership" class="list-unstyled equal-height-list" style="line-height: 1.2;">
+                                    <li>
+                                        <h3 class="menu-subtitle">Democratic Leadership</h3>
+                                    </li>
+                                    <li role="listitem">
+                                        <b>Rep. Nancy Pelosi</b><br />
+                                        <a href="http://www.democraticleader.gov" title="Democratic Leader" aria-label="representative nancy pelosi, democratic leader" target="_blank">Democratic Leader</a><br /><br />
+                                    </li>
+                                    <li role="listitem">
+                                        <b>Rep. Steny H. Hoyer</b><br />
+                                        <a href="http://www.democraticwhip.gov" title="Democratic Whip" aria-label="representative steny h hoyer, democratic whip" target="_blank">Democratic Whip</a><br /><br />
+                                    </li>
+                                    <li role="listitem">
+                                        <b>Rep. James E. Clyburn</b><br />
+                                        <a href="http://assistantdemocraticleader.house.gov" title="Assistant Democratic Leader" aria-label="representative james e clyburn, assistant democratic leader" target="_blank">Assistant Democratic Leader</a><br /><br />
+                                    </li>
+                                    <li role="listitem">
+                                        <b>Rep. Joseph Crowley</b><br />
+                                        <a href="http://www.dems.gov/" title="Democratic Caucus Chairman" aria-label="representative joseph crowley, democratic caucus chairman" target="_blank">Democratic Caucus Chairman</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul role="list" aria-label="additional resources" class="list-unstyled equal-height-list" style="line-height:1.2;">
+                                    <li>
+                                        <h3 class="menu-subtitle">Additional Resources</h3>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a href="http://clerk.house.gov/member_info/olmbr.aspx" title="Official Alphabetical List of Members" target="_blank">Official Alphabetical List of Members</a>
+                                    </li>
+                                    <li role="listitem" style="white-space:nowrap;">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<span tabindex="0">Official List of Members by State</span><br />
+                                        [<a href="http://clerk.house.gov/member_info/olm112.aspx" title="Official List of Members by State" target="_blank">HTML</a> | <a href="http://clerk.house.gov/member_info/olm-115.pdf" title="Official List of Members by State" target="_blank">PDF</a>]
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<span tabindex="0">Official Member Telephone Directory</span><br />
+                                        [<a href="http://clerk.house.gov/member_info/ttd.aspx" title="Official Member Telephone Directory" target="_blank">HTML</a> | <a href="http://clerk.house.gov/member_info/TTD-115.pdf" title="Official Member Telephone Directory" target="_blank">PDF</a>]
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<span tabindex="0">Duplicate and Similar Names of Members</span><br />
+                                        [<a href="http://clerk.house.gov/member_info/duplicate-names-115.pdf" title="Duplicate and Similar Names of Members" target="_blank">PDF</a>]
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<span tabindex="0">Mailing Labels</span><br />
+                                        [<a href="@Url.Action(" WordMailingLabel", "Members" )" title="Mailing Labels" target="_blank">MS Word</a> | <a href="http://clerk.house.gov/member_info/wp-labels-115.wpd" title="Official Lists" target="_blank">Word Perfect</a> | <a tabindex="-1" href="@Url.Action(" TextMailingLabel", "Members" )" title="Mailing Labels" target="_blank">Text File</a>]
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<span tabindex="0">Member Data</span><br />
+                                        [<a href="@Url.Action(" ExcelMemberData", "Members" )" title="Member Data" target="_blank">Excel</a> | <a href="http://clerk.house.gov/xml/lists/MemberData.xml" title="Member Data" target="_blank">XML</a> | <a tabindex="-1" href="http://clerk.house.gov/member_info/MemberData_UserGuide.pdf" title="Official Lists" target="_blank">User Guide</a>]
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a href="https://www.congress.gov/members" title="Members on Congress.gov" target="_blank">Members on Congress.gov</a>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a href="http://bioguide.congress.gov/biosearch/biosearch.asp" title="Bioguide" target="_blank">Biographical Directory</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a id="drop3" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Committee Information</a>
+                        <div id="committee-info" class="dropdown-menu mega-menu" aria-labelledby="drop3">
+                            <div class="dropdown-menu_left">
+                                <h3 class="menu-title">Committee Information</h3>
+                                <div class="dropdown-menu_left">
+                                    <ul role="menu" class="library-list_ul" aria-label="committee profiles">
+                                        <li class="no-bullet" style="white-space: nowrap !important">
+                                            <a href="/committees" title="Committee Profiles">COMMITTEE PROFILES</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/AG00" tit title="Committee on Agriculture">Agriculture</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/AP00" tit title="Committee on Appropriations">Appropriations</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/AS00" tit title="Committee on Armed Services">Armed Services</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/BU00" tit title="Committee on the Budget">Budget</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/ED00" tit title="Committee on Education and the Workforce">Education and the Workforce</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/IF00" tit title="Committee on Energy and Commerce">Energy and Commerce</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-menu_left">
+                                    <ul role="menu" class="library-list_ul">
+                                        <li role="listitem" class="list-spacer">&nbsp;</li> @* "Spacer" item *@
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/SO00" title="Committee on Ethics">Ethics</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/BA00" title="Committee on Financial Services">Financial Services</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/FA00" title="Committee on Foreign Affairs">Foreign Affairs</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/HM00" title="Committee on Homeland Security">Homeland Security</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/HA00" title="Committee on House Administration">House Administration</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/IG00" title="Permanent Select Committee on Intelligence">House Intelligence</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/JU00" title="Committee on the Judiciary">Judiciary</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-menu_left">
+                                    <ul role="menu" class="library-list_ul">
+                                        <li role="menuitem" class="list-spacer">&nbsp;</li> @* "Spacer" item *@
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/II00" title="Committee on Natural Resources">Natural Resources</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/GO00" title="Committee on Oversight and Government Reform">Oversight and Government Reform</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/RU00" title="Committee on Rules">Rules</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/SY00" title="Committee on Science, Space, and Technology">Science, Space, and Technology</a>
+                                        </li>
+                                        <li>
+                                            <a tabindex="0" href="/committees/SM00" title="Committee on Small Business">Small Business</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/PW00" title="Committee on Transportation and Infrastructure">Transportation and Infrastructure</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-menu_left">
+                                    <ul role="menu" class="library-list_ul">
+                                        <li role="menuitem" class="list-spacer">&nbsp;</li> @* "Spacer" item *@
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/VR00" title="Committee on Veterans' Affairs">Veterans' Affairs</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/WM00" title="Committee on Ways and Means">Ways and Means</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/EC00" title="Joint Economic Committee">Joint Economic</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/JL00" title="Joint Committee on the Library">Joint Library</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/JP00" title="Joint Committee on Printing">Joint Printing</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="/committees/IT00" title="Joint Committee on Taxation">Joint Taxation</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul class="list-unstyled equal-height-list" role="list" aria-label="additional resources">
+                                    <li>
+                                        <h3 class="menu-subtitle">Additional Resources</h3>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<span tabindex="0">Official List of Members with Committee Assignments</span><br />
+                                        [<a tabindex="0" href="http://clerk.house.gov/committee_info/oal.aspx" title="Official List of Members with Committee Assignments" target="_blank">HTML</a> | <a tabindex="0" href="http://clerk.house.gov/committee_info/oal.pdf" title="Official List of Members with Committee Assignments" target="_blank">PDF</a>]
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<span tabindex="0">Official List of Standing Committees and Subcommittees</span><br />
+                                        [<a tabindex="0" href="http://clerk.house.gov/committee_info/scsoal.pdf" title="Official List of Standing Committees and Subcommittees" target="_blank">PDF</a>]
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="http://docs.house.gov/Committee" title="Committee Repository" target="_blank">Committee Repository</a>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CRPT" title="Committee Reports" target="_blank">Committee Reports</a>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="https://www.congress.gov/committees" title="Committees on Congress.gov" target="_blank">Committees on Congress.gov</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a id="drop4" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Disclosures</a>
+                        <div id="disclosures-info" class="dropdown-menu menu-right" aria-labelledby="drop4">
+                            <div class="dropdown-menu_left">
+                                <h3 class="menu-title">Disclosures</h3>
+                                <div class="dropdown-menu_left">
+                                    <ul role="menu" class="library-list_ul" aria-label="disclosures">
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="http://clerk.house.gov/public_disc/financial.aspx" title="Financial Disclosures" target="_blank">Financial Disclosure Reports</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="http://clerk.house.gov/public_disc/foreign/index.aspx" title="Foreign Travel Reports and Expenditures" target="_blank">Foreign Travel Reports and Expenditures</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="http://clerk.house.gov/public_disc/franked.aspx" title="Franked Materials (Mass Mailings)" target="_blank">Franked Materials (Mass Mailings)</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="http://clerk.house.gov/public_disc/giftTravel.aspx" title="Gift Travel Filings" target="_blank">Gift Travel Filings</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-menu_left">
+                                    <ul role="menu" class="library-list_ul">
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="http://clerk.house.gov/public_disc/legal.aspx" title="Legal Expense Fund Disclosures" target="_blank">Legal Expense Fund Disclosures</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="http://clerk.house.gov/public_disc/ethics.aspx" title="Office of Congressional Ethics" target="_blank">Office of Congressional Ethics</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a tabindex="0" href="http://clerk.house.gov/public_disc/postemployment.aspx" title="Post-Employment Notifications" target="_blank">Post-Employment Notifications</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul class="list-unstyled equal-height-list" role="list" aria-label="additional resources">
+                                    <li>
+                                        <h3 class="menu-subtitle">Additional Resources</h3>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="http://lobbyingdisclosure.house.gov" title="Lobbying Disclosures" target="_blank">Lobbying Disclosures</a>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a href="https://www.congress.gov/public-laws" title="Public Laws" target="_blank">Public Laws</a>
+                                    </li>
+                                    <li role="listitem">
+                                        <i class="fa fa-angle-double-right"></i>&nbsp;<a tabindex="0" href="http://lobbyingdisclosure.house.gov/amended_lda_guide.html" title="Lobbying Disclosure Act" target="_blank">Lobbying Disclosure Act</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" id="drop5" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">About the Clerk</a>
+                        <div id="about-clerk-info" class="dropdown-menu menu-right mega-menu" aria-labelledby="drop5">
+                            <div class="dropdown-menu_left">
+                                <ul role="menuitem" aria-label="about the clerk">
+                                    <li>
+                                        <h3 class="menu-title">About the Clerk</h3>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "About" )#OverviewContact" title="The Clerk of the House" target="_self">Overview & Contact</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "About" )#DutyOfClerk" title="Duties of the Clerk" target="_self">Duties of the Clerk</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "About" )#OfficeService" title="Offices and Services" target="_self">Offices and Services</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "About" )#HistoryOfOffice" title="History of the Office" target="_self">History of the Office</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul class="list-unstyled equal-height-list" role="list" tabindex="0" aria-label="the clerk of the house">
+                                    <li><h3 class="menu-subtitle">The Clerk of the House</h3></li>
+                                    <li role="listitem" tabindex="0" aria-label="the honorable karen l haas, clerk of the u s house of representatives">
+                                        @*<img src="~/Content/assets/img/haas.jpg" />
+                                        <br />
+                                        <br />*@
+                                        <b>THE HONORABLE KAREN L. HAAS</b><br>
+                                        <i>Clerk of the U.S. House of Representatives</i><br>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul class="list-unstyled equal-height-list" role="list" tabindex="0" aria-label="deputy clerks">
+                                    <li><h3 class="menu-subtitle">Deputy Clerks</h3></li>
+                                    <li role="listitem" tabindex="0" aria-label="robert reeves, deputy clerk">
+                                        <b>Robert Reeves</b><br>
+                                        <i>Deputy Clerk</i>
+                                    </li>
+                                    <li role="listitem" tabindex="0" aria-label="gigi kelaher, senior advisor to the clerk">
+                                        <b>Gigi Kelaher</b>
+                                        <br />
+                                        <i>Senior Advisor to the Clerk</i>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-bucket dropdown-menu_right">
+                                <ul class="list-unstyled equal-height-list" role="list" tabindex="0" aria-label="contact information">
+                                    <li>
+                                        <h3 class="menu-subtitle">Contact Information</h3>
+                                    </li>
+                                    <li role="listitem" tabindex="0" aria-label="mailing address, u s capitol, room h154, washington, d c 20515 6601">
+                                        <b>Mailing Address</b>
+                                        <br />
+                                        U.S. Capitol
+                                        <br />
+                                        Room H154
+                                        <br />
+                                        Washington, DC 20515&ndash;6601
+                                    </li>
+                                    <li role="listitem" tabindex="0" aria-label="telephone number, (202) 225-7000">
+                                        <b>Telephone Number</b>
+                                        <br />
+                                        (202) 225&ndash;7000
+                                    </li>
+                                    <li role="listitem" tabindex="0" aria-label="office hours, 9:00 a m to 6:00 p m, monday to friday">
+                                        <b>Office Hours</b>
+                                        <br />
+                                        9:00 AM&ndash;6:00 PM, Monday&ndash;Friday
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="hidden-xs hidden-sm nav-append">
+                        <svg role="img" aria-label="Yellow Star" xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="8.5 -3.9 19 17.8">
+                            <polygon points="27.5 3 20.3 3 18.1 -3.9 15.8 3 8.5 3 14.4 7.1 12.2 13.9 18 9.7 23.9 13.9 21.7 7.1 " fill="#FFD262" />
+                        </svg>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<input type="hidden" id="inSessionDateList" value="">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        datePicker();
+    }, false);
+</script>

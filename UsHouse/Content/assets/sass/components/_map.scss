@@ -1,0 +1,73 @@
+#mapContainer {
+    height: 100%;
+    border: 2 * $border-width solid $gray-light;
+    ::placeholder {
+        color: $black;
+    }
+}
+
+.esri-view-height-less-than-medium .esri-popup__main-container {
+    max-height: 300px;
+}
+
+h2.esri-popup__header-title {
+    padding-top: 10px !important;
+}
+
+.popup_body {
+    padding-top: 10px;
+    p {
+        font-size: 1rem;
+        margin: 0 0 .75rem;
+    }
+    img {
+        float: right;
+        max-width: 150px;
+    }
+}
+
+#infoDiv > select {
+    padding: 6px;
+    width: 240px;
+}
+
+.borderedRow {
+    margin-right: -8px;
+    margin-left: -8px;
+    border-top: $border-width solid $gray-light;
+}
+
+.esri-attribution__sources {
+    display: none !important;
+}
+
+.esri-attribution__powered-by {
+    display: none !important;
+}
+
+.esri-menu .esri-header {
+    background-color: #2d7779 !important;
+}
+
+.activeView {
+    color: #337ab7;
+}
+
+
+.tooltip {
+    position: absolute;
+    top: 10px; /* Defines the spacing between tooltip and target position */
+    max-width: 200px;
+    color: #fff;
+    border-radius: 2px;
+    text-shadow: -1px -1px 0 rgba(0,0,0,.2);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+    .tooltip .esri-widget {
+        background: transparent;
+        font-weight: 600;
+    }

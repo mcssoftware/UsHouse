@@ -1,0 +1,106 @@
+/************************ SURVEY STYLES ************************/
+.survey {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 450px;
+    z-index: 1031;
+    transition: all .4s;
+}
+
+.survey--hidden {
+    left: -450px;
+}
+
+.survey--shown {
+    left: 0;
+}
+
+.survey#{$classname-seperator}#{$classname-seperator}container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.survey#{$classname-seperator}#{$classname-seperator}tab {
+    position: absolute;
+    padding: .5em;
+    top: 50%;
+    left: 425px;
+    transform: rotate(-90deg) translateX(50%);
+    background: $survey-tab-bg;
+    @include border-radius(0px 0px 5px 5px);
+    box-shadow: -1px 0px 6px 1px rgba(0,0,0,.33);
+    color: $survey-tab-color;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    text-transform: uppercase;
+    font-weight: $survey-font-weight;
+    cursor: pointer;
+}
+
+
+.survey#{$classname-seperator}#{$classname-seperator}close {
+    display: none;
+    font-size: $survey-font-size;
+    z-index: 1032;
+    color: $survey-tab-color;
+    right: .5em;
+    top: .25em;
+    cursor: pointer;
+
+    &::after {
+        content: "\f00d ";
+        font-family: $icon-font-family;
+        background: $survey-icon-bg;
+        padding: .25em;
+    }
+}
+
+.survey#{$classname-seperator}#{$classname-seperator}questions {
+    height: 100%;
+}
+/* Specific to the Survey Monkey embed */
+.smcx-embed {
+    z-index: 1031 !important;
+    height: 100% !important;
+    width: 100%;
+}
+
+.smcx-iframe-container {
+    height: 100% !important;
+}
+
+@include media-breakpoint-down(xs) {
+    .survey {
+        width: 100%;
+    }
+
+    .survey--hidden {
+        top: 100%;
+        left: 0;
+    }
+
+    .survey#{$classname-seperator}#{$classname-seperator}tab {
+        left: 0;
+        width: 150px;
+        text-align: center;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        @include border-radius( 5px 5px 0 0);
+    }
+
+    .survey--hidden .survey#{$classname-seperator}#{$classname-seperator}tab {
+        top: -40px;
+    }
+
+    .survey--shown .survey#{$classname-seperator}#{$classname-seperator}tab {
+        top: 0px;
+    }
+
+    .survey--shown .survey#{$classname-seperator}#{$classname-seperator}close {
+        position: absolute;
+        display: block;
+    }
+}
+
+/*********************** END SURVEY STYLES **********************/

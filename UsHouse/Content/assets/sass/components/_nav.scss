@@ -1,0 +1,244 @@
+// Base class
+//
+// Kickstart any navigation component with a set of style resets. Works with
+// `<nav>`s or `<ul>`s.
+
+
+
+.nav-prepend, .nav-append {
+    height: 60px;
+    line-height: $nav-prepend-line-height;
+    display: inline-block !important;
+    position: absolute !important;
+    top: 0;
+
+    @include media-breakpoint-down(sm) {
+        border-bottom: none !important;
+    }
+}
+
+.nav-prepend {
+    padding: $nav-prepend-padding;
+    margin-left: -(2* $base-margin);
+    border-right: none;
+}
+
+.nav-append {
+    padding: 15px 0 0 15px;
+    margin-right: -(2* $base-margin);
+    right: 0;
+}
+
+
+
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+
+    > li {
+        position: relative;
+        display: block;
+
+        > a {
+            display: block;
+            padding: 10px 15px;
+            position: relative;
+
+            &:hover, &:focus {
+                outline: none;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.nav-link {
+    display: block;
+    padding: $nav-link-padding;
+
+    @include hover-focus {
+        text-decoration: none;
+    }
+    // Disabled state lightens text and removes hover/tab effects
+    &.disabled {
+        color: $nav-disabled-link-color;
+        cursor: $cursor-disabled;
+    }
+}
+
+
+//
+// Tabs
+//
+@include get-class("nav"+$classname-seperator+"tabs"){
+    @extend .nav-tabs;
+}
+.nav-tabs {
+    border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
+
+    li {
+        display: block;
+        position: relative;
+        margin-bottom: -(.1* $base-margin);
+
+        a {
+            color: $nav-tabs-link-color;
+            position: relative;
+            padding: $nav-tabs-link-padding;
+            margin-right: .2* $base-margin;
+            display: block;
+            @include border-radius($nav-tabs-border-radius);
+            // border-top-left-radius: 4px;
+            // border-top-left-radius:4px;
+            &:before {
+                content: attr(data-label);
+                position: absolute;
+                z-index: 1;
+                top: 50%;
+                left: 50%;
+                margin: -(1.1* $base-margin) 0 0 -(.5* $base-margin);
+            }
+
+            .#{$class-prefix}nav#{$classname-seperator}label {
+                font-family: $nav-label-font-family;
+                font-size: $nav-label-font-size;
+                font-weight: $nav-label-font-weight;
+                text-transform: uppercase;
+                letter-spacing: .09em;
+                display: inline-block;
+                text-indent: -9999px;
+            }
+        }
+
+        &.active {
+            a, a:focus, a:hover {
+                color: $nav-tabs-active-link-hover-color;
+                background-color: $nav-tabs-active-link-hover-bg;
+                border: $nav-tabs-active-link-border;
+            }
+        }
+    }
+
+    .nav-item {
+        margin-bottom: -$nav-tabs-border-width;
+    }
+
+    .nav-link {
+        border: $nav-tabs-border-width solid transparent;
+        @include border-top-radius($nav-tabs-border-radius);
+
+        @include hover-focus {
+            border-color: $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color $nav-tabs-border-color;
+        }
+
+        &.disabled {
+            color: $nav-disabled-link-color;
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+
+    .nav-link.active,
+    .nav-item.show .nav-link {
+        color: $nav-tabs-active-link-hover-color;
+        background-color: $nav-tabs-active-link-hover-bg;
+        border-color: $nav-tabs-active-link-hover-border-color $nav-tabs-active-link-hover-border-color $nav-tabs-active-link-hover-bg;
+    }
+
+    .dropdown-menu {
+        // Make dropdown border overlap tab border
+        margin-top: -$nav-tabs-border-width;
+        // Remove the top rounded corners here since there is a hard edge above the menu
+        @include border-top-radius(0);
+    }
+}
+
+
+//
+// Pills
+//
+
+.nav-pills {
+    .nav-link {
+        @include border-radius($nav-pills-border-radius);
+    }
+
+    .nav-link.active,
+    .nav-item.show .nav-link {
+        color: $nav-pills-active-link-color;
+        cursor: default;
+        background-color: $nav-pills-active-link-bg;
+    }
+}
+//
+// Justified variants
+//
+
+.nav-fill {
+    .nav-item {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+}
+
+.nav-justified {
+    .nav-item {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+}
+
+// Tabbable tabs
+//
+// Hide tabbable panes to start, show them when `.active`
+
+.#{$class-prefix}tab#{$classname-seperator}pane, .tab-pane {
+    background: $tab-pane-bg;
+    z-index: 0;
+    padding: 30px 35px;
+}
+
+.#{$class-prefix}tab#{$classname-seperator}pane .art#{$classname-seperator}v3 .#{$class-prefix}summary-art#{$classname-seperator}image {
+    padding: 0 40px 5px;
+}
+
+.tab-content {
+    > .tab-pane, .tab-pane {
+        display: none;
+    }
+
+    > .active {
+        display: block;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .nav-tabs {
+        > li > a > .#{$class-prefix}nav#{$classname-seperator}label {
+            text-indent: 0;
+        }
+
+        > li a:before {
+            display: none;
+        }
+    }
+
+    .#{$class-prefix}tab#{$classname-seperator}pane .art#{$classname-seperator}v3 .#{$class-prefix}summary-art#{$classname-seperator}image {
+        padding: 0;
+    }
+}
+
+/* Tablet and Desktop */
+@include media-breakpoint-up(xs) {
+    .art#{$classname-seperator}v1 .#{$class-prefix}summary-art#{$classname-seperator}image,
+    .art#{$classname-seperator}v3 .#{$class-prefix}summary-art#{$classname-seperator}image {
+        float: left;
+        max-width: 260px;
+        margin-right: 3* $base-margin;
+    }
+
+    .#{$class-prefix}tab#{$classname-seperator}pane .art#{$classname-seperator}v3 .#{$class-prefix}summary-art#{$classname-seperator}image {
+        padding: 0;
+    }
+}

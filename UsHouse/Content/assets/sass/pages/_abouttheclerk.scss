@@ -1,0 +1,77 @@
+
+/******************* 6. About (LCS EDITS) ********************/
+
+.main-view.about { 
+    padding: 0 1.5 * $base-padding;
+ } /* To overwrite default */
+
+.main-view.about,
+.main-view.search-main {
+     margin-top: 0px;
+     }
+
+
+
+.about .vcard { 
+    margin-bottom: $base-margin;
+    span {
+        display: block;
+    }
+}
+
+.about_bio{ 
+	display: table; 
+	margin: 3*$base-margin 0 0; 
+    width: 100%;
+}
+
+.about_bio-img, .about_bio-copy{ 
+    display: block; 
+    text-align: center;
+}
+
+.about_bio-img img {
+  display: inline-block;
+}
+
+.about_bio-copy{
+    p{
+	    font-family:$font-family-merri-weather-italic;
+	    color: $dove-gray;
+    }
+    h1{ 
+        padding-bottom: 0; 
+        font-size: 18px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+	.about_bio-img{ 
+        padding-right: 3.5 * $base-padding;
+
+        img {
+          display: block;
+        }
+     }
+    .about_bio-img, .about_bio-copy{ 
+        display: table-cell; 
+        vertical-align: middle;
+        text-align: left;
+    }
+    .about_bio-copy h1{ 
+        font-size: 2.8rem; }
+}
+
+@include media-breakpoint-up(md){
+    .main-view.about { 
+        padding: 0
+     }
+	.main-view.about,
+	.main-view.search-main{
+	    margin-top: 11.3* $base-margin;
+	}
+	.about_bio{ 
+        width: auto;
+	    margin: 0 0 3 * $base-margin 0; 
+    }
+}

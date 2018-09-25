@@ -1,0 +1,259 @@
+.date,
+.date#{$classname-seperator}v2 {
+    font-family: $font-family-source-serif-proregular;
+    font-size: $font-size-h2;
+    color: $sub-nav-link-color;
+    letter-spacing: .09em;
+}
+
+.date#{$classname-seperator}v2 {
+    color: $gray;
+    font-size: $font-size-h3;
+    @include border-radius($border-width solid $gray);
+    padding-right: $spacer;
+    margin-right: (4/5)*$spacer;
+}
+
+
+/************************ 8. Main Content inside Tabs ************************/
+
+.sub-nav#{$classname-seperator}list.#{$class-prefix}nav#{$classname-seperator}tabs li a {
+    color: $text-color-tertiary;
+}
+
+.tab-content .#{$class-prefix}tab#{$classname-seperator}pane,
+.double-column .tab-content#{$classname-seperator}with-forms .#{$class-prefix}tab#{$classname-seperator}pane {
+    background: $body-bg;
+    padding: 0;
+}
+
+.panel-collapse .#{$class-prefix}h1 {
+    margin-top: $spacer*2;
+}
+
+/***** double columns fixes *****/
+.double-column .tab-content,
+.double-column .tab-content#{$classname-seperator}with-forms {
+    padding-top: 4*$base-padding;
+    padding-bottom: 4*$base-padding;
+}
+
+.double-column .tab-content h2,
+.double-column .tab-content#{$classname-seperator}with-forms h2 {
+    padding-top: 0;
+}
+
+
+/****** fix list inside tabs *******/
+.tab-content .#{$class-prefix}list#{$classname-seperator}ul,
+.double-column .tab-content#{$classname-seperator}with-forms .#{$class-prefix}list#{$classname-seperator}ul .panel-collapse .#{$class-prefix}list#{$classname-seperator}ul {
+    padding-left: 1.8*$base-padding;
+}
+
+/**** goup of boxes with double columns (right usualy a definition list) ****/
+/*** used on votes, members discharge pettions, etc ***/
+.block-content#{$classname-seperator}row {
+    padding-bottom: 2.5*$base-padding;
+}
+
+/****** Definition List to be transfer to libray *******/
+.#{$class-prefix}dl {
+    overflow: hidden;
+}
+
+.dl#{$classname-seperator}inline-pairs dt,
+.dl#{$classname-seperator}inline-pairs dd {
+    float: left;
+    padding: 0 0 $base-padding;
+    line-height: $base-line-height;
+}
+
+.dl#{$classname-seperator}inline-pairs dt {
+    font-family: $base-font-family-semibold;
+    padding-right: $base-padding;
+    clear: both;
+}
+
+/****** scroll up button in bottom-right-corner ************/
+#scrollUp {
+    position: fixed;
+    z-index: 1;
+    bottom: 20px;
+    right: 20px;
+    font-size: $font-size-lr;
+    color: $white;
+    background: $primary-yellow;
+    @include border-radius ($spacer*2);
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding-top: 0.2*$base-padding;
+    cursor: pointer;
+    display: none;
+
+    i {
+        display: block;
+        margin-top: .7 * $base-margin;
+    }
+}
+
+
+/** Tabs Site Sub Nav **/
+.main-view#{$classname-seperator}home {
+    position: relative;
+    top: -66px;
+}
+
+.main-view {
+    background-color: $bg-tertiary;
+}
+
+.main-view.single-column {
+    margin-top: 2* $base-margin;
+}
+
+@include media-breakpoint-up(md) {
+    .main-view {
+        margin-top: 11.3*$base-margin;
+        padding: 5*$base-padding 0 0;
+
+        &.single-column {
+            margin-top: 22* $base-margin;
+        }
+    }
+}
+
+.jwplayer, .azuremediaplayer {
+  padding-bottom: 56.5% !important; // No idea where this came from
+}
+
+.trans > td {
+    padding-top: 0;
+}
+
+#main-content {
+
+    // MOVED TO _TABLE
+    /*td {
+        border-top: $border-width solid $gray93;
+    }*/
+
+    // MOVED TO _TABLE
+    /*table {
+        border-bottom: $border-width solid $gray93;
+    }*/
+
+    // MOVED TO _TABLE
+    /*tbody td {
+        padding: 2*$base-padding;
+    }*/
+
+    // MOVED TO _TABLE
+    /*th {
+        position: relative;
+        background: $bg-primary linear-gradient(to bottom, $palm-leaf, $bg-primary) repeat scroll 0 0 !important;
+        border-right: none !important;
+        border-left: none !important;
+    }*/
+
+    // MOVED TO _TABLE
+    /*tbody table {
+        border-bottom: none !important;
+
+        th {
+            background: $bg-tertiary none repeat scroll 0 0 !important;
+        }
+
+        td {
+            border: none !important;
+            padding: .3*$base-padding 2*$base-padding !important;
+        }
+    }*/
+
+    // MOVED TO _TABLE
+    /*th:first-child {
+        @include border-radius(3px 0 0 0);
+    }
+
+    th:last-child {
+        border-radius: 0 3px 0 0;
+    }*/
+}
+
+
+.table-striped tbody tr:nth-of-type(2n) {
+    background: $bg-quinary;
+}
+
+
+.floor-title {
+    font-size: 3.6rem;
+    letter-spacing: 0.09em;
+    padding-bottom: 1.5*$base-padding;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.yellow-divider {
+    margin: auto;
+    background-color: $bg-secondary;
+    border: medium none;
+    height: 3px;
+    width: 100px;
+    display: block;
+}
+
+.fa-rss {
+    display: inline-block;
+}
+
+/* Live Video Icon */
+.live-video-link-container {
+    position: relative;
+    margin-top: 1em;
+}
+
+.live-video-link {
+    position: absolute;
+    text-shadow: $text-shadow--solid-dark;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &::before {
+      padding: 0.25em 1.25em 0.25em 0.25em;
+      content: "Live TV";
+      font-family: $base-font-family;
+      text-transform: uppercase;
+      font-size: 1em;
+      border: $border-width solid $border-color-denary;
+      color: $white;
+    }
+
+    &::after {
+      background: $bg-denary;
+      border-radius: 50%;
+      content: "";
+      height: 8px;
+      width: 8px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0.375em;
+    }
+
+    @include media-breakpoint-down(sm) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+}
+
+// MOVED TO _TABLE
+/*@include media-breakpoint-down(sm) {
+    #main-content tbody td {
+        padding: 1.5*$base-padding $base-padding;
+        font-size: .875em;
+    }
+}*/

@@ -1,0 +1,221 @@
+/** ----------------------------------------------------
+//  0. Memebers on Committee
+// ---------------------------------------------------- **/
+
+/************************  0. Memebers on Committee ************************/
+
+.committee-members .members-list {
+    margin-top: 0;
+}
+
+.committee .back_link {
+    display: block;
+    margin-top: 15px;
+}
+
+.committee-overview .library-h1 {
+    padding-bottom: 0;
+}
+
+.committee .library-h1 {
+    margin-top: 5px;
+}
+
+/** fix social share with title on committee overview **/
+.library-heading-wrap .library-h2 {
+    margin-bottom: 0;
+}
+
+.library-heading-wrap {
+    display: block;
+    margin-bottom: 25px;
+}
+
+.library-heading-social-wrap {
+    padding-top: 0;
+}
+
+    .library-heading-social-wrap .library-social {
+        text-align: left;
+    }
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .committee-members .members-list .links-group a {
+        display: block;
+    }
+
+        .committee-members .members-list .links-group a:first-child {
+            border-right: none;
+        }
+}
+
+@media (min-width: 768px) {
+    .committee-overview {
+        padding-top: 0;
+    }
+
+    .committee .back_link {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .library-heading-wrap {
+        display: table;
+        width: 100%;
+    }
+}
+
+.committee .library-social_follow {
+    padding-left: 0;
+    font-size: 25px;
+}
+
+.flexwrap .committee-desc {
+    margin-bottom: 50px;
+}
+
+.flexwrap .committee-links_group {
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+/**************************** Committee Profile Landing Page                 ********************/
+.committeePage-main {
+    padding: 150px 0 10px 0;
+    margin-bottom: 10px;
+}
+
+
+.committeePanels {
+    padding-top: 10px;
+}
+
+.library-committeePanel {
+    background: #EEEEEE;
+    height: 270px;
+}
+
+.library-committeePanel-heading a {
+    font-size: 20px;
+    color: #17518b;
+    font-weight: 600;
+    font-family: 'Source Sans Pro';
+    letter-spacing: 0.09em;
+}
+
+.library-committeePanel-heading {
+    white-space: nowrap;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.library-committeePanel-subHeading {
+    text-align: left;
+    font-size: 18px;
+    font-family: 'Source Sans Pro';
+    letter-spacing: 0.09em;
+    line-height: 1.7;
+    font-weight: 600;
+}
+
+.library-website-icon {
+    float: right;
+}
+
+.library-committeePanel-sublist {
+    color: #17518b;
+    line-height: 1.6;
+    font-family: 'Source Sans Pro';
+    letter-spacing: 0.03em;
+    text-wrap: normal;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px 0;
+    margin-bottom: 0;
+}
+
+.bulletIcon {
+    font-size: 7px;
+}
+
+.library-committeePanel-sublist li {
+    width: inherit;
+    white-space: nowrap;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.library-committeePanel-subItems {
+    margin-left: 10px;
+    color: #17518b;
+}
+
+@media(min-width:766px) {
+    .committeePage-main {
+        min-height: 200px !important;
+    }
+}
+
+@media(max-width:1024) {
+
+
+    .library-committeePanel-heading {
+        font-size: 18px;
+    }
+
+    .library-website-icon {
+        font-size: 16px;
+    }
+
+    .library-committeePanel-subHeading {
+        font-size: 15px;
+    }
+}
+
+
+
+@media (max-width: 766px) {
+    .committeePage-main {
+        padding-top: 80px;
+        min-height: 150px;
+        padding-bottom: 0px;
+    }
+
+    .library-website-icon {
+        font-size: 18px;
+    }
+
+    .library-committeePanel {
+        height: 250px;
+    }
+
+    .library-committeePanel-heading {
+        font-size: 18px;
+    }
+
+    .library-website-icon {
+        font-size: 16px;
+    }
+
+    .library-committeePanel-subHeading {
+        font-size: 16px;
+    }
+}
+@media (max-width: 308px) {
+    .committeePage-main {
+        min-height: 195px;
+    }
+     .library-committeePanel {
+       overflow:hidden;
+    }
+     .library-website-icon {
+         float:right;
+    }
+
+}

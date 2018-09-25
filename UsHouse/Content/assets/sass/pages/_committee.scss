@@ -1,0 +1,118 @@
+/** ----------------------------------------------------
+//  0. Members on Committee
+// ---------------------------------------------------- **/
+
+/************************  0. Members on Committee ************************/
+
+/**************************** Committee Profile Landing Page                 ********************/
+.committeePage-main {
+    padding: 150px 0 10px;
+    margin-bottom: 10px;
+}
+
+.committeePanels {
+    padding-top: 10px;
+}
+
+.#{$class-prefix}committeePanel {
+    background: $secondary-lightGray;
+    min-height: 270px;
+}
+
+.#{$class-prefix}committeePanel-heading {
+    white-space: nowrap;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    a {
+        font-size: $font-size-lr;
+        color: $link-color;
+        font-weight: $font-wt-semibold;
+        font-family: $base-font-family;
+        letter-spacing: 0.09em;
+    }
+}
+
+
+
+.#{$class-prefix}committeePanel-subHeading {
+    text-align: left;
+    font-size: $font-size-lg;
+    font-family: $base-font-family;
+    letter-spacing: 0.09em;
+    line-height: 1.7;
+    font-weight: $font-wt-semibold;
+}
+
+.#{$class-prefix}website-icon {
+    float: right;
+    padding: 0;
+    text-align: center;
+}
+
+.#{$class-prefix}committeePanel-sublist {
+    color: $link-color;
+    line-height: 1.6;
+    font-family: $base-font-family;
+    letter-spacing: 0.03em;
+    font-size: $base-font-size;
+    font-weight: $font-wt-light;
+    padding: 10px 0;
+    margin-bottom: 0;
+
+    li {
+        width: inherit;
+        white-space: nowrap;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.bulletIcon {
+    font-size: .7rem !important;
+}
+
+
+.#{$class-prefix}committeePanel-subItems {
+    margin-left: 10px;
+    color: $link-color;
+}
+
+@include media-breakpoint-up(md) {
+    .committeePage-main {
+        min-height: 200px !important;
+    }
+}
+@include media-breakpoint-down(lg){
+    .#{$class-prefix}committeePanel-heading {
+        font-size: $font-size-h3;
+    }
+    .#{$class-prefix}website-icon {
+        font-size: $base-font-size;
+    }
+    .#{$class-prefix}committeePanel-subHeading {
+        font-size: $font-size-nm;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .committeePage-main {
+        padding-top: 0;
+        min-height: 0;
+        padding-bottom: 0;
+    }
+
+    .#{$class-prefix}website-icon, .#{$class-prefix}committeePanel-heading {
+        font-size: $font-size-h3;
+    }
+
+    .#{$class-prefix}committeePanel {
+        min-height: 250px;
+    }
+
+    .#{$class-prefix}website-icon, .#{$class-prefix}committeePanel-subHeading {
+        font-size: 16px;
+    }
+}

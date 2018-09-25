@@ -1,0 +1,210 @@
+/************************ 10. At a Glance ************************/
+
+.at-a-glance {
+    color: $at-a-glance-color;
+    margin-top: 0;
+    background: $at-a-glance-bg;
+    padding: 7*$base-padding 0;
+  
+
+    @include media-breakpoint-down(md) {
+        .col-xs-6 {
+            margin-bottom: 3.5*$base-margin;
+        }
+    }
+
+    h2 {
+        color: $at-a-glance-alt-color;
+        font-size: $font-size-h2;
+        text-align: center !important;
+        margin: 0;
+        padding: 0;
+        @include media-breakpoint-up (md) {
+            font-size: 3.2rem;
+            text-align: left;
+            
+        }
+
+        span {
+            color: $at-a-glance-color;
+            font-size: $base-font-size;
+            line-height: $at-a-glance-line-height;
+            display: block;
+            font-family: $at-a-glance-font-family;
+            font-weight: $at-a-glance-font-weight;
+            @include media-breakpoint-up (md) {
+                font-size: $font-size-sm;
+            }
+        }
+    }
+
+    hr {
+        border-top: $hr-border-width solid $border-color-quaternary;
+        border-bottom: $hr-border-width solid $hr-alt-border-color;
+        margin: 3.5*$base-margin 0;
+    }
+
+    .circle {
+        @include border-radius(50px);
+        width: 100px;
+        height: 100px;
+        background: $at-a-glance-circle-bg;
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+
+        img {
+            position: relative;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    }
+
+    .icons {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: $base-font-size;
+
+        > div .circle {
+            -webkit-transition: background ease 0.5s;
+            transition: background ease 0.5s;
+        }
+
+        > div:hover .circle {
+            background: $at-a-glance-alt-color;
+        }
+    }
+
+    .count {
+        display: block;
+        color: $at-a-glance-alt-color;
+        font-size: 4.8rem;
+    }
+
+    .text {
+        max-width: 110px;
+        letter-spacing: .1em;
+        color: $at-a-glance-color;
+    }
+
+    ;
+}
+
+
+
+
+
+
+
+
+/* ==[ IE9 Settings ]== */
+@media all and (min-width:0\0) and (min-resolution:.001dpcm) {
+    .at-a-glance span.circle img {
+        top: 30%;
+    }
+}
+
+/* Chart classes (NOTE: This chart also appears in the nav */
+/*.member-stats_chart { width: 100%; }*/
+.member-stats#{$classname-seperator}chart {
+    &::after { /* Fix for mobile, where the height would be considered "0" and throw off the layout */
+        content: "";
+        clear: both;
+        display: block;
+    }
+
+    dt {
+        width: 100%;
+        float: left;
+        margin: 0 2*$base-margin 0.5*$base-margin 0;
+        padding: 0.2*$base-padding 0;
+        display: block;
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+
+        span {
+            text-align: right;
+            float: right;
+        }
+    }
+
+    dd {
+        width: 100%;
+        background: $member-stats-graph-bg;
+        float: left;
+        margin-bottom: 19px;
+        max-height: 10px;
+
+        span {
+            background: $member-stats-graph-color;
+            display: block;
+            max-height: 10px;
+            text-indent: -9999px;
+            direction: ltr;
+        }
+    }
+}
+
+#chart dd span {
+    width: 0;
+    -webkit-transition: all ease 4s;
+    transition: all ease 4s;
+}
+
+
+
+/************************ 11. Quick Links ************************/
+
+.quick-links {
+    padding-bottom: 2*$base-padding;
+
+    > .row {
+        margin: 4*$base-margin 0 3*$base-margin;
+    }
+
+    h3 {
+        font-family: $font-family-source-serif-proregular;
+        font-weight: $quick-link-font-weight;
+        text-transform: uppercase;
+        font-size: $quick-link-font-size;
+        line-height: 1.1;
+        color: $quick-link-color;
+        margin: 0;
+        letter-spacing: .048rem;
+        padding:0;
+        @include media-breakpoint-down(md) {
+            padding: 0 0 2.5*$base-padding;
+        }
+    }
+}
+
+.quick-links#{$classname-seperator}list {
+    list-style: none;
+
+    @include media-breakpoint-down(md) {
+        padding-left: 1.5*$base-padding;
+    }
+}
+
+.quick-links#{$classname-seperator}list-item {
+    padding: 0 $base-padding $base-padding;
+
+    @include media-breakpoint-down(md) {
+        padding: 0 0 $base-padding;
+    }
+   
+    a,
+    a:visited {
+        color: $gray;
+    }
+}
+.at-a-glance,.quick-links#{$classname-seperator}list-item, .footer-links {
+    a{
+    text-transform: none;
+    }
+}

@@ -1,0 +1,303 @@
+﻿
+@include get-class("h1"){   
+     @extend h1; 
+} 
+    
+@include get-class("h2"){   
+     @extend h2; 
+} 
+    
+@include get-class("h3"){   
+     @extend h3; 
+} 
+    
+@include get-class("h4"){   
+     @extend h4; 
+} 
+    
+@include get-class("h5"){   
+     @extend h5; 
+} 
+@include get-class("h6"){   
+     @extend h6; 
+} 
+@include get-class("link"){
+    @extend a;
+}
+
+@include get-class("lead"){
+    @extend .lead;
+}
+@include get-class("blockquote"){
+    @extend .blockquote;
+}
+
+@include get-class("blockquote"+$classname-seperator+"footer"){
+    @extend .blockquote-footer;
+}
+
+
+//this part is important
+//include padding, border etc size within the element size
+//exclues margin
+html {
+    font-size: 10px;
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    /**** set standards or base font setups along with background color for scenerio where it is required. ****/
+    margin: 0;
+    overflow-x: hidden;
+}
+
+
+/************************/
+/**     headings      **/
+h1, h2, h3, h4, h5, h6 {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+    line-height: $headings-line-height;
+    color: $headings-color;
+    margin-bottom: 1rem;
+}
+h1, h2, h3, h4 {
+    margin-top: 2rem;
+}
+
+h1, .h1 {
+    font-family: $font-family-merri-weather;
+    font-size: $font-size-h1;
+    line-height: $line-height-h1;
+    font-weight: $font-wt-lighter;
+    margin: 0;
+    padding-bottom:2.3*$base-padding;
+}
+h2, .h2 {
+    text-transform: uppercase;
+    font-size: $font-size-h2;
+    line-height: $line-height-h2;
+    font-family:$font-family-source-serif-proregular
+}
+
+h3, .h3 {
+    font-family: $base-font-family-bold;
+    text-transform: uppercase;
+    font-size: $font-size-h3;
+    line-height: $line-height-h3;
+    margin-top:2*$base-margin;
+}
+
+h4, .h4 {
+    font-size: $font-size-h4;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: $headings-color;
+}
+
+h5, .h5 {
+    margin-top:$base-margin;
+    font-size: $font-size-h5;
+}
+
+h6, .h6 {
+    margin-top:$base-margin;
+    font-size: $font-size-h6;
+}
+
+h2, .h2,
+h3, .h3 {
+    text-transform: uppercase;
+    color: $headings-color;
+    letter-spacing: .09em;
+    padding: 10px 0;
+}
+
+//for heading-wrap
+.#{$class-prefix}h1-wrap {
+    margin-bottom: 20px;
+
+    h1, .h1 {
+        padding-bottom: 5px;
+    }
+}
+
+//
+// Horizontal rules
+//
+
+hr {
+    margin-top: 2*$spacer-y;
+    margin-bottom: 2*$spacer-y;
+    border: 0;
+    border-top: $hr-border-width solid $hr-border-color;
+}
+
+@include media-breakpoint-up(md) {
+    .#{$class-prefix}h1-wrap, .#{$class-prefix}heading-wrap {
+        display: table;
+        width: 100%;
+    }
+
+    .#{$class-prefix}h1-wrap h1 {
+        display: table-cell;
+        padding-right: 15px;
+    }
+
+    .#{$class-prefix}heading-wrap {
+        margin-bottom: 25px;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    h2,
+    h2 .date {
+        font-size: 1.8rem;
+    }
+}
+/*** paragraph ***/
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+
+/********************************************/
+/*** lead body and paragraphs ***/
+
+
+.lead {
+    font-family: $base-font-family-light;
+    font-size: $lead-font-size;
+    line-height: 1.4;
+    padding-bottom: 15px;
+}
+
+/***************************/
+/**** links ******/
+.#{$class-prefix}read#{$classname-seperator}more {
+    color: $text-color-senary;
+    cursor: pointer;
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+.#{$class-prefix}read#{$classname-seperator}more, .#{$class-prefix}link {
+    position: relative;
+}
+
+/**********************/
+/**** block quote ****/
+blockquote, .blockquote {
+    width: 90%;
+    max-width: 580px;
+    margin: 0 auto;
+    border-left: none;
+    text-align: center;
+    position: relative;
+    padding: 70px 0 80px;
+
+    &:before, &:after {
+        content: '';
+        width: 116px;
+        height: 3px;
+        background: $blockquote-bg;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+
+    ;
+
+    &:before {
+        top: 40px;
+    }
+
+    ;
+
+    &:after {
+        bottom: 40px;
+    }
+}
+
+
+/* lead copy style */
+.#{$class-prefix}blockquote#{$classname-seperator}lead,
+.#{$class-prefix}blockquote#{$classname-seperator}lead:before,
+.#{$class-prefix}blockquote#{$classname-seperator}lead:after,
+.#{$class-prefix}blockquote#{$classname-seperator}footer {
+    font-family: $font-family-merri-weather;
+}
+
+.#{$class-prefix}blockquote#{$classname-seperator}lead {
+    font-size: $blockquote-font-size;
+    line-height: $base-line-height;
+    position: relative;
+
+    &:before, &:after {
+        font-size: 28px;
+    }
+
+    &:before {
+        content: '“';
+        margin-right: 5px;
+    }
+
+    &:after {
+        content: '”';
+        margin-left: 5px;
+    }
+}
+.blockquote-footer {
+    color: $blockquote-footer-color;
+    display: block;
+    font-size: 80%; // back to default font-siz
+    &::before {
+        content: "\2014 \00A0"; // em dash, nbsp
+    }
+}
+// // Opposite alignment of blockquote
+.blockquote-reverse {
+    padding-right: $spacer;
+    padding-left: 0;
+    text-align: right;
+    border-right: $blockquote-border-width solid $blockquote-border-color;
+    border-left: 0;
+}
+
+.blockquote-reverse .blockquote-footer {
+    &::before {
+        content: "";
+    }
+
+    &::after {
+        content: "\00A0 \2014"; // nbsp, em dash
+    }
+}
+
+/***** figure and image ******/
+figcaption,
+figure { // 1
+    display: block;
+}
+
+figure {
+    // Normalize adds `margin` to `figure`s as browsers apply it inconsistently.
+    // We reset that to create a better flow in-page.
+    margin: 0 0 1rem;
+}
+
+img {
+    // By default, `<img>`s are `inline-block`. This assumes that, and vertically
+    // centers them. This won't apply should you reset them to `block` level.
+    vertical-align: middle;
+    // Note: `<img>`s are deliberately not made responsive by default.
+    // For the rationale behind this, see the comments on the `.img-fluid` class.
+    border: 0;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+display: block;
+}

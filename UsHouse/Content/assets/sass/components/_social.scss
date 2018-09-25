@@ -1,0 +1,76 @@
+
+.#{$class-prefix}social {
+    overflow: hidden;
+    width: 260px;
+}
+
+.#{$class-prefix}social,
+.#{$class-prefix}h1-social-wrap {
+    text-align: left;
+}
+
+.#{$class-prefix}social-label {
+    color: $link-color;
+    text-transform: uppercase;
+    padding-right: 1.5*$base-padding;
+}
+
+.#{$class-prefix}social,
+.#{$class-prefix}social-label,
+.#{$class-prefix}social-links {
+    display: inline-block;
+}
+
+.#{$class-prefix}social-links {
+    padding-left: $base-padding;
+    margin-top: 0;
+
+    li {
+        display: inline-block;
+        line-height: 1.6;
+    }
+
+    a {
+        padding: 0 .5*$base-padding;
+        color: $link-color;
+    }
+}
+
+/* Tablet & Desktop */
+@include media-breakpoint-up(md) {
+    .#{$class-prefix}social-label {
+        border-right: $border-width solid $light-gray;
+    }
+
+    .#{$class-prefix}social,
+    .#{$class-prefix}h1-social-wrap {
+        text-align: right;
+    }
+
+    .#{$class-prefix}h1-wrap,
+    .#{$class-prefix}heading-wrap {
+        display: table;
+        width: 100%;
+    }
+
+    .#{$class-prefix}h1-wrap .#{$class-prefix}h1 {
+        display: table-cell;
+        padding-right: 1.5*$base-padding;
+    }
+
+    .#{$class-prefix}heading-wrap {
+        margin-bottom: 2.5*$base-margin;
+    }
+
+    .#{$class-prefix}h1-social-wrap,
+    .#{$class-prefix}heading-social-wrap {
+        display: table-cell;
+        vertical-align: top;
+        padding-top: 1.5*$base-padding;
+        width: 260px;
+    }
+
+    .#{$class-prefix}heading-social-wrap {
+        vertical-align: bottom;
+    }
+}

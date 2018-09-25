@@ -1,0 +1,670 @@
+//
+// Basic Bootstrap table
+//
+table.dataTables{
+    width: 100%;
+    margin: 0 auto;
+    clear: both;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+table.dataTable, table.dataTable th, table.dataTable td {
+    box-sizing: content-box;
+}
+@include get-class("table"){
+    @extend .table;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: .8*$base-padding;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: $border-width solid $border-color-octonary;
+}
+.table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th {
+    border-top: 0;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: $spacer;
+    border-collapse: collapse;
+    border-bottom: $border-width solid $gray93;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+
+    th, td {
+        padding: $table-cell-padding;
+        vertical-align: top;
+    }
+    td{
+        border-top: $table-border-width solid $table-border-color;
+    }
+    thead th {
+        vertical-align: bottom;
+        // border-bottom: (2 * $table-border-width) solid $table-border-color;
+        position: relative;
+        background: #092541 linear-gradient(to bottom,#20355a,#092541) repeat scroll 0 0!important;
+        border-right: none!important;
+        border-left: none!important;
+    }
+
+    tbody + tbody {
+        border-top: (2 * $table-border-width) solid $table-border-color;
+    }
+
+    tbody {
+        table {
+          border-bottom: none !important;
+
+          th {
+              background: $bg-tertiary none repeat scroll 0 0 !important;
+          }
+
+          td {
+              border: none !important;
+              padding: .3*$base-padding 2*$base-padding !important;
+          }
+        }
+
+        tr td {
+            line-height: 1.6;
+            padding: 2*$base-padding;
+            border-top: $border-width solid $gray93;
+
+            /* Why? */
+            /*&:first-child {
+                padding-top: 20px;
+            }
+
+            &:last-child {
+                padding-bottom: 20px;
+            }*/
+
+            @include media-breakpoint-down(sm) {
+              padding: 1.5*$base-padding $base-padding;
+              font-size: .875em;
+            }
+        }
+    }
+
+    td:before {
+        content: attr(data-label);
+    }
+
+    .table {
+        background-color: $table-bg;
+    }
+
+    /* TODO: Move to a better spot? */
+    .sub_table {
+      * {
+        background: transparent !important;
+      }
+
+      > * {
+        /*padding: 10px 0 !important;*/
+      }
+    }
+
+    /* Table Header and footer */
+    thead tr th,
+    thead tr td,
+    tfoot tr td,
+    tfoot tr th {
+        font-family: inherit;
+        text-transform: uppercase;
+        letter-spacing: $table-head-letter-spacing;
+        color: $table-head-color;
+        font-size: $table-head-font-size;
+        padding: 15px 20px;
+        background: $table-head-bg;
+        border-right: $table-border-width solid $table-head-border-right-color;
+        border-left: $table-border-width solid $table-head-border-left-color;
+        border-bottom: none;
+        white-space: nowrap;
+    }
+}
+
+
+//
+// Condensed table w/ half padding
+//
+
+.table-sm {
+    th,
+    td {
+        padding: $table-sm-cell-padding;
+    }
+}
+
+
+// Bordered version
+//
+// Add borders all around the table and between all the columns.
+
+.table-bordered {
+    border: $table-border-width solid $table-border-color;
+
+    th,
+    td {
+        border: $table-border-width solid $table-border-color;
+    }
+}
+@include get-class("table"+$classname-seperator+"striped"){
+    @extend .table-striped;
+}
+.table-striped, .table.table-striped {
+    /*tbody tr:nth-of-type(odd) {
+        background-color: $table-bg-accent-odd;
+    }
+
+    tbody tr:nth-of-type(even) {
+        background-color: $table-bg-accent-even;
+    }*/
+    .odd,
+    .odd + .sub_table {
+        background-color: $table-bg-accent-odd;
+    }
+
+    .even,
+    .even + .sub_table {
+        background-color: $table-bg-accent-even;
+    }
+    // Zebra-striping
+    //
+    // Default zebra-stripe styles (alternating gray and transparent backgrounds)
+}
+
+
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+.table-hover {
+    tbody tr {
+        @include hover {
+            background-color: $table-bg-hover;
+        }
+    }
+}
+
+
+// Table backgrounds
+//
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+
+// Generate the contextual variants
+@include table-row-variant(active, $table-bg-active);
+@include table-row-variant(success, $state-success-bg);
+@include table-row-variant(info, $state-info-bg);
+@include table-row-variant(warning, $state-warning-bg);
+@include table-row-variant(danger, $state-danger-bg);
+
+
+// Responsive tables
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    min-height: .01%;
+    -ms-overflow-style: -ms-autohiding-scrollbar; // See https://github.com/twbs/bootstrap/pull/10057
+    // Prevent double border on horizontal scroll due to use of `display: block;`
+    &.table-bordered {
+        border: 0;
+    }
+}
+
+@include media-breakpoint-screen(sm) {
+    .table-responsive {
+        overflow-y: hidden;
+        margin-bottom: 1.5* $base-margin;
+        border: $border-width solid $table-border-color;
+        width:100%;
+    }
+}
+
+.dataTables#{$classname-seperator}wrapper {
+    position: relative;
+    clear: both;
+    zoom: 1;
+}
+
+.dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}info {
+    clear: both;
+    float: left;
+    padding-top: 0.755em;
+}
+
+.dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}paginate {
+    float: right;
+    text-align: right;
+    padding-top: 0.25em;
+
+    .paginate#{$classname-seperator}button {
+        box-sizing: border-box;
+        display: inline-block;
+        min-width: 1.5em;
+        padding: 0.5em 1em;
+        margin-left: .2* $base-margin;
+        text-align: center;
+        text-decoration: none !important;
+        cursor: pointer;
+        color: $gray !important;
+        border: $border-width solid transparent;
+        @include border-radius(2px);
+    }
+}
+
+.dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}length, .dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}filter, .dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}info, .dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}processing, .dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}paginate {
+    color: $gray;
+}
+
+.dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}filter {
+    float: right;
+    text-align: right;
+}
+
+/** Tables info on footer **/
+.#{$class-prefix}table#{$classname-seperator}wrapper {
+    margin-top: -(2.2* $base-margin);
+    margin-bottom: 2* $base-margin;
+
+    @include media-breakpoint-up(lg) {
+        margin-top: -(5* $base-margin);
+    }
+
+    .#{$class-prefix}table#{$classname-seperator}toolbar-footer .#{$class-prefix}table#{$classname-seperator}info {
+        text-align: center;
+    }
+    //table pagination
+    .dataTables#{$classname-seperator}paginate {
+        float: right;
+
+        .paginate#{$classname-seperator}button.disabled {
+            display: none;
+        }
+
+        .paginate#{$classname-seperator}button,
+        .paginate#{$classname-seperator}button:hover,
+        .paginate#{$classname-seperator}button:focus,
+        .paginate#{$classname-seperator}button:active {
+            color: $link-color !important;
+            border-radius: 0;
+            border: 0;
+            background: none;
+            box-shadow: none;
+        }
+
+        .paginate#{$classname-seperator}button.current,
+        .paginate#{$classname-seperator}button.current:hover,
+        .paginate#{$classname-seperator}button.current:focus {
+            color: $white !important;
+            border: none;
+            background-position: -86px 5px;
+        }
+    }
+
+    .#{$class-prefix}table#{$classname-seperator}info {
+        font-family: $base-font-family-light;
+        letter-spacing: 0;
+        text-align: left;
+        display: block;
+        position: relative;
+        padding-top: 0;
+    }
+
+    .#{$class-prefix}table#{$classname-seperator}filter {
+        width: 100%;
+        max-width: 100%;
+        float: left;
+    }
+
+    .#{$class-prefix}table#{$classname-seperator}filter .#{$class-prefix}table#{$classname-seperator}toolbar-src#{$classname-seperator}input {
+        margin-left: 0;
+    }
+    &.no-filter{
+        margin-top:-1.5*$base-margin;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .#{$class-prefix}table#{$classname-seperator}wrapper .#{$class-prefix}table#{$classname-seperator}filter {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+//from jquery.datatable.min.css
+@include media-breakpoint-screen(sm) {
+    .table.dataTable {
+        margin: 0 auto;
+        clear: both;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+}
+
+table.dataTable {
+    th.dt-center,
+    td.dt-center,
+    td.dataTables#{$classname-seperator}empty {
+        text-align: center;
+    }
+
+    thead {
+        .sorting, .sorting#{$classname-seperator}asc, .sorting#{$classname-seperator}desc {
+            cursor: pointer;
+        }
+
+        .sorting::after {
+            content: url(assets/img/sort#{$classname-seperator}both.png);
+        }
+
+        .sorting#{$classname-seperator}asc::after {
+            content: url(assets/img/sort#{$classname-seperator}asc.png);
+        }
+
+        .sorting#{$classname-seperator}desc::after {
+            content: url(assets/img/sort#{$classname-seperator}desc.png);
+        }
+
+        th::after {
+            position: absolute;
+            right: 0;
+        }
+    }
+}
+
+
+
+
+
+/*** Remove this after creating a dataTable pagination ***/
+/** Tables info and pagination on footer  (mobile) **/
+.#{$class-prefix}table#{$classname-seperator}toolbar-footer {
+    overflow: hidden;
+    /* add arrows to prev and next */
+    .dataTables#{$classname-seperator}paginate {
+        .paginate#{$classname-seperator}button {
+            position: relative;
+            padding: 0.5em 0.8em;
+
+            &:before {
+                top: 0;
+                left: 0.6em;
+            }
+
+            &.previous:before {
+                content: "\f053";
+            }
+
+            &.next:before {
+                content: "\f054";
+            }
+        }
+    }
+}
+/* fix margin left on filter input */
+
+/* Extras on mobile only */
+@include media-breakpoint-down(sm) {
+    .#{$class-prefix}table tbody tr td,
+    .#{$class-prefix}table tbody tr th,
+    .#{$class-prefix}table thead tr th,
+    .#{$class-prefix}table thead tr td,
+    .#{$class-prefix}table tfoot tr td,
+    .#{$class-prefix}table tfoot tr th {
+        /*display: block;*/
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        float: left;
+        width: 100%;
+    }
+
+    /* Hide table head and foot on mobile */
+    .#{$class-prefix}table thead,
+    .#{$class-prefix}table tfoot {
+        position: absolute;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        border: 0;
+    }
+
+    .table-responsive .#{$class-prefix}table tbody tr td,
+    .table-responsive .#{$class-prefix}table tbody tr th,
+    .table-responsive .#{$class-prefix}table tfoot tr td,
+    .table-responsive .#{$class-prefix}table tfoot tr th,
+    .table-responsive .#{$class-prefix}table thead tr td,
+    .table-responsive .#{$class-prefix}table thead tr th {
+        /*white-space: initial;*/
+        /* EDIT: Initial whitespace gives IE problems, it seems. In any case, we don't want nowrap on the responsive tables */
+        white-space: normal;
+    }
+}
+
+/* tablet and desktop reset tab labels*/
+@include media-breakpoint-up(md) {
+    .#{$class-prefix}table tbody tr td,
+    .#{$class-prefix}table tbody tr th,
+    .#{$class-prefix}table thead tr th,
+    .#{$class-prefix}table thead tr td,
+    .#{$class-prefix}table tfoot tr td,
+    .#{$class-prefix}table tfoot tr th {
+        float: none;
+        width: auto;
+    }
+
+    .#{$class-prefix}table [data-label]:before {
+        display: none;
+    }
+
+    .#{$class-prefix}table tbody tr td,
+    .#{$class-prefix}table tbody tr th {
+        padding: 15px 20px;
+    }
+
+    .#{$class-prefix}table tbody tr td,
+    .#{$class-prefix}table tbody tr th {
+        border-top: $table-cell-border-width solid $table-cell-border-color;
+    }
+}
+
+
+
+.#{$class-prefix}table#{$classname-seperator}toolbar {
+    overflow: hidden;
+    position: relative;
+    margin-bottom: $base-margin;
+}
+
+
+.#{$class-prefix}table#{$classname-seperator}toolbar-src#{$classname-seperator}label {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: .5 $base-margin;
+
+    &:before {
+        color: $table-src-label-color;
+        content: '\f002';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+}
+
+.#{$class-prefix}table#{$classname-seperator}toolbar-src#{$classname-seperator}input {
+    font: inherit;
+    font-family: $base-font-family-light;
+    background: $table-src-input-bg;
+    border: $table-cell-border-width solid $table-src-input-border-color;
+    -webkit-appearance: none;
+    width: 100%;
+    padding: 10px 15px 10px 35px;
+}
+@include media-breakpoint-between(md, md) {
+    .#{$class-prefix}table#{$classname-seperator}wrapper .#{$class-prefix}table#{$classname-seperator}filter {
+        width: 100%;
+        max-width: 100%;
+        float: left;
+    }
+}
+@include media-breakpoint-between(lg, lg){
+    .#{$class-prefix}table#{$classname-seperator}wrapper .#{$class-prefix}table#{$classname-seperator}filter {
+          width: 200px;
+          min-width: 200px;
+    }
+}
+
+/* tablet and desktop reset tab labels*/
+@include media-breakpoint-up(md) {
+    .#{$class-prefix}table#{$classname-seperator}toolbar .#{$class-prefix}table#{$classname-seperator}info {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .#{$class-prefix}table#{$classname-seperator}wrapper .#{$class-prefix}table#{$classname-seperator}filter {
+        float: right;
+    }
+}
+@include media-breakpoint-down(md){
+     .#{$class-prefix}table#{$classname-seperator}toolbar .#{$class-prefix}table#{$classname-seperator}info {
+        position: relative;
+    }
+}
+
+.#{$class-prefix}table#{$classname-seperator}toolbar-footer .dataTables#{$classname-seperator}paginate .previous:before,
+.#{$class-prefix}table#{$classname-seperator}toolbar-footer .dataTables#{$classname-seperator}paginate .next:before,
+.#{$class-prefix}table#{$classname-seperator}toolbar-src#{$classname-seperator}label:before {
+    font-family: $icon-font-family;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+}
+
+
+.#{$class-prefix}table#{$classname-seperator}wrapper .dataTables#{$classname-seperator}paginate .paginate#{$classname-seperator}button.current,
+.#{$class-prefix}table#{$classname-seperator}wrapper .dataTables#{$classname-seperator}paginate .paginate#{$classname-seperator}button.current:hover,
+.#{$class-prefix}table#{$classname-seperator}wrapper .dataTables#{$classname-seperator}paginate .paginate#{$classname-seperator}button.current:focus {
+    background: $table-pagination-bg;
+    border-radius: $table-pagination-border-radius;
+}
+
+
+/* Mobile labels */
+.#{$class-prefix}table [data-label]:before {
+    text-transform: uppercase;
+    font-family: $table-font-family;
+    color: $table-color;
+    padding-right: 8px;
+    padding-bottom: 5px;
+}
+
+//table-fixes
+.#{$class-prefix}table {
+    width: 100% !important;
+}
+
+.#{$class-prefix}table:not(.table) {
+    width: 100%;
+}
+
+.#{$class-prefix}h2 .date {
+    color: inherit;
+}
+
+@include media-breakpoint-screen(xs) {
+    .dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}length, .dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}filter {
+        float: none;
+        text-align: center;
+    }
+    .dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}filter {
+        margin-top: .5em;
+    }
+}
+
+.dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}info:before {
+    content: '(';
+}
+
+.dataTables#{$classname-seperator}wrapper .dataTables#{$classname-seperator}info:after {
+    content: ')';
+}
+
+#bills-considered-table#{$classname-seperator}info:before {
+    content: '(';
+}
+
+#bills-considered#{$classname-seperator}info:before {
+    content: '(';
+}
+
+#committee-meetings-table#{$classname-seperator}info:before {
+    content: '(';
+}
+
+
+/**** For keeping same style to mobile view as well ***/
+
+@include media-breakpoint-down(sm) {
+    .table-mobile-default {
+        thead, tfoot {
+            position: relative;
+        }
+
+        tbody tr td, tbody tr th, thead tr th, thead tr td, tfoot tr td, tfoot tr th {
+            float: none;
+            width: 0;
+        }
+
+        tbody tr td {
+            padding-top: $base-padding !important;
+            padding-bottom: $base-padding;
+            border-top: $border-width solid $cornflower-blue;
+        }
+
+        tbody tr td:first-child, thead tr th:first-child {
+            text-align: left;
+        }
+
+        thead tr th,
+        thead tr td,
+        tbody tr td,
+        tfoot tr td,
+        tfoot tr th {
+            padding-left: $base-padding;
+            padding-right: $base-padding;
+        }
+    }
+}
+
+
+table.dataTable thead .sorting::after {
+    content: url(assets/img/sort#{$classname-seperator}both.png);
+}
+table.dataTable thead th::after {
+    position: absolute;
+    right: 0;
+}
+
+.#{$class-prefix}table [data-label]:before {
+    text-transform: uppercase;
+    font-family: $base-font-family-bold;
+    color: $text-color-primary;
+    padding-right: 8px;
+    padding-bottom: 5px;
+}
+.#{$class-prefix}table td:before {
+    content: attr(data-label);
+}
+.row-seperator {
+    background:$bg-tertiary!important;
+    td {
+        padding-bottom:0;
+    }
+}

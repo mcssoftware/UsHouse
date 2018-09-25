@@ -1,0 +1,17 @@
+//mixin that return a style description with class name passed
+@mixin get-class($classname) { 
+      @if $class-prefix != "" {
+          .#{$class-prefix}#{$classname} {
+                @content;
+            }
+        }
+     } 
+
+// specific for button ".btn" class to replace ".btn-library" class
+@mixin get-button-class($classname) {
+    @if $class-prefix!=""{
+        .#{$classname}-#{$prefix} {
+            @content;
+       }
+    }
+}

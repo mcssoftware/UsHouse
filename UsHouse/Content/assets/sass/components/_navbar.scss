@@ -1,0 +1,375 @@
+
+.navbar-fixed-bottom, .navbar-fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+
+    @include media-breakpoint-up(md) {
+        @include border-radius(0);
+    }
+
+    .navbar-collapse {
+        max-height: 340px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .navbar-fixed-bottom, .navbar-fixed-top, .navbar-static-top {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: $navbar-fixed-top-border-width;
+
+    .navbar-collapse {
+        max-height: none !important;
+    }
+
+    @include media-breakpoint-up(md) {
+        @include border-radius(0);
+
+        .navbar-collapse {
+            top: 0;
+            max-height: 100%;
+        }
+    }
+
+    ;
+
+    @include media-breakpoint-down(sm) {
+        position: relative !important;
+        right: auto !important;
+        left: auto !important;
+
+        .navbar-collapse {
+            height: 0;
+            display: block !important;
+            position: fixed;
+            transition: $navbar-collapse-sm-transition;
+        }
+    }
+}
+
+
+.navbar {
+    margin-bottom: 0;
+    border: 0;
+    position: relative;
+    min-height: 1px !important;
+    @include border-radius($navbar-border-radius);
+
+    @include media-breakpoint-up(md) {
+        background: $navbar-bg;
+        @include box-shadow($navbar-box-shadow);
+    }
+}
+
+.navbar-header {
+    background: $navbar-header-bg;
+    position: relative;
+
+
+    @include media-breakpoint-down(sm) {
+        position: fixed !important;
+        width: 100%;
+        left: 0;
+        z-index: 4;
+        @include box-shadow($navbar-header-box-shadow);
+    }
+
+    @include media-breakpoint-up(md) {
+        float: left;
+    }
+}
+
+.logo {
+    display: inline-block;
+    padding: 9px 0 15px 15px;
+
+    @include media-breakpoint-up(xl) {
+        padding: 10px 0 10px 10px;
+    }
+
+    &.visible-xs a {
+        display: inline-block;
+    }
+
+    a {
+        display: block;
+    }
+}
+
+.navbar-toggle {
+    position: absolute;
+    /*top: 9px;*/
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    border: $navbar-toggle-border;
+    padding: $navbar-toggle-padding;
+    color: $navbar-toggle-color;
+    margin-right: 2* $base-margin;
+    float: right;
+    /*margin-top: .8* $base-margin;*/
+    /*margin-bottom: .8* $base-margin;*/
+    background-color: $navbar-toggle-bg-color;
+    background-image: $navbar-toggle-bg-img;
+    @include border-radius($navbar-toggle-border-radius);
+
+    @include media-breakpoint-up(md) {
+        display: none;
+    }
+
+    .icon-bar {
+        background-color: $navbar-toggle-icon-bar-bg;
+        height: $navbar-toggle-icon-bar-height;
+        @include border-radius($navbar-toggle-icon-bar-border-radius);
+        display: block;
+        width: 22px;
+    }
+
+    .icon-bar + .icon-bar {
+        margin-top: .4* $base-margin;
+    }
+}
+//for hamburger
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -(.1* $base-margin);
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.collapse {
+    display: none;
+}
+
+.navbar-collapse {
+    border-top: $navbar-collapse-border;
+
+    &.in {
+        overflow-y: auto;
+    }
+
+    @include box-shadow($navbar-collapse-box-shadow);
+
+    @include media-breakpoint-down(sm) {
+        background: $navbar-collapse-sm-bg;
+        min-height: 0 !important;
+        padding: $navbar-collapse-sm-padding;
+        width: 100%;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        right: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        &.in {
+            height: 100vh;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        @include box-shadow($navbar-collapse-md-box-shadow);
+
+        &.collapse {
+            display: block !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }
+    }
+}
+
+.lcs-nav {
+    > .nav-prepend {
+        @include media-breakpoint-down(lg) {
+            padding: 1.2 * $base-padding $base-padding 0 0;
+        }
+
+        @include media-breakpoint-down(sm) {
+            padding: 1.2 * $base-padding $base-padding 0 0;
+        }
+    }
+    >.nav-append{
+        @include media-breakpoint-down(xl) {
+            padding: 1.5 * $base-padding 0 0 1.5*$base-padding;
+        }
+        @include media-breakpoint-down(lg) {
+            padding: 1.2 * $base-padding 0 0 $base-padding;
+        }
+    }
+}
+.navbar-nav {
+    pointer-events: all;
+    margin-top: 0;
+    background: $navbar-nav-bg;
+    top: 0;
+    position: relative;
+
+    > li {
+        border-top: $navbar-nav-li-border-top;
+        border-bottom: $navbar-nav-li-border-bottom;
+
+        @include media-breakpoint-down(sm) {
+            border: none;
+            background: $bg-darkblue linear-gradient(to bottom, #20355a, $bg-darkblue);
+        }
+
+
+        > a:after, > a.active:after {
+            @include media-breakpoint-up(md) {
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity .25s ease-in-out;
+            }
+        }
+
+        > a {
+            color: $white;
+            font-size: 1.3rem;
+            line-height: 2;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: left;
+            padding: 15px 20px;
+            background: $bg-darkblue linear-gradient(to bottom, #20355a, $bg-darkblue);
+            border-top: none !important;
+            letter-spacing: .075em;
+            -webkit-transition: color .5s ease;
+            transition: color .5s ease;
+
+            &::after {
+                content: " ";
+                right: 1em;
+                position: absolute;
+                font-family: $icon-font-family;
+            }
+        }
+
+        @include media-breakpoint-up(md) {
+            border-left: none;
+            border-bottom: none;
+            border-top: none;
+            display: table-cell;
+            float: none;
+        }
+
+        &:first-child {
+            padding-left: 0;
+            border-left: none;
+        }
+    }
+
+    .search-mobile {
+        border-bottom: $navbar-nav-li-border-bottom;
+    }
+
+    @include media-breakpoint-up(md) {
+        width: auto;
+        display: block;
+        margin: 0 auto;
+        left: 50%;
+        transform: translate(-50%);
+        float: left;
+    }
+
+    @include media-breakpoint-down(sm) {
+    }
+}
+.lcs-nav > li > a, .navbar-nav > li > a {
+  
+    @include media-breakpoint-up(md) {
+        padding: $base-padding 3.9 * $base-padding;
+        font-size: $font-size-xxs;
+        line-height: 2;
+        display: block;
+        white-space: nowrap;
+        text-align: center;
+        background:none;
+        border-top:.3*$border-width solid transparent;
+    }
+}
+.navbar-nav > li > a{
+    @include media-breakpoint-up(lg) {
+        font-size: 85%;
+    }
+
+    @include media-breakpoint-up(xl) {
+        font-size: $font-size-nm;
+    }
+}
+
+.lcs-nav >li >a {
+    @media (max-width:1350px) { //needed so kept it
+        padding: $base-padding 2 * $base-padding;
+    }
+    @include media-breakpoint-down(lg) {
+        padding: $base-padding $base-padding;
+        font-size:$font-size-xs;
+    }
+
+    @include media-breakpoint-down(md){
+        padding:$base-padding .8*$base-padding;
+        font-size:1.1rem;
+    }
+}
+
+.navbar-nav > li > a {
+    @include media-breakpoint-down(sm) {
+        border-bottom: $border-width solid $black;
+        border-top: $border-width solid rgba(255,255,255,.09) !important;
+    }
+}
+
+
+#blue-nav {
+    @include media-breakpoint-down(sm) {
+        margin: 0;
+    }
+    @media (max-width:800px){
+        >li:first-child, >li:last-child{
+            display: none!important;
+        }
+    }
+    .menuitem > a{
+        text-transform:none;
+    }
+}
+
+
+
+/*** search box in navigation ***/
+.lcs-search {
+    position: relative;
+
+    &::after {
+        background: $bg-secondary;
+        width: 42px;
+        height: 42px;
+        display: inline-block;
+        position: absolute;
+        top: 2px;
+        @include border-radius(0 4px 4px 0);
+        content: "\f002";
+        font-family: $icon-font-family;
+        text-align: center;
+        vertical-align: middle;
+        padding-top: 0.9*$base-padding;
+        margin-left: -0.5*($base-margin); /* Another IE adjustment- for whatever reason there is an unknown 5px spacing after the input */
+        cursor: pointer;
+    }
+
+    input {
+        height: 42px;
+    }
+}

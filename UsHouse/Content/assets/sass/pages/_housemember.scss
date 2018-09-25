@@ -1,0 +1,529 @@
+/** ----------------------------------------------------
+//  0. Members Profile - Landing Page
+// 	1. Members Profile - Overview & Contact
+//  2. Members Profile - Discharge Petitions Signed
+//  3. Members Profile - Recent Videos as Speaker
+//  4. Members Leadership 
+// ---------------------------------------------------- **/
+
+/************************  0. Members Profile - Landing Page ************************/
+
+.members{
+	.#{$class-prefix}btn#{$classname-seperator}group { 
+		text-align: left;
+	}
+	.#{$class-prefix}form{
+		width: 100%;
+		max-width: 744.5px;
+	}
+} 
+/************************ 1. Members Profile - Overview & Contact ************************/
+
+.members_bio{
+	text-align: center;
+	padding-top: 1.2 * $base-padding;
+}
+
+header.members_bio { 
+	max-height: none;
+}
+
+.members_bio-img{ 
+	padding-right: 3.5  * $base-padding;
+}
+
+.members_bio-social h1{
+	margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+//media min-width:640px
+@include media-breakpoint-up(sm) {
+	.members_bio {
+		display: table;
+		padding-bottom: 2.5 * $base-padding; 
+	}
+
+	.members_bio-img,
+	.members_bio-social{
+		display: table-cell;
+	}
+}
+
+.members_bio-social .#{$class-prefix}social, 
+.members_bio-social .#{$class-prefix}h1-social-wrap,
+.members_bio-social h1 {
+	text-align: left; 
+}
+
+@include media-breakpoint-up(sm) {
+	.members_bio-social .#{$class-prefix}social, 
+	.members_bio-social .#{$class-prefix}h1-social-wrap,
+	.members_bio-social h1 {
+		text-align: center; 
+	}
+}
+@include media-breakpoint-up(md) {
+	.members_bio-social .#{$class-prefix}social, 
+	.members_bio-social .#{$class-prefix}h1-social-wrap,
+	.members_bio-social h1 {
+		text-align: left; 
+	}
+	.members_bio-social .#{$class-prefix}h1-social-wrap {
+		padding-top: .5 * $base-padding;
+		}
+}
+
+.members .vcard h3{
+	font-family: $base-font-family-semibold;
+	padding-bottom: 0;
+	text-transform: capitalize;
+}
+
+.members .vcard.first h3{
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.members_contact-bio {
+	table{ 
+		width: 100%;
+	}
+
+	tbody tr th{
+		color: $gray;
+		text-transform: uppercase;
+		width: 35%;
+		@include media-breakpoint-down(sm){
+			width: 150px;
+			float: none;
+		}
+	}
+
+	tbody tr th,
+	tbody tr td{
+		padding: $base-padding;
+	}
+	tbody tr td:last-child{ 
+		padding-bottom: 10px;
+	}
+}
+
+$member-bio-border:$border-width solid $light-gray;
+.members_contact-bio-table table,
+.members_contact-bio-add {  
+	border-bottom: $member-bio-border;
+	padding-bottom: 2 * $base-padding;
+}
+.members_contact-bio-add { 
+	display: table;
+	.vcard{ 
+		display: table-cell; 
+		padding-right: 1.5 * $base-padding;
+	}
+ }
+
+
+@include media-breakpoint-up(lg) {
+	.members_contact-bio{
+		border-top: $member-bio-border;
+		border-bottom: $member-bio-border;
+	}
+	.members_contact-bio-table table, 
+	.members_contact-bio-add { 
+		border-bottom: none;
+	}
+	.members_contact-bio-add{ 
+		border-right: $member-bio-border;
+	}
+	.members_contact-bio-table tbody tr:first-child th,
+	.members_contact-bio-table tbody tr:first-child td {
+		border-top: none;
+	}
+
+	.members_contact-bio-table, 
+	.members_contact-bio-add {
+		padding-top: 2.5 * $base-padding;
+	}
+	.members_contact-bio-table{
+		padding-left: 3.5 * $base-padding;
+	}
+	.members_contact-bio-add,
+	.members_contact-bio-add .vcard{
+		display: block;
+	}
+}
+
+@include media-breakpoint-down(xs) {
+	.members_contact-bio-add .vcard {
+		display: block;
+	}
+	.members_contact-bio-table table{
+		margin-bottom: 2.5 * $base-margin;
+	}
+}
+
+
+// Member List (TODO: Convert to SASS)
+.members-list{
+	float: left;
+	padding: 0;
+	margin-top: 40px;
+	width: 100%;
+
+  .photo-size_portrait img {
+    display: inline-block;
+    width: 100%;
+    max-width: 170px;
+  }
+}
+
+.members-list_bts .active{
+	color: #092541;
+  background: #FFD160;
+  border: 4px solid #FFD160;
+  box-shadow: none;
+}
+
+.members-list_tools .pagination{ margin-top: 0; }
+
+.members-list li {  
+  margin-bottom: 25px; 
+  white-space: normal;
+}
+
+.members-list_content{
+	background: #f9f9f9;
+	padding: 20px;
+	border: 1px solid #e0e0e0;
+	/*border-top: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;*/
+	height: 100%;
+}
+.members-list figure{ text-align: center; }
+.members-list .library-h2{
+	color: #092541;
+	font-size: 20px;
+	line-height: 1.3;
+}
+.members-list .member-name{
+  color: #092541;
+	font-size: 20px;
+	line-height: 1.3;
+  overflow-wrap: break-word;
+  cursor: pointer;
+  text-transform: capitalize;
+  text-decoration: underline;
+}
+.members-list .library-dl{ margin-bottom: 5px; }
+.members-list .dl_inline-pairs dt,
+.members-list .dl_inline-pairs dd { padding-bottom: 3px; }
+.members-list .links-group{ margin-bottom: 0; }
+.members-list .links-group a:first-child{
+	border-right: 1px solid #e0e0e0;
+	padding-right: 9px;
+	margin-right: 5px;
+}
+
+.members-list_search{ position: relative;}
+.members-list_search input { text-indent: 25px; }
+.members-list_search:before{
+	font-family: FontAwesome;
+	content:'\f002';
+	position: absolute;
+	opacity: 0.5;
+	top: 15px;
+	left: 15px;
+}
+
+@media (min-width: 768px){
+	.members-list_tools h2{
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+}
+/* beautify small devices */
+@media (max-width: 450px){
+	.members-list li{
+	 	width: 100%;
+	 	text-align: center;
+	}
+	.members-list .library-dl{
+		display: inline-block;
+	}
+}
+
+/********************** 3. Members Profile - Recent Videos as Speaker ***************************/
+
+.videos-format a{
+	display: block;
+}
+
+/************************  4. Members Leadership  ************************/
+
+.leadership { 
+	padding-bottom: 4 * $base-padding;  
+	text-align: center; 
+}
+
+.leadership-box {
+	margin-bottom: $base-margin; 
+	overflow: hidden;
+}
+.leadership-box#{$classname-seperator}hero {
+	text-align: center;
+}
+.leadership-box#{$classname-seperator}hero,
+.leadership-box-img{ 
+	display: table; 
+	margin: 1.5 * $base-margin 0;
+}
+
+.leadership-box#{$classname-seperator}hero .leadership-box-img, 
+.leadership-box#{$classname-seperator}hero .leadership-box-copy {
+	float: left;
+}
+.leadership-box-img,
+.leadership-box#{$classname-seperator}hero .leadership-box-copy {
+	width: 100%;
+}
+
+@include media-breakpoint-up(xs) {
+	.leadership,
+	.leadership-box#{$classname-seperator}hero {
+		text-align: left;
+	}
+
+	.leadership-box#{$classname-seperator}hero .leadership-box-img img,
+	.leadership-box .leadership-box-img img {
+		margin-right: 3.5 * $base-margin;
+	}
+
+	.leadership-box-img img {
+		float: none;
+	}
+	.leadership-box .leadership-box-img img,
+	.leadership-box .leadership-box-bio,
+	.leadership-box#{$classname-seperator}hero .leadership-box-img, 
+	.leadership-box#{$classname-seperator}hero .leadership-box-copy{
+		float: none;
+		display: table-cell; 
+		vertical-align: top;
+	}
+
+	.leadership-box-img{ 
+		width: auto;
+		text-align: left; 
+	}
+}
+
+.leadership-box .leadership-box-bio {
+	vertical-align: middle;
+}
+.leadership-box .leadership-box-img,
+.leadership-box .leadership-box-copy {
+	padding-left: 0;
+}
+
+.leadership-box-copy p {
+	line-height: 1.5;
+}
+.leadership-box-copy p.title,
+.leadership-box-bio p.title,
+.vacancy-result#{$classname-seperator}list .oath {
+	font-family: $base-font-family-semibold;
+	color: $dove-gray;
+}
+.leadership-box-copy h1 {
+	padding-bottom: 0;
+}
+
+.leadership-box#{$classname-seperator}hero .links-group a:first-child,
+.leadership-box .links-group a:first-child{
+    border-right: $leadership-link-group-border;
+    padding-right: .9 * $base-padding;
+    margin-right: .5 * $base-margin;
+}
+
+.leadership-box h3 {
+	font-family: $font-family-merri-weather-lightregular;
+	font-size: 2rem;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+@include media-breakpoint-down(sm) {
+  .leadership-box#{$classname-seperator}hero {
+    display: inline-block;
+    text-align: center;
+
+    .leadership-box-img {
+      display: inline-block;
+    }
+  }
+}
+
+.historical{
+	.#{$class-prefix}summary{ 
+		margin-bottom: 3 * $base-margin; 
+		position: relative;
+	}
+
+	.#{$class-prefix}summary-bq-wraper {
+		padding: $base-padding 3 * $base-padding;
+		p {
+			line-height: 1.7;
+		}
+	}
+	.#{$class-prefix}summary-art_image {
+		overflow: hidden;
+	}
+	.time{
+		font-family: $font-family-merri-weather-italic;
+		font-size: 1.6rem;
+		display: block;
+	    text-align: right;
+	    padding-top: $base-padding;
+	    position: absolute;
+	    top: 2px;
+	    right: 20px;
+	}
+	.title{
+		font-family: $font-family-merri-weather-italic;
+		color: $dove-gray;
+		font-size: 2.2rem;
+		text-align: center;
+		position: relative;
+		padding-bottom: 2 * $base-padding;
+		margin-top: 3 * $base-margin;
+		&:after{
+			content: '';
+			width: 116px;
+			height: 3px;
+			background: $bg-secondary;
+			margin: 0 auto;
+			position: absolute;
+			top: 35px;
+			left: 0;
+			right: 0;
+		}
+	}
+}
+
+.no-vacancies {
+		color: $dim-gray;
+        text-transform: uppercase;
+		font-family: "merriweatherlight_italic";
+       font-weight: bold;
+	}
+.vacancy-result#{$classname-seperator}list-header {
+	overflow: hidden;
+}
+.vacancy_place,
+.vacancy_release {
+	margin-bottom: 10px;
+    overflow: hidden;
+    text-align: left;
+    h3 {
+        font-family: "merriweather_lightregular";
+        font-size: 2.2rem;
+		padding-top: 0 * $base-padding;
+		padding-bottom: 0;
+		margin-top: 0; 
+		margin-bottom: 0;
+        text-transform: uppercase;
+        color: #092541;
+        letter-spacing: .09em;
+        font-weight: 500;
+        line-height: 1.4; 
+	}
+    p
+    {
+    font-family: "merriweatherlight_italic";
+    line-height: 1.9;
+    font-weight: bold;
+    }
+}
+.vacancy_release-img{
+        text-align: left;
+        display: table;
+        margin: 15px 0 30px;
+}
+.vacancy_release-img-bio{
+        float: none;
+        display: table-cell;
+       vertical-align: middle;
+       p.title { 
+		font-size: 1.2rem; 
+		margin-bottom: 0;
+		text-transform: uppercase;
+		font-family: "merri-weather-lightregular";
+        vertical-align: middle;
+        color: $dim-gray;        
+       padding-left: 30px;
+       font-weight: bold;
+       width: 400px;
+	}
+	.oath {
+		font-size: 1.4rem; 
+	}
+
+	h3 { 
+		padding-top: 0 * $base-padding;
+		padding-bottom: 0;
+        padding-left: 30px;
+		margin-top: 0; 
+		margin-bottom: 0;
+		font-family: merri-weather-lightregular;
+	}
+
+	h3.no-vacancies {
+		color: $dim-gray;
+	}
+}
+.vacancy-result#{$classname-seperator}list {
+            vertical-align: middle;
+	.vacancy-img {
+        display: table;
+		float: left;
+	}
+	p.title { 
+		font-size: 1.2rem; 
+		margin-bottom: 0;
+		text-transform: uppercase;
+		font-family: $font-family-merri-weather-lightregular;
+        vertical-align: middle;
+	}
+	.oath {
+		font-size: 1.4rem; 
+	}
+
+}
+
+
+/** For maintaining table style in recent votes of member details **/
+.recentvotes table.dataTable, .recentvotes table.dataTable th, .recentvotes table.dataTable td {
+	min-width:12rem;
+}
+
+/** For map in member's find representative **/
+#FindRepresentative1, #FindRepresentative1-collapse {
+	#mapContainer {
+		height: 75vh;
+	}
+}
+
+.member-list-icons {
+	right: 0;
+	margin-top: -42px;
+	span {
+		font-size: 21px;
+		margin-right: 8px;
+	}
+	img {
+		max-width: 33px;
+	}
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
+}

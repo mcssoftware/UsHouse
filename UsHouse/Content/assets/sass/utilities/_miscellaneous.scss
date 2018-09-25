@@ -1,0 +1,31 @@
+﻿.border#{$classname-seperator}top, .border-top {
+    border-top: $border-width solid $secondary-lightGray;
+}
+.border#{$classname-seperator}bottom, .border-botom {
+    border-bottom:  $border-width solid $secondary-lightGray;
+}
+
+.custom-view-detail {
+    padding: 10px 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &__title {
+      text-transform: uppercase;
+      font-family: $font-family-sans-serif-bold;
+      color: $dark-blue;
+      padding-right: 8px;
+      padding-bottom: 5px;
+    }
+}
+
+.back-link {
+  margin-bottom: 1em;
+}
+
+.centered {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}

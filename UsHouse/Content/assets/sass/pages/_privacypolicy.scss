@@ -1,0 +1,16 @@
+﻿@include media-breakpoint-up(md){
+.help-content {
+    border-right: $border-width solid $hr-border-color;
+    }
+}
+@include media-breakpoint-down(sm){
+    .privacy-policy-page{
+        margin-top:7.5*$base-margin;
+    }
+    .links h3{
+        font-family: $base-font-family;
+    }
+}
+.links p{
+    overflow-wrap: break-word;
+}

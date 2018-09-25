@@ -1,0 +1,39 @@
+// Toggles
+//
+// Used in conjunction with global variables to enable certain theme features.
+
+@mixin box-shadow($shadow...) {
+    @if $enable-shadows {
+        box-shadow: $shadow;
+    }
+}
+
+@mixin transition($transition...) {
+    @if $enable-transitions {
+        @if length($transition) == 0 {
+            transition: $transition-base;
+        }
+        @else {
+            transition: $transition;
+        }
+    }
+}
+
+//mixins
+@import 'mixins/_breakpoints.scss';
+@import 'mixins/_class-modifier.scss';
+@import 'mixins/_border-radius.scss';
+@import 'mixins/_hover.scss';
+@import 'mixins/_normalize.scss';
+@import 'mixins/_table-row.scss';
+@import 'mixins/_images.scss';
+@import 'mixins/_lists.scss';
+@import 'mixins/_screen-readers.scss';
+@import 'mixins/_pagination.scss';
+@import 'mixins/_buttons.scss';
+@import 'mixins/_forms.scss';
+@import 'mixins/_nav-divider.scss';
+@import 'mixins/_transform.scss';
+@import 'mixins/_grid.scss';
+@import 'mixins/_grid-framework.scss';
+@import 'mixins/_gradient.scss';

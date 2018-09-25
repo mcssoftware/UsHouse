@@ -1,0 +1,41 @@
+﻿<header id="header" class="navbar-fixed-top">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 hidden-xs logo">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="@Url.Content("~/Content/assets/img/clerk-logo-web.svg")" title="Office of the Clerk, U.S. House of Representatives" alt="Office of the Clerk, U.S. House of Representatives" />
+                </a>
+            </div>
+            <div class="hidden-xs col-sm-6">
+                <div class="header-search-grp">
+                    @* NOTE: Inline styles are just temporary *@
+                    <ul class="inline-list" style="padding-right: 5px">
+                        <li><a href="http://clerk.house.gov" target="_blank">Current Site</a></li>
+                        <li style="margin-left: 5px">|</li>
+                        @*<li><a href="http://clerk.house.gov/security-privacy.aspx" title="About" target="_blank">About</a></li>
+                            <li>|</li>
+                            <li><a href="http://clerk.house.gov/help.aspx" target="_blank">Help</a></li>
+                            <li>|</li>
+                            <li><a href="http://clerk.house.gov/search.aspx" target="_blank" class="fa fa-search" style="text-decoration:none;">&nbsp;</a></li>*@
+                    </ul>
+                    <div class="version-bar">
+                        <div class="version-bar__text">Version</div>
+                        <div class="version-bar__version">Alpha</div>
+                    </div>
+                    @*<form action="#" method="post" onsubmit="return false;" class="search">
+                          <label for="clerk-search">Search Office of the Clerk</label>
+                          <i class="fa fa-search">&nbsp;</i>
+                          <input id="clerk-search" class="site-search" type="text" name="clerk-search" value="" tabindex="0" placeholder="Search Office of the Clerk">
+                          <input type="submit" value="Submit">
+                        </form>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search-container"></div>
+
+    @*@Html.Action("_Navigation", "Navigation"*@)
+    @Html.Partial("_Navigation")
+
+</header>

@@ -1,0 +1,42 @@
+﻿
+.last-floor-action {
+    vertical-align: top;
+    background: $light-yellow;
+    padding: 0;
+
+    h3 {
+      margin: 0;
+      padding: 30px 0 20px 0;
+      background: $bg-white;
+    }
+
+    hr {
+      background-color: $color-silver;
+      border: medium none;
+      height: 1px;
+      margin-top: -20px;
+      margin-left: 0;
+      width: 100px;
+    }
+}
+
+.floor {
+  &-action_box {
+    height: 96.5%;
+    overflow: auto;
+    background: $light-yellow;
+    padding: 30px;
+  }
+
+  &-datetime {
+    font-family: $font-family-merri-weather;
+    color: $text-color-primary;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    display: block;
+  }
+
+  &-desc {
+    font-size: $font-size-lg;
+  }
+}

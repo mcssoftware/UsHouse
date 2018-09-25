@@ -1,0 +1,21 @@
+.breadcrumb {
+    padding: 0.8*$base-padding 1.5*$base-padding;
+    margin-bottom: 2*$base-margin;
+    list-style: none;
+    background-color: $bg-quinary;
+    border-radius: 4px;
+
+    > li {
+        display: inline-block;
+    }
+
+    > .active {
+        color: $gray-darker;
+    }
+
+    > li + li:before {
+        padding: 0 .5*$base-padding;
+        color: $color-silver;
+        content: "/ ";
+    }
+}

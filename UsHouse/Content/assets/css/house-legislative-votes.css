@@ -1,0 +1,486 @@
+﻿/*************************************************************/
+/*
+ *@summary:  global setups for consistency
+ *@contains:
+        *** 1. #main-content: for page content under main navigation
+            2. #legislative-main-content: for page content under Legislative information menu only
+ ***/
+/*************************************************************/
+#page-content {
+    margin-top: 110px;
+}
+
+@media (max-width:767px) {
+    #page-content {
+        margin-top: 60px;
+    }
+}
+/** for contents within legislative information -  margin for subnavigation **/
+#legislative-main-content {
+    padding-top: 75px;
+}
+
+
+@media (max-width:767px) {
+    /** for the filters should be fixed to top in mobile view*/
+    .filter-fixed-top {
+        background-color: #fff;
+    }
+
+    .fixed-filter-heading .filter-fixed-top-heading {
+        font-size: 24px;
+        margin: 0;
+        padding: 10px 0 10px 0;
+    }
+
+    .fixed-filter-heading .filter-fixed-top-button {
+        padding: 10px 0 10px 0;
+    }
+
+        .fixed-filter-heading .filter-fixed-top-button > button {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+    #filter-dropdown .library-form_group {
+        margin-top: -10px;
+    }
+}
+
+#sidebar {
+}
+
+@media (min-width:768px) {
+    /** if there is sidebar then, move content 25% to right*/
+    .has-sidebar {
+        margin-left: 25% !important;
+        /*width: 75%;*/
+    }
+}
+
+@media (max-width:991px) {
+    .has-sidebar .filter-fixed-top-heading-div {
+        min-width: 200px;
+        padding-right: 0;
+    }
+}
+
+@media (max-width:767px) {
+    .has-sidebar {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+
+.margin-top-none {
+    margin-top: 0 !important;
+}
+
+/************************************/
+
+
+
+
+
+
+
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.roll-call-starred {
+    background-color: #fff8e7;
+}
+
+.roll-call-star {
+    margin-left: -20px;
+    top: 2px;
+    position: relative;
+}
+
+.h2-search-btn {
+    margin-top: 20px;
+}
+
+.h1-search-btn, .h1-search-btn button {
+    margin-top: 0;
+}
+
+.btn-dropdown-search {
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+
+
+.library-h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #092541;
+}
+
+.roll-call-first-row {
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+@media (min-width:768px) {
+
+    .roll-call-second-col div {
+        padding-left: 25px;
+    }
+
+    .roll-call-description {
+        max-width: 85%;
+    }
+
+    .library-pagination_v0 .pagination_info {
+        bottom: 25px;
+    }
+}
+
+
+.legislative-sidebar {
+    margin-top: -125px;
+}
+
+.top-result {
+    margin-top: -25px;
+}
+
+.legislative-main {
+    box-shadow: none;
+    margin-top: 45px;
+}
+
+.votes-table th, .votes-table td {
+    text-align: center;
+}
+
+.library-form_date {
+    background: #fff url(assets/img/library-core-images/library-calendar.png) no-repeat right 7px center;
+}
+
+.social-link {
+    padding-left: 15px;
+}
+
+@media (min-width:768px) {
+    .votes-table th:first-child, .votes-table td:first-child {
+        width: 50%;
+        text-align: left;
+    }
+
+    .legislative-content {
+        margin-top: -115px;
+        padding-top: 80px;
+    }
+}
+@media (max-width:888px) and (min-width:769px){
+     .legislative-content {
+        margin-top: -140px;
+        padding-top: 100px;
+    }
+     .legislative-sidebar{
+         margin-top:-150px;
+     }
+}
+
+
+.library-table_toolbar-footer > .library-pagination_v0 > .pagination {
+    margin: 0 !important;
+}
+
+.votes-table > tbody > tr:nth-of-type(2n), .allvotes-table > tbody > tr:nth-of-type(2n) {
+    background-color: #fff8e7 !important;
+}
+
+.search-votes {
+    margin-top: -25px;
+}
+
+.all-votes-searchBtn {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+#member-votes > .oddRow {
+    background-color: #fff !important;
+}
+
+#member-votes > .evenRow {
+    background-color: #fff8e7 !important;
+}
+
+#member-votes td:last-child {
+    text-transform: uppercase;
+}
+
+@media (min-width:1200px) {
+    .committeeDetail-sidebar .panel {
+        border-left-width: 9px;
+    }
+}
+
+
+/**** Sub Navigation overrides *****/
+/*** Currently only applicable in legislative ***/
+
+.sub-navigation {
+    color: #092541;
+    background: #ffd160;
+    z-index: 10;
+}
+
+.sub-nav_ul {
+    background: #ffd160;
+}
+
+    .sub-nav_ul > li > a {
+        color: #092541;
+        text-transform: capitalize;
+    }
+
+
+
+/*.sub-nav_ul > li.open > a, .sub-nav_ul > li.open > a:focus, .sub-nav_ul > li.open > a:hover {
+        background: #ffd160;
+        color: #092541;
+        box-shadow: none;
+    }*/
+
+@media (min-width:768px) {
+    .sub-navigation {
+        margin-top: -61px;
+    }
+
+    .sub-nav_ul > li > a:hover span, .sub-nav_ul > li > a.active span {
+        color: #092541;
+        border-bottom: #092541 solid 1px;
+        padding-bottom: 2px;
+    }
+
+    .sub-nav_ul {
+        transform: none;
+        left: auto;
+    }
+
+        .sub-nav_ul > li.open > a:after, .sub-nav_ul > li.open > a.active:after {
+            opacity: 0;
+        }
+}
+
+@media (min-width:870px) {
+    .sub-navigation {
+        margin-top: -59px;
+    }
+
+    .sub-nav_ul > li > a {
+        padding: 10px 15px;
+    }
+}
+
+@media (min-width:992px) {
+    .sub-navigation {
+        margin-top: -76px;
+    }
+}
+
+@media (min-width:1200px) {
+    .sub-navigation {
+        margin-top: -97px;
+    }
+}
+
+@media (max-width:767px) {
+    /* changed in 7/11/2017 for dropdown of filter*/
+
+    #filter-dropdown.dropdown-menu {
+        margin-top: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .legislative-sidebar .sidebar {
+        position: relative;
+        margin-top: -80px !important;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        left: 0;
+    }
+
+    /*.h1-search-btn {
+        margin-top: 5px;
+    }*/
+
+    .fixed-filter-heading {
+        padding-top: 100px;
+    }
+
+    .legislative-sidebar .panel {
+        border-left: none !important;
+        padding-top: 15px;
+    }
+
+    /*******/
+    .legislative-main {
+        margin-top: 50px;
+    }
+
+    .sub-navigation {
+        top: 60px;
+        position: relative;
+        color: #092541;
+    }
+
+        .sub-navigation .navbar-header {
+            background: #ffd160;
+        }
+
+    .sub-nav_ul li {
+        background: #092541;
+    }
+
+        .sub-nav_ul li a {
+            color: #fff;
+        }
+
+    .sub-navigation .navbar-header .active-sub-nav {
+        padding: 15px;
+        font-family: inherit;
+        font-weight: 600;
+    }
+
+    .sub-nav-collapse {
+        max-height: none !important;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sub-nav_ul {
+        margin: 0;
+    }
+        /** removing dropdown logo*/
+        .sub-nav_ul > li > a::after {
+            content: none;
+        }
+
+    .sub-navigation .navbar-toggle {
+        padding: 0;
+        margin-top: 0;
+        top: 0;
+    }
+
+        .sub-navigation .navbar-toggle:focus, .sub-navigation .navbar-toggle:hover {
+            background: #ffd160;
+        }
+
+        .sub-navigation .navbar-toggle span {
+            vertical-align: middle;
+            color: black;
+        }
+
+    .sub-navigation .navbar-collapse {
+        max-height: none !important;
+        position: fixed;
+        padding: 54px 0 0;
+    }
+}
+
+@media (max-width:480px) {
+    .pagination > li > a, .pagination > li > span {
+        padding: 6px 8px;
+        font-size: 14px;
+    }
+}
+/**** ****** *****/
+@media (max-width: 767px) {
+    .table-mobile-default thead, .table-mobile-default tfoot {
+        position: relative;
+    }
+
+        .table-mobile-default tbody tr td, .table-mobile-default tbody tr th, .table-mobile-default thead tr th, .table-mobile-default thead tr td, .table-mobile-default tfoot tr td, .table-mobile-default tfoot tr th {
+            float: none;
+            width: 0;
+        }
+
+    .table-mobile-default tbody tr td {
+        padding-top: 10px !important;
+        padding-bottom: 10px;
+        border-top: 1px solid #ddd;
+    }
+
+        .table-mobile-default tbody tr td:first-child, .table-mobile-default thead tr th:first-child {
+            text-align: left;
+        }
+
+    .table-mobile-default thead tr th,
+    .table-mobile-default thead tr td,
+    .table-mobile-default tbody tr td,
+    .table-mobile-default tfoot tr td,
+    .table-mobile-default tfoot tr th {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /*.legislative-sidebar{
+    }
+    .legislative-sidebar .panel{
+        border:none;
+    }*/
+    .fixed-filter-heading {
+        position: fixed;
+        display: block;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0,0,0,.7);
+        right: 0;
+        z-index: 2;
+        overflow-y: auto;
+        overflow-x:hidden;
+    }
+
+    #filter-dropdown.open.dropdown-menu {
+        border-top: 1px solid whitesmoke !important;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        top: 0 !important;
+    }
+}
+
+
+@media (max-width:570px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media (max-width:991px) {
+    .view-details-button {
+        margin-top: 335px;
+        position: absolute;
+    }
+
+    .role-call-vote {
+        margin-bottom: 100px;
+    }
+
+    .detailPage.role-call-vote {
+        margin-bottom: 0;
+    }
+
+    .roll-call-second-col div {
+        padding-left: 0;
+    }
+}

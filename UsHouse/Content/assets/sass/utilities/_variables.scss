@@ -1,0 +1,903 @@
+﻿
+//variables for setting prefix to class
+$prefix:"library";
+$class-prefix:$prefix+"-";
+$classname-seperator:"_";
+$dropdown-menu-class:"[class*='dropdown-menu_']";
+
+
+@mixin _assert-ascending($map, $map-name) {
+    $prev-key: null;
+    $prev-num: null;
+
+    @each $key, $num in $map {
+        @if $prev-num == null {
+            // Do nothing
+        }
+        @else if not comparable($prev-num, $num) {
+            @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+        }
+        @else if $prev-num >= $num {
+            @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+        }
+
+        $prev-key: $key;
+        $prev-num: $num;
+    }
+}
+
+// Replace `$search` with `$replace` in `$string`
+// @author Hugo Giraudel
+// @param {String} $string - Initial string
+// @param {String} $search - Substring to replace
+// @param {String} $replace ('') - New value
+// @return {String} - Updated string
+
+@mixin _assert-starts-at-zero($map) {
+    $values: map-values($map);
+    $first-value: nth($values, 1);
+
+    @if $first-value != 0 {
+        @warn "First breakpoint in `$grid-breakpoints` must start at 0, but starts at #{$first-value}.";
+    }
+}
+
+// colors
+$white: #fff !default;
+$black: #000 !default;
+$red: #d9534f !default;
+$deep-red:#d00;
+$orange: #f0ad4e !default;
+$yellow: #ffd500 !default;
+$green: #5cb85c !default;
+$teal: #5bc0de !default;
+$pink: #ff5b77 !default;
+$purple: #613d7c !default;
+$bootstrap-blue: #337ab7!default;
+$blue: #17518B;
+$white-smoke: #f5f5f5;
+$woody-brown: #5f3f3f;
+$blue-gray: #5a97d4;
+$pattens-blue: #d1edff;
+$tutu: #fddfdf;
+$rose-bud: #f1a899;
+$dark-gray: #aaaaaa;
+$dim-gray: #666666;
+$dimmer-gray: #555;
+// Create grayscale
+$gray-dark: #292b2c !default;
+$gray: #464a4c !default;
+$gray-light: #636c72 !default;
+$gray-lighter: #eceeef !default;
+$gray-lightest: #f7f7f9 !default;
+
+// Reassign color vars to semantic color scheme
+$brand-primary: $blue !default;
+$brand-success: $green !default;
+$brand-info: $teal !default;
+$brand-warning: $orange !default;
+$brand-danger: $red !default;
+$brand-inverse: $gray-dark !default;
+
+//colors used in library
+$cornflower-blue: #ddd;
+$dark-blue: #092541;
+$yellow: #FFD160;
+$gray: #333333;
+$light-yellow: #FFF8E7;
+$light-gray: #EEEEEE;
+$dove-gray: #656565; //used in caption
+$dim-gray: #848484; //used in blockquote:after font
+$color-desert-storm: #f4f4f2; //used in nav-bg and
+$jasmine: #ffdb84;
+$color-silver: #ccc;
+$color-cloud-burst: #223b54; //used only in table-header-border and box-shadow of footer-box-shadow
+$gray90: #e5e5e5;
+$gray93: #ededed;
+$forest-green: #189018;
+$palm-leaf: #20355a;
+$gray-darker: #777;
+$blue3: #355778; //used in subnav bg gradient
+$blue1: #1a3c5c; //used in subnav bg gradient
+
+$primary-yellow: $yellow;
+$secondary-blue: $blue;
+$secondary-gray: $gray;
+$secondary-lightYellow: $light-yellow;
+$secondary-lightGray: $light-gray;
+
+$primary-blue-gradient: linear-gradient(to bottom, $blue3 10%, $blue1);
+
+// Options
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-rounded: true !default;
+$enable-shadows: true !default;
+$enable-gradients: true !default;
+$enable-transitions: true !default;
+$enable-hover-media-query: true !default;
+$enable-grid-classes: true !default;
+
+//all fonts used
+$font-family-sans-source: 'Source Sans Pro', sans-serif;
+$font-family-sans-serif-regular: 'source_sans_proregular',sans-serif;
+$font-family-sans-serif-light: 'source_sans_prolight';
+$font-family-sans-serif-bold: 'source_sans_probold',sans-serif;
+$font-family-sans-serif-semibold: 'source_sans_prosemibold', sans-serif;
+
+$font-family-source-serif-proregular: 'source_serif_proregular', serif;
+
+$font-family-merri-weather: 'merriweatherregular';
+$font-family-merri-weather-lightregular: 'merriweather_lightregular';
+$font-family-merri-weather-italic: 'merriweatherlight_italic';
+
+$font-family-fontawesome: 'fontawesome';
+
+$font-family-scala: "ff-scala-web", serif;
+//base-font-families versions
+$base-font-family: $font-family-sans-serif-regular;
+$base-font-family-light: $font-family-sans-serif-light;
+$base-font-family-semibold: $font-family-sans-serif-semibold;
+$base-font-family-bold: $font-family-sans-serif-bold;
+//font for icon
+$icon-font-family: $font-family-fontawesome;
+
+
+//all font-sizes used
+//common are sm, nm, md, lg, xl and xxl
+//others are used rarely
+$font-size-xxs: 1.2rem!default; //double extra small
+$font-size-xs: 1.3rem!default; //extra small
+$font-size-sm: 1.4rem!default; //small
+$font-size-nm: 1.5rem!default; // saying normal
+$font-size-md: 1.6rem!default; //medium
+$font-size-lg: 1.8rem!default; //larger
+$font-size-lr: 2rem!default; //saying larger
+$font-size-xl: 2.4rem!default; //extra large
+$font-size-xxl: 2.8rem!default; //double extra large
+
+//intial setup backgrounds
+$bg-primary: $dark-blue;
+$bg-secondary: $yellow;
+$bg-tertiary: $white;
+$bg-quaternary: $black;
+$bg-quinary: $white-smoke;
+$bg-senary: $blue;
+$bg-septenary: $woody-brown; //used in mega-bucket only
+$bg-octonary:$cornflower-blue;
+$bg-nonary:$color-silver;
+$bg-denary:$deep-red;
+//initial setup colors for text
+$text-color-primary: $dark-blue;
+$text-color-secondary: $yellow;
+$text-color-tertiary: $white;
+$text-color-quaternary: $black;
+$text-color-quinary: $white-smoke;
+$text-color-senary: $blue;
+$text-color-septenary: $woody-brown; //used in mega-bucket only
+
+//for easy padding and margin manipulation
+$base-padding: 10px;
+$base-margin: 10px;
+
+// Shadows
+$text-shadow--solid-dark: 1px 1px 2px $black;
+
+
+//headings font-sizes
+$font-size-h1: $font-size-xxl !default;
+$font-size-h2: $font-size-xl !default;
+$font-size-h3: $font-size-lg !default;
+$font-size-h4: $font-size-lg !default;
+$font-size-h5: $font-size-sm !default;
+$font-size-h6: $font-size-xxs !default;
+
+$font-size-html: $font-size-h6; // Assumes the browser default, typically `16px` but assumed 10px
+
+
+// Font-weights 
+$font-wt-lighter: 300;
+$font-wt-light: 400;
+$font-wt-regular: 500;
+$font-wt-semibold: 600;
+$font-wt-bold: 700;
+
+
+// line-heights
+$line-height-lg: (4 / 3) !default;
+$line-height-md: 1.6 !default;
+$line-height-sm: 1.5 !default;
+$line-height-xs: 1.4 !default;
+
+
+
+
+// commonly used background setup
+$bg-white: $white; // used in body
+$bg-black: $black;
+$bg-darkblue: $dark-blue; //used in navigation and footer
+$bg-yellow: $primary-yellow; //used in subnavigation
+$bg-transparent: transparent;
+$bg-none: none;
+
+
+// body setup 
+$base-font-size: $font-size-md;
+$base-font-weight: $font-wt-regular;
+$base-line-height: $line-height-md;
+$base-color: $gray;
+$base-letter-spacing: .048rem;
+$body-bg: $bg-white; //inherited by : header,
+
+// Spacing
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+$spacer: 1rem !default;
+$spacer-x: $spacer !default;
+$spacer-y: $spacer !default;
+
+
+// border setup used 
+$border-width: .1rem !default;
+$border-radius: .25rem !default;
+$border-radius-lg: .3rem !default;
+$border-radius-sm: .2rem !default;
+$border-color-primary: $dark-blue;
+$border-color-secondary: $yellow;
+$border-color-tertiary: $white;
+$border-color-quaternary: $black;
+$border-color-quinary: $white-smoke;
+$border-color-senary: $blue;
+$border-color-septenary: $woody-brown;
+$border-color-octonary:$cornflower-blue;
+$border-color-nonary:$color-silver;
+$border-color-denary:$deep-red;
+
+
+//  headings setup  
+// headings lineheight
+$line-height-h1: $base-line-height;
+$line-height-h2: $line-height-sm;
+$line-height-h3: $line-height-xs;
+
+$headings-font-weight: $base-font-weight;
+$headings-line-height: $line-height-h3;
+$headings-color: $text-color-primary;
+$headings-font-family: inherit;
+$headings-margin-bottom: ($spacer / 2) !default;
+
+
+// hr 
+$hr-border-color: rgba($black,.1) !default;
+$hr-border-width: $border-width !default;
+$hr-alt-border-color: #2e455d;
+
+
+
+//for paragraphs
+//lead 
+$lead-font-size: $font-size-lr !default;
+$lead-font-weight: $font-wt-lighter !default;
+
+
+
+//headers 
+//for the top headers i.e. logo and version above navigationX
+$header-bg: $body-bg;
+$header-padding: 0;
+$header-box-shadow: 0 1px 2px rgba($bg-quaternary,.5);
+
+$header-font-size: $font-size-nm;
+$header-color: $text-color-primary;
+$header-font-weight: $font-wt-bold;
+$header-letter-spacing: .1em;
+$header-border-width: $border-width;
+
+//header logo
+/*$logo-padding: 9px 0 1x.5*$base-padding 1.5*$base-padding;
+$logo-xl-padding: $base-padding 0 $base-padding $base-padding;*/
+$logo-padding: 1.5*$base-padding 0 1.5*$base-padding $base-padding;
+$logo-padding-md: 1.5*$base-padding 0 1.5*$base-padding 2*$base-padding;
+
+//search field
+$search-bg: $body-bg;
+$search-color: $header-color;
+$search-border-color: $search-color;
+$search-border-width: $header-border-width;
+
+$search-icon-font-size: $font-size-h2;
+$search-icon-color: $search-color;
+$search-icon-padding-y: .2rem;
+
+$search-mobile_form-bg: $bg-yellow;
+$search-mobile_form-color: $search-color;
+$search-mobile-form-padding: 2*$base-padding 0;
+
+$search-mobile_input-bg: $color-desert-storm;
+
+$search-before-font-size: $search-icon-font-size;
+
+$search-input-padding: $header-padding;
+$search-input-font-size: $base-font-size;
+$search-input-transition: all .4s ease;
+
+$version-bar-bg: $gray90;
+$version-bar-font-size: $font-size-sm;
+$version-bar-border-color: $color-silver;
+$version-border-width: $border-width;
+$version-bar-color: $header-bg;
+$version-bar-font-weight: $header-font-weight;
+$version-bar_version-bg: linear-gradient(to bottom, #1ec11e, #189018);
+$version-bar-version-border-color: $forest-green;
+
+
+// footer
+$footer-font-family: $base-font-family-light;
+$footer-font-weight: $font-wt-lighter;
+$footer-font-size: $header-font-size;
+$footer-line-height: 2;
+$footer-bg: $bg-darkblue url('assets/img/footer-top-border.jpg') repeat-x;
+$footer-padding-x: 1.5*$base-padding;
+$footer-padding-y: 35px;
+$footer-heading-font-family: $base-font-family-bold;
+$footer-heading-color: $text-color-secondary;
+$footer-link-color: $white;
+
+$footer-social-border-width: $header-border-width;
+$footer-social-border-color: $black;
+$footer-social-box-shadow: 0 1px 0 $color-cloud-burst inset;
+
+
+// sub navigation  
+$sub-nav-color: $text-color-primary;
+$sub-nav-bg: linear-gradient(to bottom, $blue3 10%, $blue1);
+$sub-nav-link-color: $white;
+$sub-nav-hover-bg: $primary-yellow;
+$sub-nav-hover-color: rgba(9,37,65,.4);
+$sub-nav-font-size: $font-size-sm;
+
+
+// blockquote 
+$blockquote-font-size: $font-size-h2;
+$blockquote-border-color: $gray-lighter !default;
+$blockquote-border-width: ($border-width*.25) !default;
+$blockquote-bg: $bg-yellow;
+$blockquote-footer-color: $dim-gray;
+
+
+//base setup for active components
+$component-active-color: $white !default;
+$component-active-bg: $bg-darkblue !default;
+
+$transition-base: all .2s ease-in-out !default;
+$transition-fade: opacity .15s linear !default;
+$transition-collapse: height .35s ease !default;
+
+
+// link
+$link-color: $secondary-blue !default;
+$link-color-2: $bootstrap-blue!default;
+$link-decoration: none !default;
+$link-hover-color: darken($link-color, 15%) !default;
+$link-hover-decoration: underline !default;
+$link-bg-color: rgba(0,0,0,0);
+
+
+// List
+$list-font-family: $font-family-merri-weather-lightregular;
+$list-font-weight: $font-wt-lighter;
+$list-color: $text-color-primary;
+$list-bullet-color: $text-color-secondary;
+$list-bullet-font-size: .6rem;
+$list-bullet-font-family: $icon-font-family;
+
+// table
+$table-bg: $bg-transparent !default;
+$table-bg-accent-odd: $body-bg !default; //bootstrap default:rgba($black,.05)
+$table-bg-accent-even: $gray-lightest !default;
+$table-bg-hover: rgba($black,.075) !default;
+$table-bg-active: $table-bg-hover !default;
+
+$table-color: $text-color-primary;
+$table-font-family: inherit;
+
+$table-border-width: $border-width !default;
+$table-border-color: $cornflower-blue !default;
+
+$table-head-bg: $bg-darkblue !default;
+$table-head-color: $white !default;
+$table-head-font-size: 1.4rem;
+$table-head-border-right-color: $black;
+$table-head-border-left-color: #223b54;
+$table-head-letter-spacing: .1em;
+
+$table-cell-padding: .75rem !default;
+$table-sm-cell-padding: .3rem !default;
+$table-cell-letter-spacing: $table-head-letter-spacing;
+$table-cell-color: $table-head-color;
+$table-cell-bg: $table-head-bg;
+$table-cell-font-size: $font-size-sm;
+$table-cell-border-width: $table-border-width;
+$table-cell-border-color: $table-border-color;
+$table-inverse-bg: $gray-dark !default;
+$table-inverse-color: $table-head-color !default;
+
+
+$table-src-label-color: $color-silver;
+$table-src-input-border-color: #E0E0E0;
+$table-src-input-bg: #f9f9f9;
+
+$table-pagination-bg: $table-head-bg; //url('../assets/images/#{$class-prefix}sprite.png') no-repeat;
+$table-pagination-border-radius: 50%;
+
+$bg-row-odd: $body-bg;
+$bg-row-even: $gray-lightest;
+
+
+// buttons
+$btn-bg: $body-bg;
+$btn-color: $text-color-primary;
+$btn-font-family: $base-font-family;
+$btn-font-weight: $font-wt-bold !default;
+$btn-font-size: $font-size-sm;
+
+$btn-border-width: $border-width*4;
+$btn-border: $btn-border-width solid #e0e0e0;
+$btn-border-radius: 0 !default;
+
+$btn-padding-x: $base-padding !default;
+$btn-padding-y: ($base-padding)/2 !default;
+$btn-line-height: 1.25 !default;
+$btn-box-shadow: inset 0 1px 0 rgba($white,.15), 0 1px 1px rgba($black,.075) !default;
+$btn-focus-box-shadow: 0 0 0 2px rgba($brand-primary, .25) !default;
+$btn-active-box-shadow: inset 0 3px 5px rgba($black,.125) !default;
+
+//hover
+$btn-hover-bg: $bg-yellow;
+$btn-hover-border: $btn-border-width solid $primary-yellow;
+//icon
+$btn-icon-padding-x: 0;
+$btn-icon-padding-y: $btn-icon-padding-x+.6rem;
+$btn-icon-font-size: $font-size-xxs;
+
+$btn-font-size-sm: $font-size-xs;
+$btn-padding-x-sm: $base-padding*.13 !default;
+$btn-padding-y-sm: $base-padding*.19 !default;
+$btn-border-radius-sm: $btn-border-radius;
+
+$btn-font-size-lg: $font-size-sm;
+$btn-padding-x-lg: $base-padding*.33 !default;
+$btn-padding-y-lg: 1.5 * $base-padding !default;
+$btn-border-radius-lg: $btn-border-radius !default;
+
+$btn-transition: background 0.5s, border 0.5s ease !default;
+
+
+
+//pagination
+$pagination-padding-x: .75rem !default;
+$pagination-padding-y: .5rem !default;
+$pagination-padding-x-sm: .5rem !default;
+$pagination-padding-y-sm: .25rem !default;
+$pagination-padding-x-lg: 1.5rem !default;
+$pagination-padding-y-lg: .75rem !default;
+$pagination-line-height: 1.25 !default;
+
+$pagination-color: $white !default;
+// $pagination-active-color:               $primary-darkBlue;
+$pagination-bg: $body-bg !default;
+$pagination-border-width: $border-width !default;
+$pagination-border-color: $cornflower-blue !default;
+
+$pagination-hover-color: darken($link-color, 15%) !default;
+$pagination-hover-bg: $gray-lighter !default;
+$pagination-hover-border: $pagination-border-color;
+
+$pagination-active-color: $pagination-color;
+$pagination-active-after-color: $text-color-primary !default;
+$pagination-active-bg: $bg-none; // $brand-primary !default;
+$pagination-active-border: $brand-primary !default;
+$pagination-active-font-size: 35px;
+$pagination-disabled-color: $gray-light !default;
+$pagination-disabled-bg: $body-bg !default;
+$pagination-disabled-border: $pagination-border-color;
+
+$pagination-info-font-weight: $font-wt-lighter;
+$pagination-chevron-color: $pagination-active-after-color;
+
+
+
+
+$session_id-color: $text-color-secondary;
+$session_id-font-size: $font-size-md;
+$session_id-font-weight: $font-wt-regular;
+$overlay-bg: rgba(0,0,0,0);
+$feature-color: $white;
+
+$session-id-mobile-bg: #092541 linear-gradient(to bottom, #20355a, #092541);
+$session-id-mobile-color: $feature-color;
+$session-id-mobile-font-size: $font-size-nm;
+$session-id-mobile-font-weight: $session_id-font-weight;
+
+// Form states and alerts //used in table as well
+// Define colors for form feedback states and, by default, alerts.
+$state-success-text: #3c763d !default;
+$state-success-bg: #dff0d8 !default;
+$state-success-border: darken($state-success-bg, 5%) !default;
+
+$state-info-text: #31708f !default;
+$state-info-bg: #d9edf7 !default;
+$state-info-border: darken($state-info-bg, 7%) !default;
+
+$state-warning-text: #8a6d3b !default;
+$state-warning-bg: #fcf8e3 !default;
+$mark-bg: $state-warning-bg !default;
+$state-warning-border: darken($state-warning-bg, 5%) !default;
+
+$state-danger-text: #a94442 !default;
+$state-danger-bg: #f2dede !default;
+$state-danger-border: darken($state-danger-bg, 5%) !default;
+
+
+// List group
+$list-inline-padding: 5px !default;
+$list-group-color: $base-color !default;
+$list-group-bg: $white !default;
+$list-group-border-color: rgba($black,.125) !default;
+$list-group-border-width: $border-width !default;
+$list-group-border-radius: $border-radius !default;
+
+$list-group-item-padding-x: 1.25rem !default;
+$list-group-item-padding-y: .75rem !default;
+
+$list-group-hover-bg: $gray-lightest !default;
+$list-group-active-color: $component-active-color !default;
+$list-group-active-bg: $component-active-bg !default;
+$list-group-active-border: $list-group-active-bg !default;
+$list-group-active-text-color: lighten($list-group-active-bg, 50%) !default;
+
+$list-group-disabled-color: $gray-light !default;
+$list-group-disabled-bg: $list-group-bg !default;
+$list-group-disabled-text-color: $list-group-disabled-color !default;
+
+$list-group-link-color: $gray !default;
+$list-group-link-heading-color: $gray-dark !default;
+$list-group-link-hover-color: $list-group-link-color !default;
+
+$list-group-link-active-color: $list-group-color !default;
+$list-group-link-active-bg: $gray-lighter !default;
+
+
+// Image thumbnails
+$thumbnail-padding: .25rem !default;
+$thumbnail-bg: $body-bg !default;
+$thumbnail-border-width: $border-width !default;
+$thumbnail-border-color: $cornflower-blue !default;
+$thumbnail-border-radius: $border-radius !default;
+$thumbnail-box-shadow: 0 1px 2px rgba($black,.075) !default;
+$thumbnail-transition: all .2s ease-in-out !default;
+
+
+// Figures
+$figure-caption-font-size: $font-size-sm !default;
+$figure-caption-color: $dove-gray !default;
+$figure-caption-bg: $light-gray !default;
+$figure-caption-font-family: $font-family-merri-weather-italic;
+// Carousel
+
+$carousel-control-color: $white !default;
+$carousel-control-font-size: 2rem;
+$carousel-control-width: 15% !default;
+$carousel-control-opacity: .5 !default;
+
+$carousel-indicator-width: 30px !default;
+$carousel-indicator-height: 3px !default;
+$carousel-indicator-spacer: 3px !default;
+$carousel-indicator-active-bg: $white !default;
+
+$carousel-caption-width: 100% !default;
+$carousel-caption-color: $white !default;
+$carousel-caption-bg: rgba(9,37,65,0.8); //$primary-darkBlue;
+$carousel-caption-font-family: $font-family-merri-weather-italic;
+$carousel-caption-font-size: 1.4rem;
+
+$carousel-caption-description-color: #b2d9ff;
+
+$carousel-caption-title-width: 85% ! default;
+$carousel-control-icon-width: 20px !default;
+
+$carousel-control-prev-icon-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$carousel-control-color}' viewBox='0 0 8 8'%3E%3Cpath d='M4 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"), "#", "%23") !default;
+$carousel-control-next-icon-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$carousel-control-color}' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E"), "#", "%23") !default;
+$carousel-control-sprite: url('/Content/assets/img/library-core-images/library-sprite.png') no-repeat;
+$carousel-transition: transform .6s ease-in-out !default;
+
+// Close
+$close-font-size: $base-font-size * 1.5 !default;
+$close-font-weight: $font-wt-bold !default;
+$close-color: $black !default;
+$close-text-shadow: 0 1px 0 $white !default;
+
+// Navs
+$nav-item-margin: .2rem !default;
+$nav-item-inline-spacer: 1rem !default;
+$nav-link-padding: .5em 1em !default;
+$nav-link-hover-bg: $gray-lighter !default;
+$nav-disabled-link-color: $gray-light !default;
+
+$nav-label-font-family: $base-font-family;
+$nav-label-font-weight: $font-wt-bold;
+$nav-label-font-size: $font-size-xs;
+
+$nav-tabs-link-padding: 0.625em 0.9375em;
+$nav-tabs-link-color: #656565;
+$nav-tabs-border-color: $primary-yellow !default;
+$nav-tabs-border-width: 4px !default;
+$nav-tabs-border-radius: $border-radius !default;
+$nav-tabs-link-hover-border-color: $gray-lighter !default;
+$nav-tabs-active-link-hover-color: $text-color-primary !default;
+$nav-tabs-active-link-hover-bg: $primary-yellow !default;
+$nav-tabs-active-link-hover-border-color: $cornflower-blue !default;
+$nav-tabs-active-link-border: $border-width solid $primary-yellow;
+
+$nav-tabs-justified-link-border-color: $cornflower-blue !default;
+$nav-tabs-justified-active-link-border-color: $body-bg !default;
+$tab-pane-bg: $white;
+
+$nav-pills-border-radius: $border-radius !default;
+$nav-pills-active-link-color: $component-active-color !default;
+$nav-pills-active-link-bg: $component-active-bg !default;
+
+$cursor-disabled: not-allowed !default;
+
+
+
+//articles
+$article-img-bg: rgba(238, 238, 238, 0.5);
+$class-summary-font-size: 2.2 rem;
+
+
+// Forms
+
+$form-label-color: $text-color-primary !default;
+$form-label-font-family: $base-font-family;
+$form-label-required-color: $text-color-secondary;
+$form-label-required-font-size: .8rem;
+
+$form-control-color: #333333;
+$form-control-disabled-bg-color: $body-bg;
+
+$form-select-bg: $body-bg url('/Content/assets/img/library-core-images/select-arrow.jpg') no-repeat right .7rem center;
+
+$input-radio-bg: url('/Content/assets/img/library-core-images/library-sprite.png') no-repeat;
+
+$input-padding-x: .75rem !default;
+$input-padding-y: .5rem !default;
+$input-line-height: 1.25 !default;
+
+$input-bg: $body-bg !default;
+$input-bg-disabled: $gray-lighter !default;
+
+$input-color: $gray !default;
+$input-border-color: rgba($black,.15) !default;
+$input-btn-border-width: $border-width !default; // For form controls and buttons
+$input-box-shadow: inset 0 1px 1px rgba($black,.075) !default;
+
+$input-border-radius: $border-radius !default;
+$input-border-radius-lg: $border-radius-lg !default;
+$input-border-radius-sm: $border-radius-sm !default;
+
+$input-bg-focus: $input-bg !default;
+$input-border-focus: lighten($brand-primary, 25%) !default;
+$input-box-shadow-focus: $input-box-shadow, rgba($input-border-focus, .6) !default;
+$input-color-focus: $input-color !default;
+
+$input-color-placeholder: $gray-light !default;
+
+$input-padding-x-sm: .5rem !default;
+$input-padding-y-sm: .25rem !default;
+
+$input-padding-x-lg: 1.5rem !default;
+$input-padding-y-lg: .75rem !default;
+
+$input-height: 2 rem !default; //(($base-font-size * $input-line-height) + ($input-padding-y * 2))
+
+$input-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s !default;
+
+$form-text-margin-top: .25rem !default;
+$form-feedback-margin-top: $form-text-margin-top !default;
+
+$form-check-margin-bottom: .5rem !default;
+$form-check-input-gutter: 1.25rem !default;
+$form-check-input-margin-y: .25rem !default;
+$form-check-input-margin-x: .25rem !default;
+
+$form-check-inline-margin-x: .75rem !default;
+
+$form-group-margin-bottom: $spacer-y !default;
+
+$input-group-addon-bg: $gray-lighter !default;
+$input-group-addon-border-color: $input-border-color !default;
+
+$cursor-disabled: not-allowed !default;
+
+// Form validation icons
+$form-icon-success-color: $brand-success !default;
+$form-icon-success: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$form-icon-success-color}' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+$form-icon-warning-color: $brand-warning !default;
+$form-icon-warning: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$form-icon-warning-color}' d='M4.4 5.324h-.8v-2.46h.8zm0 1.42h-.8V5.89h.8zM3.76.63L.04 7.075c-.115.2.016.425.26.426h7.397c.242 0 .372-.226.258-.426C6.726 4.924 5.47 2.79 4.253.63c-.113-.174-.39-.174-.494 0z'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+$form-icon-danger-color: $brand-danger !default;
+$form-icon-danger: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$form-icon-danger-color}' viewBox='-2 -2 7 7'%3E%3Cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3E%3Ccircle r='.5'/%3E%3Ccircle cx='3' r='.5'/%3E%3Ccircle cy='3' r='.5'/%3E%3Ccircle cx='3' cy='3' r='.5'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$grid-breakpoints: ( xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px ) !default;
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints);
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: ( md: 750px, lg: 970px, xl: 1170px ) !default;
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+$container-width: 85%;
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns: 12 !default;
+$grid-gutter-width-base: 30px !default;
+$grid-gutter-widths: ( xs: $grid-gutter-width-base, sm: $grid-gutter-width-base, md: $grid-gutter-width-base, lg: $grid-gutter-width-base, xl: $grid-gutter-width-base ) !default;
+
+$dt-font-weight: $font-wt-bold;
+
+//at-a-glance
+$at-a-glance-bg: $bg-primary;
+$at-a-glance-circle-bg:#051627;
+
+$member-stats-graph-bg:$at-a-glance-circle-bg;
+$member-stats-graph-color:#e3b000;
+$at-a-glance-color: $text-color-tertiary;
+$at-a-glance-alt-color: $text-color-secondary;
+$at-a-glance-font-size: $font-size-md;
+$at-a-glance-line-height: 3.5rem;
+$at-a-glance-font-family: $font-family-merri-weather;
+$at-a-glance-font-weight: $font-wt-regular;
+
+
+//quick-link
+$quick-link-font-family: $base-font-family;
+$quick-link-color: $text-color-primary;
+$quick-link-font-size: 2.6rem;
+$quick-link-font-weight: $font-wt-regular;
+
+//survey
+$survey-tab-bg: #189018;
+$survey-tab-color: $white;
+$survey-font-weight: $font-wt-bold;
+$survey-font-size: $font-size-nm;
+$survey-icon-bg: #2c7db7;
+
+//navbar
+$navbar-bg: $bg-primary linear-gradient(to bottom, #20355a, $bg-primary) repeat scroll 0 0;
+$navbar-border-radius: 0;
+$navbar-border-width: $border-width;
+$navbar-box-shadow: inset 0 0 1px $black;
+$navbar-md-border-radius: 4px;
+
+$navbar-fixed-top-border-width: 0 0 1px;
+
+$navbar-header-bg: $bg-tertiary;
+$navbar-header-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+
+
+$navbar-toggle-padding: 0;
+$navbar-toggle-color: $text-color-tertiary;
+$navbar-toggle-border: 0;
+$navbar-toggle-border-radius: 4px;
+$navbar-toggle-bg-img: $bg-none;
+$navbar-toggle-bg-color: $bg-transparent;
+$navbar-toggle-icon-bar-bg: $bg-darkblue;
+$navbar-toggle-icon-bar-border-radius: 2px;
+$navbar-toggle-icon-bar-height: 4px;
+
+$navbar-collapse-border: 0;
+$navbar-collapse-padding-x: 10px;
+$navbar-collapse-sm-bg: rgba(0,0,0,.7);
+$navbar-collapse-sm-padding: 54px 0 0;
+$navbar-collapse-sm-transition: all .5s ease;
+$navbar-collapse-box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+$navbar-collapse-md-box-shadow: none;
+
+$navbar-nav-bg: $bg-primary linear-gradient(to bottom,#20355a,$bg-primary) repeat scroll 0 0;
+$navbar-nav-li-border-top: $border-width solid #283f55;
+$navbar-nav-li-border-bottom: $border-width solid $border-color-quaternary;
+
+$navbar-nav-link-color: $white;
+$navbar-nav-link-font-size: $font-size-nm;
+; //1.3rem;
+$navbar-nav-link-line-height: 2;
+$navbar-nav-link-font-weight: $font-wt-semibold;
+$navbar-nav-link-letter-spacing: .075em;
+$navbar-nav-link-padding: 11.5*$base-padding 2*$base-padding;
+$navbar-nav-link-border-top: none;
+$navbar-nav-link-transition: color .5s ease;
+//md
+$navbar-nav-md-link-line-height: $navbar-nav-link-line-height;
+$navbar-nav-md-link-font-size: $font-size-xxs;
+
+$navbar-nav-md-link-padding: 10px 39px;
+$navbar-nav-md-link-border-top: 3px solid transparent;
+//lg
+$navbar-nav-lg-link-font-size: 85%;
+//xl
+$navbar-nav-xl-link-font-size: $font-size-nm;
+
+$nav-prepend-padding: 15px 15px 0 0;
+$nav-prepend-line-height: 1.5rem;
+
+$image-border: 0;
+
+//accordion
+$accordion-icon-font-size: $font-size-xs;
+$accordion-title-font-size: $font-size-nm;
+/*$accordion-heading-bg: $bg-yellow;*/
+$accordion-heading-bg: $primary-blue-gradient;
+$accordion-title-font-weight: $font-wt-bold;
+$accordion-title-font-family: $base-font-family;
+$accordion-padding-x: 1.5*$base-padding;
+$accordion-padding-y: $base-padding;
+
+
+// Jumbotron
+$jumbotron-padding: 4.8rem!default;
+$jumbotron-bg: #000 url('assets/img/hero-house.jpg') no-repeat;
+$jumbotron_not_in_session-bg: #000 url('assets/img/out-of-session-bkg2.jpg') no-repeat;
+
+
+$member-bio-border:$border-width solid $light-gray;
+$leadership-link-group-border:$border-width solid #e0e0e0;
+
+
+$double-column-border-color:#e2e2e2;
+
+
+//== Popovers
+//
+//##
+$zindex-popover:           1060 !default;
+//** Popover body background color
+$popover-bg:                          #fff !default;
+//** Popover maximum width
+$popover-max-width:                   276px !default;
+//** Popover border color
+$popover-border-color:                rgba(0,0,0,.2) !default;
+//** Popover fallback border color
+$popover-fallback-border-color:       #ccc !default;
+
+//** Popover title background color
+$popover-title-bg:                    darken($popover-bg, 3%) !default;
+
+//** Popover arrow width
+$popover-arrow-width:                 10px !default;
+//** Popover arrow color
+$popover-arrow-color:                 $popover-bg !default;
+
+//** Popover outer arrow width
+$popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
+//** Popover outer arrow color
+$popover-arrow-outer-color:           fade_in($popover-border-color, 0.05) !default;
+//** Popover outer arrow fallback color
+$popover-arrow-outer-fallback-color:  darken($popover-fallback-border-color, 20%) !default;
+
+
+$border-radius-large:       6px !default;
+$font-size-base:          14px !default;
+

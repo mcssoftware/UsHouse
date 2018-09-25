@@ -1,0 +1,352 @@
+
+/*menu session*/
+.menu-title, .menu-subtitle {
+    margin-top: 0;
+    font-size: $font-size-lr;
+    ;
+}
+
+.menu-title {
+    border-bottom: $border-width solid $cornflower-blue;
+    text-transform: uppercase;
+    padding-top:0;
+    padding-bottom: .5em;
+    line-height: 22px;
+    margin-top:0;
+}
+.menu-title, .menu-subtitle{
+    padding-top:0;
+    font-family:$base-font-family;
+    letter-spacing:0.48px;
+}
+
+.menu-subtitle {
+    padding-bottom:0;
+    text-transform: none;
+}
+
+#menu-session-status-date,
+#menu-session-event-name {
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+#menu-session-status {
+    text-transform: uppercase;
+}
+
+.menu-session-status {
+    padding-top: 1.5*$base-padding;
+    border-top: $border-width solid $cornflower-blue;
+
+    li {
+        white-space: normal !important;
+    }
+}
+
+.dropdown-menu .#{$class-prefix}list#{$classname-seperator}ul li{
+    margin-left:1em;
+}
+
+#committee-info {
+    > #{$dropdown-menu-class}:last-child {
+        width: 25%;
+    }
+
+    @include media-breakpoint-down(sm) {
+        #{$dropdown-menu-class}:last-child {
+            width: 100%;
+            margin-bottom: 0;
+            padding-bottom: 2*$base-padding;
+            border-bottom: none;
+        }
+    }
+}
+
+.dropdown, .dropup {
+    position: relative;
+}
+
+.dropdown-menu {
+    border: none !important;
+    line-height: 2;
+    background-color: $body-bg;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    margin: 2px 0 0;
+    text-align: left;
+    list-style: none;
+    @include box-shadow(0 6px 12px rgba(0,0,0,.175));
+    font-size: $font-size-xs;
+
+    @include media-breakpoint-down(sm) {
+        position: relative !important;
+        float: none !important;
+        padding: 0;
+    }
+
+    @include media-breakpoint-up(md) {
+        font-size: $font-size-nm;
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity .25s ease-in-out;
+    }
+
+    li {
+      margin-bottom: 10px;
+
+      &::before {
+        top: 6px;
+      }
+    }
+
+    &.mega-menu {
+        position: fixed;
+        top: auto;
+        width: 100%;
+
+        li {
+            white-space: normal !important;
+        }
+        /*li:before{
+            display:none;
+        }*/
+    }
+
+    ul,
+    .library-list_ul,
+    .library-list_ul li {
+      line-height: 1.2;
+    }
+}
+
+.open {
+    > .dropdown-menu {
+        display: block;
+    }
+
+    > a {
+        outline: 0;
+    }
+}
+
+.nav {
+    .open {
+        > a, > a:focus, > a:hover {
+            border-color: transparent;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    #{$dropdown-menu-class} {
+        padding: 0 2*$base-padding 2*$base-padding 0;
+        margin: 2*$base-margin 2*$base-margin 0 2*$base-margin;
+        border-bottom: $border-width solid $cornflower-blue;
+    }
+}
+
+#{$dropdown-menu-class} #{$dropdown-menu-class} {
+    margin: 0;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-top: .5em !important;
+    border: none;
+}
+
+.navbar-nav {
+    .dropdown-menu#{$classname-seperator}left, .dropdown-menu#{$classname-seperator}right {
+        display: block;
+
+        @include media-breakpoint-up(md) {
+            display: table-cell;
+            vertical-align: top;
+            padding: 2*$base-padding;
+        }
+    }
+
+    .dropdown-menu#{$classname-seperator}left {
+        ul {
+            padding-left: 0;
+        }
+    }
+
+    .dropdown-menu {
+        li {
+            display: block;
+            white-space: nowrap;
+
+            @include media-breakpoint-down(lg) {
+                white-space: normal;
+            }
+
+            &:last-child {
+                padding-bottom: $base-padding;
+            }
+        }
+    }
+
+    > li {
+        > .dropdown-menu {
+            margin-top: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        > a.active, &.open > a.active {
+            background: none;
+            border-top: 3*$border-width solid transparent;
+        }
+
+        > a::after {
+            content: "\f078";
+        }
+
+        &.open {
+            > a, > a:focus, > a:hover {
+                border-top: none;
+                background: $bg-primary none repeat scroll 0 0;
+                @include box-shadow(0 0 0 1px #274350 inset, -1px -1px 6px $black inset);
+                color: $text-color-secondary;
+            }
+
+            > a {
+                &.active {
+                  box-shadow: none !important;
+                  border-top: none !important;
+                }
+
+                &.active::after {
+                    content: "\f077";
+                }
+
+                &:after, &.active:after {
+                    @include media-breakpoint-up(md) {
+                        background: none !important;
+                        content: '' !important;
+                        position: absolute !important;
+                        border-style: solid !important;
+                        border-width: 0 $border-width*15 $border-width*15 !important;
+                        border-color: $body-bg transparent !important;
+                        display: block !important;
+                        width: 0 !important;
+                        z-index: 1 !important;
+                        bottom: -1px !important;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    .open {
+        .dropdown-menu {
+            @include media-breakpoint-down(lg) {
+                position: fixed;
+            }
+
+            @include media-breakpoint-down(sm) {
+                position: static;
+                float: none;
+                width: auto;
+                margin-top: 0;
+                border: 0;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+            background: $body-bg;
+            padding: 0;
+            border-top: $border-width solid $black;
+            @include border-radius(0);
+            min-width: 100%;
+            opacity: 1;
+            visibility: visible;
+
+            @include media-breakpoint-up(md) {
+                background: $bg-quinary;
+                border: 0;
+                @include border-radius(0);
+            }
+
+            li {
+                a {
+                    padding-left: 0;
+                }
+            }
+
+            > div:nth-of-type(1) {
+                @include media-breakpoint-down(sm) {
+                    background: $body-bg;
+                    margin: 0;
+                    padding: 2*$base-padding;
+                }
+
+                @include media-breakpoint-up(md) {
+                    background: $body-bg;
+                }
+            }
+        }
+    }
+}
+
+.dropdown-menu#{$classname-seperator}right{
+    border-left:none;
+    @include media-breakpoint-up(md){
+            border-left:$border-width solid $border-color-nonary;
+    }
+}
+.dropdown-menu#{$classname-seperator}right~.dropdown-menu#{$classname-seperator}right{
+    @include media-breakpoint-up(md){
+            border-left:none;
+    }
+}
+.dropdown-toggle.down::after {
+    @include media-breakpoint-down(sm) {
+        right: 1em;
+        position: absolute;
+    }
+}
+
+.menu-right {
+    right: 0;
+    left: auto;
+}
+
+/* So nested dropdown menus do not have indented padding and line up with outside content 
+    Ex. Committee meetings and Disclosures dropdowns, where the menus are nested below the title
+*/
+#{$dropdown-menu-class} {
+  #{$dropdown-menu-class} {
+    margin: 0;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-top: .5em !important;
+    border: none;
+
+    /* For some reason that I cannot quite figure out, the first child is not actually the first child... */
+    &:not(:nth-child(2)) {
+      padding-top: 0 !important;
+    }
+
+    &:last-child {
+      margin: 0;
+      padding: 0;
+    }
+
+    li:last-child {
+      padding-bottom: 0;
+    }
+  }
+ }
+ select::-ms-expand {
+    display: none;
+}

@@ -1,0 +1,69 @@
+
+.link-row {
+    text-align: center;
+    margin-top: 2*$base-margin; /* To offset the margin + padding from the container below */
+    @include media-breakpoint-down(sm) {
+        img {
+            width: 100%;
+            margin: 0px 0px 2*$base-margin 0px;
+        }
+    }
+}
+
+.link-row#{$classname-seperator}#{$classname-seperator}link {
+    display: inline-block;
+    margin: 0 1em;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+
+        .link-row#{$classname-seperator}#{$classname-seperator}icon::before {
+            text-decoration: none;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        font-size: $font-size-sm;
+    }
+
+    @include media-breakpoint-down(xs) {
+        margin: 0 .5em;
+    }
+}
+
+.link-row#{$classname-seperator}#{$classname-seperator}icon {
+    display: inline-block;
+    font-size: $font-size-xl!important;
+}
+
+.option-menu{
+   display: none;
+    position: absolute;
+    background: $bg-tertiary;
+    text-align: left;
+    border-radius: 3px;
+    border: $border-width solid $border-color-octonary;
+    @include box-shadow(0 2px 4px rgba($bg-quaternary,.25));
+    z-index: 10;
+}
+.option-menu#{$classname-seperator}#{$classname-seperator}list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    cursor: initial;
+}
+.option-menu#{$classname-seperator}#{$classname-seperator}title {
+    border-bottom: $border-width solid $border-color-octonary;
+    margin-bottom: .25*$base-margin;
+    padding-top: .375*$base-padding;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.option-menu#{$classname-seperator}#{$classname-seperator}item {
+    padding: .25*$base-padding 2*$base-padding;
+    font-size: $font-size-sm;
+    &:last-child {
+        padding-bottom: .5*$base-padding;
+    }
+}

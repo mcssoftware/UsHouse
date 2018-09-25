@@ -1,0 +1,332 @@
+﻿
+/* for displaying accordion section and hiding web section in mobile and tablet portrait */
+
+@media (min-width:768px) {
+    .content {
+        margin-top: 40px;
+    }
+
+        .content .collapse {
+            display: block;
+        }
+
+    .accordion-heading {
+        display: none;
+    }
+
+    .main {
+        min-height: 200px !important;
+        margin-top: 100px;
+    }
+
+    #accordion .panel-body {
+        padding: 0;
+    }
+}
+
+@media (max-width:768px) {
+    .main {
+        margin-top: 70px;
+        position: relative;
+    }
+
+    .content {
+        margin-top: 15px;
+    }
+
+    .committeeDetail-sidebar {
+        display: none;
+    }
+
+    #web-view {
+        display: none;
+    }
+
+    .web-view-heading {
+        display: none;
+    }
+
+    #accordion .panel-body {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
+.content .library-h3 {
+    font-family: 'source_serif_proregular', sans-serif;
+}
+
+.content .partial-block {
+    margin-bottom: 32px;
+}
+
+.committeeDetail-main {
+    box-shadow: -6px 0 10px -5px rgba(211,211,211,1);
+}
+
+.committeeDetail-sidebar .panel {
+    border-left: 6px #ffd800 solid;
+    border-radius: 0;
+}
+
+.library-iconified {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+.overviewAndContact .library-h1-wrap {
+    margin-bottom: 0;
+}
+
+.overviewAndContact h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+.library-schedule-table tbody tr td {
+    max-width: 0;
+    border-top: none !important;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+    .library-schedule-table tbody tr td:last-child {
+        padding-bottom: 0 !important;
+    }
+
+.library-schedule-table tbody tr:nth-of-type(odd) {
+    background-color: #f5f5f5 !important;
+}
+
+.library-schedule-table tbody tr:nth-of-type(even) {
+    background-color: #fff !important;
+}
+
+.contact-schedule-section {
+    width: 100%;
+    border-top: #eee solid 1px;
+    border-bottom: #eee solid 1px;
+}
+
+    .contact-schedule-section td {
+        max-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.schedule-section, .contact-section {
+    padding-top: 10px;
+    vertical-align: top;
+}
+
+.contact-section {
+    height: inherit;
+    border-right: #eee solid 1px;
+    padding-left: 0;
+    padding-bottom: 32px;
+}
+
+    .contact-section h4 {
+        margin-top: 0;
+    }
+
+.schedule-section {
+    padding-right: 0;
+}
+
+    .schedule-section > .library-list_ul {
+        padding-left: 0;
+    }
+
+        .schedule-section > .library-list_ul > li:before {
+            display: none;
+        }
+
+.subcommittees .library-list_ul {
+    margin-left: -15px;
+}
+
+.subcommittees ul li {
+    max-width: 100%;
+}
+
+.schedule-section li {
+    padding: 5px 10px;
+}
+
+.no-item .schedule-section li {
+    padding: 10px 15px 0 15px;
+}
+
+.schedule-section li:nth-child(odd) {
+    background: #F5f5f5;
+}
+
+.schedule-section li:nth-child(even) {
+    background: #fff;
+}
+
+.subcommittees .library-committeePanel-subItems, .members-list li, .schedule-section li {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: inherit;
+}
+
+
+/*members section*/
+.members-list {
+    list-style: none;
+    margin-top: 0;
+}
+
+.members-ratio {
+    background: #eeeeee;
+    text-align: center;
+}
+
+.member-rank {
+    min-width: 40px;
+    float: left;
+    text-align: end;
+    padding-right: 15px;
+}
+
+.members-list li::before {
+    display: none;
+}
+
+.members-list li {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.no-item {
+    padding-left: 0 !important;
+    background: none !important;
+}
+
+    .no-item:before {
+        display: none !important;
+    }
+/*for elipsis in placeholder of search button*/
+.content [placeholder] {
+    text-overflow: ellipsis;
+}
+/*media section*/
+
+@media (max-width:768px) {
+
+    .schedule-section > .row {
+        margin-left: 0;
+    }
+
+    .committeeDetail-main {
+        box-shadow: none !important;
+    }
+}
+
+@media (max-width:992px) {
+    .contact-schedule-section {
+        border: none !important;
+    }
+
+        .contact-schedule-section > tbody > tr > td:first-child, .contact-schedule-section > tbody > tr > td:last-child {
+            min-width: 100%;
+        }
+
+    .schedule-section {
+        padding-left: 0;
+    }
+
+    .contact-section, .schedule-section {
+        border-top: #eee solid 1px !important;
+        border-right: none !important;
+        display: block;
+        width: 100%;
+    }
+
+    .content .container {
+        width: 100%;
+    }
+}
+
+@media (max-width:1200px) {
+    .contact-section {
+        width: 40%;
+    }
+
+    .schedule-section {
+        width: 60%;
+    }
+}
+
+@media (min-width:768px) {
+
+
+    .schedule-section > .row {
+        margin-left: 0;
+    }
+
+
+    .committeeDetail-sidebar, .committeeDetail-main {
+        padding-top: 45px;
+    }
+
+    .committeeDetail-main {
+        padding-left: 32px;
+    }
+
+    .content hr {
+        margin-top: 10px;
+        margin-top: 10px;
+    }
+}
+
+@media (min-width:992px) {
+    .schedule-section {
+        padding-left: 24px;
+    }
+
+    .contact-schedule-section > tbody > tr > td:first-child {
+        width: 40%;
+    }
+
+    .contact-schedule-section > tbody > tr > td:last-child {
+        width: 60%;
+    }
+}
+
+.nomatch {
+    margin-left: -15px;
+}
+
+.top-none {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.left-none {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.right-none {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.bottom-none {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+

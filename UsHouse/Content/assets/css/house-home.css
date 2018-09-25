@@ -1,0 +1,352 @@
+﻿/** ----------------------------------------------------
+// 	1. House Floor
+// 	2. Bills
+//	3. Votes
+//	4. Floor Schedule
+//	5. Committee Meetings
+//  6. About page
+//  7. Search
+// ---------------------------------------------------- **/
+
+
+/************************ 0. Global ************************/
+/* this should be a general setting and shuld be transfer to global*/
+.homepage-main {
+	padding: 181px 0 60px 0;
+}
+.overlay {
+	background: rgba(0,0,0,0);
+	height: 350px;
+	position: relative;
+    top: 0;
+}
+
+/************************ 1. Sub Nav (Yellow) ************************/
+.sub-nav_home{
+	background: transparent;
+	position: relative;
+}
+
+.sub-nav_home .nav:after,
+.sub-nav_home .nav:before{
+	content: none;
+}
+
+.sub-nav_home .sub-nav_list{
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+.sub-nav_home .sub-nav_list.outofsession{ padding-top: 1px; }
+
+.sub-nav_home .sub-nav_list li{
+	float: none;
+	display: table-cell;
+}
+
+.sub-nav_home .sub-nav_list.outofsession li{ 
+	min-width: 250px;
+	float: left; 
+}
+
+.sub-nav_home .sub-nav_list a{
+	font-size: 12px;
+	line-height: 2.5;
+	position: relative; 
+	margin-right: 1px;
+	border-radius: 2px 2px 0px 0px;
+	background: #ffd160;
+	text-transform: uppercase;
+}
+
+.sub-nav_home .sub-nav_list a:focus,
+.sub-nav_home .sub-nav_list a:hover,
+.sub-nav_home .sub-nav_list li.active a,
+.sub-nav_home .sub-nav_list li.active:hover a{  
+	color: #092541;
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+	.sub-nav_home { margin-top: -14px}
+	.sub-nav_home .sub-nav_list a{ padding: 10px 0; }
+}
+
+@media (min-width: 992px) {
+	.sub-nav_home .sub-nav_list a { font-size: 15px; }
+	.sub-nav_home {margin-top: -21px}
+}
+
+
+/************************ 1. House Floor ************************/
+#floor .btn-rss{
+	float:right;
+	margin: 30px 0 15px;
+}
+
+/** make video and side box same height 
+(view eq-height approach on global.css > .eq-heights) **/
+
+.floor-action_box{
+	height: 96.5%;
+    overflow:auto;
+	background: #fff8e7;
+	padding: 30px;
+}
+@-moz-document url-prefix() { 
+  .floor-action_box{ height: 82%; }
+}
+
+.floor-action_box p{
+	font-size: 18px;
+}
+
+.floor-action_box .floor-datetime{
+	font-family: "merriweatherregular";
+	color: #092541;
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+	display: block;
+}
+
+@media (max-width: 991px) {
+	.home-eq-h .eq-heights_child{ 
+		display: block;
+		float: none;
+	}
+}
+
+/************************ 2. Bills ************************/
+/************************ 3. Votes ************************/
+
+/************************ 4. Floor Schedule ************************/
+#floor h3{
+	font-family: 'source_sans_proregular';
+}
+
+.schedule-list{ 
+	overflow: hidden;
+	list-style: none; 
+	margin-bottom: 36px;
+	padding: 0;
+}
+.schedule-list li{
+	float: left;
+	width: 100%;
+
+	padding-right: 15px;
+    padding-left: 15px;
+}
+
+.schedule-list .library-h3{
+	font-family: 'source_sans_prosemibold', sans-serif;
+	padding-bottom: 0;
+ }
+
+.schedule-list li{
+	position: relative;
+}
+.schedule-list li a{
+	position: absolute;
+	bottom: 0;
+}
+/* detect flexbox on browser feature */
+.no-js .schedule-list li a,
+.no-flexbox .schedule-list li a{
+	position: relative;
+}
+
+.schedule-list p { padding: 20px 0; }
+/* Tablet & Desktop */
+@media (min-width: 479px) {
+	.schedule-list li{ width: 50%; }
+}
+@media (min-width: 991px) {
+	.schedule-list li{ width: 20%; }
+}
+
+/************************ 5. Committee Meetings ************************/
+
+
+/* REVIEW CODE BELOW IF IT SHOULD BE REMOVED OR RESETED */
+
+/* ==[ Bills Tab Settings ]== */
+
+span.view-details {
+	color: #337ab7;
+	cursor: pointer;
+}
+span.view-details i {
+	padding-left: 3px;
+}
+.shown span.view-details {
+	text-decoration: underline;
+}
+.shown span.view-details i {
+	transform: rotate(-90deg);
+	position: relative;
+    top: 3px;
+    left: 3px;
+}
+
+
+/************************ 6. About ************************/
+
+/*.main-view.about,
+.main-view.search-main{ margin-top: -8px; }
+
+@media (min-width: 768px){
+	.main-view.about,
+	.main-view.search-main{
+	    margin-top: 122px;
+	    padding: 50px 0 0;
+	}
+}
+
+@media (min-width: 992px){
+	.main-view.about,
+	.main-view.search-main{
+	    margin-top: 139px;
+	    padding: 50px 0 0;
+	}
+}
+
+@media (min-width: 1200px){
+	.main-view.about,
+	.main-view.search-main{ margin-top: 156px; }
+}
+
+.about .vcard{ margin-bottom: 10px; }
+.about .vcard span{ display: block; }
+
+
+.about_bio{ 
+	display: table; 
+	margin-bottom: 30px; 
+}
+.about_bio-img{ padding-right: 35px; }
+.about_bio-img, .about_bio-copy{ display: table-cell; }
+.about_bio-copy p{
+	font-family: 'merriweatherlight_italic', sans-serif;
+	color: #656565;
+}
+.about_bio-copy .library-h1{ padding-bottom: 0; }*/
+
+
+/******************* 6. About (LCS EDITS) ********************/
+
+.main-view.about { padding: 0px 15px; } /* To overwrite default */
+
+.main-view.about,
+.main-view.search-main{ margin-top: 0px; }
+
+@media (min-width: 768px){
+    .main-view.about { padding: 0px }
+	.main-view.about,
+	.main-view.search-main{
+	    margin-top: 113px;
+	}
+}
+
+.about .vcard{ margin-bottom: 10px; }
+.about .vcard span{ display: block; }
+
+
+.about_bio{ 
+	display: table; 
+	margin: 30px 0 0; 
+    width: 100%;
+}
+
+.about_bio-img, .about_bio-copy{ 
+    display: block; 
+    text-align: center;
+}
+.about_bio-copy p{
+	font-family: 'merriweatherlight_italic', sans-serif;
+	color: #656565;
+}
+.about_bio-copy .library-h1{ 
+    padding-bottom: 0; 
+    font-size: 18px;
+}
+
+@media (min-width: 550px){
+	.about_bio-img{ padding-right: 35px; }
+    .about_bio-img, .about_bio-copy{ 
+        display: table-cell; 
+        vertical-align: middle;
+        text-align: left;
+    }
+    .about_bio-copy .library-h1{ font-size: 28px; }
+}
+
+@media (min-width: 768px){
+	.about_bio{ 
+        width: auto;
+	    margin: 0 0 30px 0; 
+    }
+}
+
+
+
+/************************ 7. Search ************************/
+
+/*** Right column - content **/
+.search-result_box{ overflow: hidden; }
+.search-result_box-wrap{ border-top: 1px solid #e2e2e2; }
+.search-main .members-list .btn{ width: 100%; }
+.search-main .members-list{ margin-top: 0; }
+
+.search-main .library-h3{ color: #17518b; }
+.search-main .pagination{ margin: 10px 0;}
+
+.search-main dt{ font-family: 'source_sans_prosemibold', sans-serif; }
+.search-result_box-date{ 
+	font-family: 'source_sans_proregular', sans-serif;
+	font-style: italic;
+	color: #848484;
+	display: block;
+    margin-bottom: 10px;
+}
+
+/*** left column - filter ***/
+.search-filter{    
+    border: 1px solid #e2e2e2;
+    border-left: 6px solid #ffd160;
+    padding: 15px 12px;
+    background: #FFFFFF;
+    -webkit-box-shadow: inset -3px 0px 6px 0px rgba(226,226,226,1);
+    -moz-box-shadow: inset -3px 0px 6px 0px rgba(226,226,226,1);
+    box-shadow: inset -3px 0px 6px 0px rgba(226,226,226,1);
+}
+
+.search-filter .legend{
+	font-family: 'source_sans_proregular', sans-serif;
+    font-size: 18px;
+    letter-spacing: .025em;
+    text-transform: uppercase;
+    color: #092541;
+    margin-top: 0;
+}
+
+.search-filter .library-panel_heading{ background: #ffffff; }
+.search-filter .library-panel_heading a{ 
+	font-family: 'source_sans_prosemibold', sans-serif;
+	color: #092541;
+	/*background: url('../img/arrow-down-blue.svg') no-repeat right 12px top 17px;*/ 
+}
+.search-filter a{ padding: 10px 15px 10px 0; }
+.search-filter label,
+.search-filter a{ display: block; }
+
+.search-filter .panel{
+	margin-bottom: 0;
+	border-top: 1px solid #e2e2e2;
+}
+.search-filter .panel.first-panel{ border-top: 0; }
+.search-filter .panel-collapse{ padding-left: 0; }
+
+

@@ -1,0 +1,193 @@
+header {
+    padding: $header-padding;
+    background: $header-bg;
+    display: block;
+    @include box-shadow($header-box-shadow)
+}
+
+.logo {
+    display: inline-block;
+    padding: $logo-padding-md;
+
+    a {
+        display: block;
+    }
+
+    img {
+        width: 235px;
+    }
+
+    @include media-breakpoint-up(md) {
+        padding: $logo-padding;
+
+        img {
+            width: 340px;
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        /*padding: $logo-xl-padding;*/
+
+        img {
+            width: 340px;
+        }
+    }
+}
+
+
+
+.header-search-grp {
+    margin: 2.7*$base-margin .5*$base-margin 0 0;
+    margin-right: -$base-margin;
+    padding-right: 0;
+    float: right;
+    position: relative;
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        font-size: $header-font-size;
+        text-transform: uppercase;
+        color: $header-color;
+        letter-spacing: $header-letter-spacing;
+        font-weight: $header-font-weight;
+    }
+
+    .search {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    > .inline-list {
+        display: inline-block;
+        padding-right: $base-padding;
+    }
+}
+
+.search {
+    i {
+        position: absolute;
+        top: 0;
+        left: 3px;
+        font-size: $search-icon-font-size;
+        color: $search-icon-color;
+        padding-bottom: $search-icon-padding-y;
+        cursor: pointer;
+    }
+
+    label,
+    input[type=submit] {
+        display: none;
+    }
+
+    input[type=text] {
+        height: 30px;
+        width: 0;
+        padding: $search-input-padding;
+        margin: 0;
+        border: none;
+        outline: none;
+        color: $search-color;
+        font-size: $search-input-font-size;
+        text-indent: 30px;
+        transition: $search-input-transition;
+
+        &:before {
+            content: '\f002';
+            font-family: $icon-font-family;
+            color: $search-color;
+            font-size: $search-before-font-size;
+        }
+
+        &:focus {
+            background-color: $search-bg;
+            width: 295px;
+            border-bottom: $search-border-width solid $search-border-color;
+            padding-bottom: 0.4*$base-padding;
+        }
+    }
+
+    &.expanded {
+        width: 295px;
+        opacity: 1;
+        font-weight: $font-wt-regular;
+        font-style: normal;
+        background-color: $search-bg;
+        border-bottom: $search-border-width solid $search-border-color;
+
+        input[type=text] {
+            width: 295px;
+        }
+    }
+}
+
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.search-mobile#{$classname-seperator}form {
+    padding: $search-mobile-form-padding;
+
+    input[type=text] {
+        @include border-radius(4px 0 0 4px);
+        border: none;
+        outline: none;
+        font-size: $base-font-size;
+        font-family: $base-font-family;
+        -webkit-font-smoothing: antialiased;
+        background-color: $search-mobile_input-bg;
+        line-height: 1.5;
+        font-style: normal;
+        padding: 0.9*$base-padding 0;
+        text-indent: 4px;
+        width: 80%;
+        top: 2px;
+        position: relative;
+        margin-left: 4.5%;
+    }
+
+    button {
+        border: 0;
+        @include border-radius(0 4px 4px 0px);
+        background: $search-mobile_form-bg;
+        width: 42px;
+        height: 42px;
+        position: relative;
+        left: -6px;
+        color: $search-mobile_form-color;
+    }
+}
+
+.version-bar {
+    display: inline-block;
+    background-color: $version-bar-bg;
+    font-size: $version-bar-font-size;
+}
+
+.version-bar#{$classname-seperator}#{$classname-seperator}text,
+.version-bar#{$classname-seperator}#{$classname-seperator}version {
+    display: inline-block;
+    padding: 0 .5em;
+}
+
+.version-bar#{$classname-seperator}#{$classname-seperator}text {
+    border: $version-border-width solid $version-bar-border-color;
+    border-right: none;
+    @include border-radius(.3rem 0 0 .3rem)
+}
+
+.version-bar#{$classname-seperator}#{$classname-seperator}version {
+    background: $version-bar_version-bg;
+    color: $version-bar-color;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: $version-border-width solid $version-bar-version-border-color;
+    text-shadow: 0px -1px 0 rgba(0, 0, 0, .5);
+    @include box-shadow(inset 0px 1px 0px rgba(255,255,255,.25));
+    margin-left: -(.3*$base-margin);
+    @include border-radius(0 .3rem .3rem 0);
+}

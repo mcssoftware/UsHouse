@@ -1,0 +1,199 @@
+// scss-lint:disable QualifyingElement
+
+// Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css
+
+// ==========================================================================
+// Print styles.
+// Inlined to avoid the additional HTTP request:
+// http://www.phpied.com/delay-loading-your-print-css/
+// ==========================================================================
+
+// @if $enable-print-styles {
+@media print {
+    @page {
+        size: 8.27in 11.69in; /*A4 paper size*/
+        margin: 2cm;
+    }
+
+    /* Display logo */
+    #main-navbar {
+        display: block;
+    }
+
+    .navbar-header {
+        position: relative !important;
+    }
+
+    .session-id-mobile {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    #main-content {
+        padding-top: 10px;
+        margin-top: 0;
+    }
+
+    /* setting consistency in headings */
+    hr, h1, h2, h3, h4, h5, h6 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .help-content div {
+        page-break-inside: avoid;
+    }
+
+    hr {
+        page-break-after: avoid;
+    }
+
+    table {
+        margin-top: 1.5 * $base-margin;
+    }
+
+    .article, tbody tr, tr.odd, tr.even {
+        page-break-inside: avoid;
+    }
+
+    td {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /*common elements to hide in print */
+    button, .survey, .btn, .footer_wrapper, .accordion-heading a:after, .back-link, .#{$class-prefix}table#{$classname-seperator}filter {
+        display: none;
+    }
+
+    // .section-tabs-accordion .accordion-body.collapse {
+    //           display: block !important;
+    //          height: auto !important;
+    //       }
+
+    /*The display:block is set from js, so visibility is used instead */
+    #scrollUp {
+        visibility: hidden;
+    }
+
+    figure {
+        page-break-inside: avoid;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    #accordion .panel {
+        page-break-inside: avoid;
+    }
+
+
+    /* print setting for home page */
+
+
+    #view-at-a-glance, .quick-links {
+        page-break-inside: avoid;
+    }
+
+    .main-view_home {
+        background-color: white;
+    }
+
+    .main-view_home .#{$class-prefix}btn#{$classname-seperator}group {
+        display: none;
+    }
+
+    .main-view_home .panel h2, .main-view_home #house-activity .active h2 {
+        margin-bottom: 20px;
+    }
+
+    /*print setting for about page */
+    #main-content .left-nav, #main-content .about_bio {
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    #main-content .panel-heading {
+        display: none;
+    }
+
+    #main-content ul.row li, .vcard {
+        page-break-inside: avoid;
+    }
+    /* print setting for members page */
+    #MemberProfiles1 {
+        .library-h1, .library-h2, .library-pagination_v0 {
+            display: none;
+        }
+    }
+
+    .members-list_search {
+        display: none;
+    }
+
+    .leadership-box_hero, .leadership-box, .leadership, #members.members-list li {
+        page-break-inside: avoid !important;
+        page-break-before: auto !important;
+        page-break-after: auto !important;
+        display: table !important;
+    }
+
+    .leadership-box p, .leadership-box figure {
+        height: auto !important;
+    }
+
+    /* print setting for votes page */
+    #legislative-main-content {
+        padding-top: 0;
+    }
+
+    #membersvotes .panel, #legislative-main-content .panel {
+        page-break-inside: auto;
+    }
+
+    #filter-dropdown {
+        display: none;
+    }
+
+    .votes-by-party hr {
+        display: none;
+    }
+
+    .all-votes,
+    .role-call-vote, .votes-by-party {
+        page-break-inside: avoid;
+    }
+
+    /*print setting for committee page*/
+    .#{$class-prefix}committeePanel {
+        page-break-inside: avoid;
+    }
+
+    .#{$class-prefix}website-icon, .expand-committee {
+        display: none;
+    }
+
+
+
+    .#{$class-prefix}committeePanel-sublist li, .#{$class-prefix}committeePanel-sublist li[hidden], .committeeDetail-main .collapse {
+        display: block !important;
+    }
+
+    .#{$class-prefix}committeePanel-heading {
+        width: 100%;
+    }
+    /* print setting for floor summary page */
+    .bill-considered-proceed {
+        display: none;
+    }
+
+    #member-stats {
+        page-break-inside: avoid;
+    }
+}

@@ -1,0 +1,1088 @@
+/** ----------------------------------------------------
+// 	1. Miscellaneous
+// 	2. Typography
+//  2.1 Blockquote
+//	3. Social
+//	4. Lists
+//		4.1. Ordered List
+//		4.2. Unordered List
+//	5. Tables
+//	6. Accordion
+//	7. Forms
+//	8. Buttons
+//	9. Carousel
+//  10. Tabs
+//	11. Pagination
+// 	12. Articles
+// ---------------------------------------------------- **/
+
+
+/************************ 0. Reusable settings ************************/
+/* icons using FontAwesome */
+.font-icon-usage,
+.library-list_ul li:before,
+.library-pagination_v0 .pagination li.active:after,
+.library-table_toolbar-footer .dataTables_paginate .previous:before,
+.library-table_toolbar-footer .dataTables_paginate .next:before,
+.library-table_toolbar-src_label:before,
+.library-form_label.required:after,
+.library-help_block:before{
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: inherit;
+	position: absolute;
+}
+
+/* sprite */
+.sprite,
+.library-form input[type=radio],
+.library-form input[type=radio] + span,
+.library-form input[type=checkbox],
+.library-form input[type=checkbox] + span,
+.library-carousel_control .library-carousel_chevron-left,
+.library-carousel_control .library-carousel_chevron-right,
+.library-table_wrapper .dataTables_paginate .paginate_button.current,
+.library-table_wrapper .dataTables_paginate .paginate_button.current:hover,
+.library-table_wrapper .dataTables_paginate .paginate_button.current:focus{
+	background: url('assets/img/library-core-images/library-sprite.png') no-repeat;
+}
+
+
+/************************ 1. Miscellaneous ************************/
+.border_top{
+	border-top: 1px solid #eeeeee;
+}
+.border_bottom{
+	border-bottom: 1px solid #eeeeee;
+}
+
+.library-figure_caption{
+	font-family: "merriweatherlight_italic";
+	font-size: 14px;
+	color: #656565;
+	padding: 15px;
+	background-color: #eeeeee;
+
+}
+
+.library-read_more, .library-link{
+	color: #17518b;
+	cursor: pointer;
+	text-transform: capitalize;
+	text-decoration: underline;
+	position: relative;
+}
+.library-read_more .fa{
+	text-decoration: inherit;
+	font-size: 12px;
+}
+
+.library-image_reponsive{
+	display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/************************ 2. Typography ************************/
+
+/* reseting bootstrap */
+body{
+	font-family: 'source_sans_proregular', sans-serif;
+	font-size: 16px;
+	color: #333;
+	letter-spacing: .03em;
+	line-height: 1.6;
+}
+
+
+.library-h1{
+	font-family: "merriweatherregular";
+	font-weight: 400;
+	font-size: 28px;
+	line-height: 1.6;
+	color: #092541;
+	padding-bottom: 23px;
+	margin-bottom: 0;
+	margin: 0;
+}
+
+/* To use with social links */
+.library-h1-wrap .library-h1{  padding-bottom: 5px; }
+
+.library-h2, .library-h3{
+	text-transform: uppercase;
+	color: #092541;
+	letter-spacing: .09em;
+	padding: 10px 0;
+}
+
+.library-h2{
+	font-family: 'source_serif_proregular', sans-serif;
+	font-size: 24px;
+	text-transform: uppercase;
+	line-height: 1.5;
+}
+
+.library-h3{
+	font-family: 'source_sans_probold', sans-serif;
+	font-size:  18px;
+	line-height: 1.4;
+}
+
+.library-lead{
+	font-family: 'source_sans_prolight', sans-serif;
+	font-size: 24px;
+    line-height: 1.4;
+    padding-bottom: 15px;
+}
+
+/************************ 2.2 Blockquote ************************/
+
+.library-blockquote{
+	width: 90%;
+	max-width: 580px;
+	margin: 0 auto;
+	border-left: none;
+	text-align: center;
+	position: relative;
+	padding: 70px 0 80px;
+}
+
+.library-blockquote:before, .library-blockquote:after{
+	content: '';
+	width: 116px;
+	height: 3px;
+	background: #FFD160;
+	margin: 0 auto;
+	position: absolute;
+	left: 0;
+    right: 0;
+}
+.library-blockquote:before{ top: 40px; }
+.library-blockquote:after{ bottom: 40px; }
+
+/* lead copy style */
+.library-blockquote_lead,
+.library-blockquote_lead:before,
+.library-blockquote_lead:after,
+.library-blockquote_footer{
+	font-family: "merriweatherlight_italic";
+}
+
+.library-blockquote_lead{
+	font-size: 24px;
+	line-height: 1.4;
+	position: relative;
+}
+
+.library-blockquote_lead:before,
+.library-blockquote_lead:after{ font-size: 28px;}
+
+.library-blockquote_lead:before{
+	content: '“';
+	margin-right: 5px;
+}
+.library-blockquote_lead:after{
+	content: '”';
+	margin-left: 5px;
+}
+
+/* small copy style */
+.library-blockquote_footer{
+	font-size: 14px;
+	color: #848484;
+}
+
+/* tablet and desktop */
+@media (min-width: 768px) {
+
+	.library-h1-wrap,
+	.library-heading-wrap{
+		display:table;
+		width: 100%;
+	}
+	.library-h1-wrap .library-h1{
+		display: table-cell;
+		padding-right: 15px;
+	}
+	.library-heading-wrap{ margin-bottom: 25px; }
+
+	.library-h1-social-wrap,
+	.library-heading-social-wrap{
+		display: table-cell;
+		vertical-align: top;
+	    padding-top: 15px;
+	    width: 260px;
+	}
+	.library-heading-social-wrap{
+		vertical-align: bottom;
+	}
+}
+
+
+/************************ 3. Social ************************/
+
+.library-social{
+	overflow: hidden;
+	width: 260px;
+}
+
+.library-social,
+.library-h1-social-wrap{
+	text-align: left;
+}
+.library-social-label{
+	color: #17518B;
+	text-transform: uppercase;
+	padding-right: 15px;
+}
+.library-social,
+.library-social-label,
+.library-social-links{
+	display: inline-block;
+}
+.library-social-links{ padding-left: 10px; }
+
+.library-social-links li{
+	display: inline-block;
+	line-height: 1.6;
+
+}
+.library-social-links a{
+	padding: 0 5px;
+	color: #17518B;
+}
+
+/* Tablet & Desktop */
+@media (min-width: 768px) {
+
+	.library-social-label{  border-right: 1px solid #EEEEEE; }
+	.library-social,
+	.library-h1-social-wrap{ text-align: right; }
+}
+
+
+/************************ 4. Lists ************************/
+
+/* 4.1 - General Ordered List setup */
+.library-lists li, .library-list_ul li{ line-height: 2.2; }
+.library-lists, .library-lists ol { counter-reset: item; }
+
+.library-lists li{
+	display: block;
+    position: relative;
+}
+
+.library-lists li:before{
+	font-family: "merriweather_lightregular";
+	counter-increment: item;
+    position: absolute;
+    margin-right: 100%;
+    right: 7px;
+    color: #092541;
+}
+
+.library-lists ol{ margin-bottom: 10px; }
+
+.library-lists ol li{
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+/*** list version styles (numers, lower-alpha and lower-roman) **/
+.library-list_ol_v0 li:before{
+	content: counters(item, ".")".";
+}
+.library-list_ol_v1 li:before{
+	content: counters(item, ".", lower-alpha)".";
+}
+.library-list_ol_v2 li:before{
+	content: counters(item, ".", lower-roman)".";
+}
+
+/* 4.2 - Unordered List setup */
+.library-list_ul li,
+.library-list_ul li > ul li,
+.library-list_ul li > ul ul li{
+	position: relative;
+	list-style: none;
+}
+
+/*bullets from font*/
+.library-list_ul li:before{
+	font-size: 6px;
+	color: #FFD160;
+	top: 12px;
+	left: -17px;
+}
+
+.library-list_ul > li:before,
+.library-list_ul li > ul ul li:before{
+	content: "\f111";
+}
+
+.library-list_ul li > ul li:before{
+	content: "\f10c";
+}
+
+/************************ 5. Tables ************************/
+
+.library-table{ border-collapse: initial; }
+.library-table.dataTable.no-footer{ border-bottom: 1px solid #ddd; }
+
+.library-table.table-striped tbody tr:nth-of-type(odd) { background-color: #FFFFFF; }
+.library-table.table-striped tbody tr:nth-of-type(even) { background-color: #FFF8E7; }
+
+/* Table Header */
+.library-table thead tr th,
+.library-table thead tr td,
+.library-table tfoot tr td,
+.library-table tfoot tr th{
+	font-family: 'source_sans_probold', sans-serif;
+	text-transform: uppercase;
+    letter-spacing: .1em;
+	color: #ffffff;
+
+	font-size: 14px;
+	padding: 15px 20px;
+
+	background: #092541;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #223b54;
+	border-bottom: none;
+
+	white-space: nowrap;
+
+}
+
+/* Table body style */
+.library-table tbody tr td{
+	line-height: 1.6;
+	padding: 0px 20px 10px;
+	border-top: 0;
+}
+
+.library-table tbody tr td:first-child{
+	border-top: 1px solid #ddd;
+}
+@media (max-width:768px ){
+	.library-table tbody tr td:first-child{
+		padding-top: 20px;
+	}
+}
+.library-table tbody tr td:last-child{
+	padding-bottom: 20px;
+}
+
+
+/* Mobile labels */
+.library-table [data-label]:before{
+	text-transform: uppercase;
+    font-family: 'source_sans_probold', sans-serif;
+    color: #092541;
+    padding-right: 8px;
+    padding-bottom: 5px;
+}
+
+.library-table td:before{ content: attr(data-label); }
+.library-table_description:before{ display: block; }
+
+
+/*** Remove this after creating a dataTable pagination ***/
+/** Tables info and pagination on footer  (mobile) **/
+.library-table_toolbar-footer{overflow: hidden;}
+
+/** Tables info on footer **/
+.library-table_wrapper .library-table_toolbar-footer .library-table_info{text-align: center;}
+
+/** Tables  Pagination **/
+.library-table_wrapper .dataTables_paginate .paginate_button.disabled{ display: none; }
+
+/* add arrows to prev and next */
+.library-table_toolbar-footer .dataTables_paginate .paginate_button{
+	position: relative;
+	padding: 0.5em 0.8em;
+}
+.library-table_toolbar-footer .dataTables_paginate .paginate_button:before{
+	top: 0;
+	left: 0.6em;
+}
+.library-table_toolbar-footer .dataTables_paginate .paginate_button.previous:before{ content: "\f053"; }
+.library-table_toolbar-footer .dataTables_paginate .paginate_button.next:before{ content: "\f054"; }
+
+/* stage style */
+.library-table_wrapper .dataTables_paginate .paginate_button,
+.library-table_wrapper .dataTables_paginate .paginate_button:hover,
+.library-table_wrapper .dataTables_paginate .paginate_button:focus,
+.library-table_wrapper .dataTables_paginate .paginate_button:active
+{
+	color: #17518b!important;
+	border-radius: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+}
+.library-table_wrapper .dataTables_paginate .paginate_button.current,
+.library-table_wrapper .dataTables_paginate .paginate_button.current:hover,
+.library-table_wrapper .dataTables_paginate .paginate_button.current:focus{
+	color: #FFFFFF!important;
+	border: none;
+	background-position: -86px 5px;
+}
+
+
+/* Extras on mobile only */
+@media (max-width: 767px) {
+	.library-table tbody tr td,
+	.library-table tbody tr th,
+	.library-table thead tr th,
+	.library-table thead tr td,
+	.library-table tfoot tr td,
+	.library-table tfoot tr th{
+		/*display: block;*/
+    	-moz-box-sizing: border-box;
+    	-webkit-box-sizing: border-box;
+    	box-sizing: border-box;
+		float: left;
+		width: 100%;
+	}
+
+	/* Hide table head and foot on mobile */
+	.library-table thead,
+	.library-table tfoot{
+		position: absolute;
+		overflow: hidden;
+	    clip: rect(0,0,0,0);
+	    border: 0;
+	}
+
+	.table-responsive .library-table tbody tr td,
+	.table-responsive .library-table tbody tr th,
+	.table-responsive .library-table tfoot tr td,
+	.table-responsive .library-table tfoot tr th,
+	.table-responsive .library-table thead tr td,
+	.table-responsive .library-table thead tr th{
+		/*white-space: initial;*/
+        /* EDIT: Initial whitespace gives IE problems, it seems. In any case, we don't want nowrap on the responsive tables */
+        white-space: normal;
+	}
+
+}
+
+/* tablet and desktop reset tab labels*/
+@media (min-width: 768px) {
+	.library-table tbody tr td,
+	.library-table tbody tr th,
+	.library-table thead tr th,
+	.library-table thead tr td,
+	.library-table tfoot tr td,
+	.library-table tfoot tr th{
+
+		float: none;
+		width: auto;
+	}
+
+	.library-table [data-label]:before{ display:none; }
+
+	.library-table tbody tr td,
+	.library-table tbody tr th {
+		padding: 15px 20px;
+	}
+
+	.library-table tbody tr td,
+	.library-table tbody tr th {
+		border-top: 1px solid #ddd;
+	}
+}
+
+
+ /************************ 5.1 Tables search and nav ************************/
+
+.library-table_toolbar{
+	overflow: hidden;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.library-table_wrapper .library-table_info{
+	font-family: 'source_sans_prolight', sans-serif;
+	letter-spacing: 0;
+    text-align: left;
+}
+.library-table_wrapper .library-table_filter{
+	width: 100%;
+    max-width: 470px;
+    float: left;
+}
+
+.library-table_toolbar-src_label{
+	position: relative;
+	width: 100%;
+}
+.library-table_toolbar-src_label:before{
+	color: #CCCCCC;
+	content: '\f002';
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.library-table_toolbar-src_input{
+	font: inherit;
+	font-family: 'source_sans_prolight', sans-serif;
+	background: #F9F9F9;
+	border: 1px solid #E0E0E0;
+	-webkit-appearance: none;
+	width: 100%;
+	padding: 10px 15px 10px 35px;
+
+}
+
+/* fix margin left on filter input */
+.library-table_wrapper .library-table_filter .library-table_toolbar-src_input{
+		margin-left: 0;
+}
+
+
+@media (min-width: 768px) and (max-width: 993px){
+	.library-table_wrapper .library-table_filter{
+		width: 100%;
+	    max-width: 370px;
+	    float: left;
+	}
+}
+
+/* tablet and desktop reset tab labels*/
+@media (min-width: 768px) {
+	.library-table_toolbar .library-table_info{
+	    position: absolute;
+	    bottom: 0;
+	}
+	.library-table_wrapper .library-table_filter{ float: right; }
+}
+
+
+/************************ 6. Accordion ************************/
+
+.library-panel_control{ padding-bottom: 10px; }
+.library-panel_control a{
+	color: #17518b;
+	text-decoration: none;
+	padding-right: 10px;
+    margin-right: 5px;
+}
+
+.library-panel_control a:first-child{ border-right: 1px solid #EEEEEE; }
+
+.panel-group .library-panel, .library-panel_heading{
+	border: 0;
+	border-radius: 0;
+}
+
+.library-panel{
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+.library-panel_title{
+	font-family: 'source_sans_probold', sans-serif;
+	font-size: 15px;
+	line-height: 1.4;
+	color: #092541;
+	text-transform: uppercase;
+	letter-spacing: .09em;
+
+	margin-top: 0;
+    margin-bottom: 0;
+}
+
+.library-panel_title a{
+	color: inherit;
+	display: block;
+	padding: 10px 15px;
+}
+
+.library-panel_title > a:hover, .library-panel_title > a:focus{ text-decoration: none;}
+
+.library-panel_title .fa{
+	font-size: 13px;
+	float: right;
+	padding-top: 3px;
+}
+
+.library-panel_heading{ background-color: #ffd262; }
+
+
+.panel-group .library-panel_heading+.panel-collapse>.list-group, .panel-group .library-panel_heading+.panel-collapse>.panel-body{
+	border-top: 0;
+}
+
+/************************ 7. Forms ************************/
+.library-form{}
+.library-form_fieldset{}
+.library-form_legend{}
+.library-form_fieldset-required{}
+
+.library-form_group{}
+.library-form_label{
+	color: #092541;
+	font-family: 'source_sans_proregular', sans-serif;
+}
+.library-form_label.required{}
+.library-form_label.required:after{
+	content:'\f069';
+	font-size: 8px;
+	padding-left: 5px;
+	color: #FFD160;
+}
+
+.library-form input[type=radio],
+.library-form input[type=checkbox],
+.library-form select,
+.library-form_control{
+	-webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.library-form input[type=checkbox]:focus,
+.library-form input[type=radio]:focus{
+	outline: none;
+	margin-left: -29px;
+    margin-top: 0px;
+}
+
+.library-form_control{
+	font: inherit;
+	border-radius: 0;
+	padding: 15px;
+	height: auto;
+	color: #333333;
+}
+
+/* Positioning select, radio and checkbox image reset */
+
+/* select arrow */
+.library-form_select{
+    background: #FFFFFF url('assets/img/library-core-images/select-arrow.jpg') no-repeat right 7px center;
+}
+
+/* radio input image */
+.library-form_radio .library-form_label,
+.library-form_checkbox .library-form_label{
+	padding-left: 0;
+	position: relative;
+	padding-left: 28px;
+}
+
+.library-form input[type=radio],
+.library-form input[type=checkbox]{
+	position:absolute;
+	opacity:0;
+	z-index: -1;
+    /*height: -1px;*/
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  	filter: alpha(opacity=0);
+    overflow: hidden;
+}
+
+.library-form .library-form_ui{
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	top: 2px;
+}
+
+.library-form input[type=radio] + span{
+	background-position: -28px -1px;
+	width: 20px;
+	height: 20px;
+}
+.library-form input[type=radio]:checked + span{ background-position: -28px -56px; }
+
+.library-form input[type=radio]:focus + span,
+.library-form .library-form_radio:not(.disabled) label:active span{
+	background-position: -24px -25px;
+	width: 28px;
+	height: 28px;
+	left: -4px;
+	top: -1px;
+}
+
+/* checkbox */
+.library-form input[type=checkbox] + span{
+	background-position: -58px -2px;
+	width: 20px;
+	height: 20px;
+}
+.library-form input[type=checkbox]:checked + span{ background-position: -58px -51px; }
+
+.library-form input[type=checkbox]:disabled + span,
+.library-form .library-form_checkbox.disabled input[type=checkbox] + span{
+	background-position: -58px -26px;
+}
+
+.library-form input[type=checkbox]:focus,
+.library-form .library-form_checkbox:not(.disabled) label:active span{
+	background-position: -54px -73px;
+	width: 28px;
+	height: 27px;
+	left: -4px;
+	top: -1px;
+}
+
+
+/** finish style of select, radio and checkbox image reset */
+.library-form_radio.disabled{}
+.library-form_checkbox{}
+.library-form_checkbox.disabled{}
+
+.library-form_control[disabled],
+.library-form_control[readonly],
+.library-form_control.disabled,
+fieldset[disabled] .library-form_control{
+	background-color: #ffffff;
+}
+
+.library-help_block{
+	display: block;
+	padding-left: 25px;
+}
+.library-help_block:before{
+	content:'\f06a';
+	margin-left: -20px;
+}
+
+/************************ 8. Buttons ************************/
+
+.btn-library{
+	font-family: 'source_sans_probold', sans-serif;
+	color: #092541;
+    background: #FFFFFF;
+	border: 4px solid #e0e0e0;
+    border-radius: 0;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin: 5px 0;
+		-webkit-transition: background 0.5s, border 0.5s ease;
+		transition: background 0.5s, border 0.5s ease;
+}
+
+.btn-library:hover {
+    color: #092541;
+    background: #FFD160;
+    border: 4px solid #FFD160;
+}
+
+.btn-library.btn-lg{
+	font-size: 14px;
+	padding: 20px 33px;
+}
+.btn-library.btn-sm{
+	font-size: 13px;
+	padding: 13px 19px;
+}
+
+.library-btn_group [data-direction='next']{
+	float:right;
+}
+.library-btn_group [data-direction='prev']{
+	float:left;
+}
+
+.library-btn_group{
+	text-align: center;
+	overflow: hidden;
+	padding: 10px 0;
+}
+
+/* using icons */
+.btn-library i{
+	padding: 0 6px;
+    font-size: 12px;
+}
+
+@media (min-width: 380px) {
+	.btn-library.btn-sm{
+		padding: 13px 42px;
+	}
+}
+/* Only mobile*/
+@media (max-width: 560px) {
+	.btn-library.btn-lg{ width: 100%; }
+	.btn-library.btn-sm{ width: 49.3%; }
+
+}
+
+
+/************************ 9. Carousel ************************/
+
+/* arrow holder */
+.library-carousel_control{
+	position: absolute;
+    bottom: 0;
+    width: 70px;
+    min-height: 100px;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+    z-index: 11;
+}
+
+.library-carousel_control.left,
+.library-carouse_control.right{ background: none; }
+
+.library-carousel_control.right{
+	right: 0;
+	left: auto;
+}
+
+.library-carousel_control .library-carousel_chevron-left{
+	background-position: -2px 0;
+	margin-top: 32px;
+	width: 16px;
+	height: 31px;
+	display: inline-block;
+}
+
+.library-carousel_control .library-carousel_chevron-right{
+	background-position: -2px -39px;
+	margin-top: 32px;
+	width: 16px;
+	height: 31px;
+	display: inline-block;
+}
+
+
+.library-carousel_caption{
+	position: relative;
+    padding: 10px 0 10px 60px;
+    color: #fff;
+    background-color: #092541;
+    width: 100%;
+}
+
+.library-carousel_caption-title{
+	color: #FFFFFF;
+	width: 85%;
+	margin-bottom: 5px;
+}
+.library-carousel_caption-description{
+	font-family: "merriweatherlight_italic";
+	font-size: 14px;
+	line-height: 1.4;
+	color: #b2d9ff;
+	width: 85%;
+}
+
+
+@media (min-width: 450px) {
+	.library-carousel_caption{ padding-left: 80px; }
+	.library-carousel .fa-chevron-left{ margin-left: -25px; }
+	.library-carousel .fa-chevron-right{ margin-left: -10px; }
+}
+
+/* tablet and desktop reset tab labels*/
+@media (min-width: 768px) {
+	.library-carousel_caption{
+		padding-left: 100px;
+		position: absolute;
+	    bottom: 0;
+	    z-index: 10;
+	    background-color: rgba(9, 37, 65, 0.8);
+	}
+	.library-carousel .fa-chevron-left{ margin-left: -35px; }
+	.library-carousel .fa-chevron-right{ margin-left: -5px; }
+}
+
+/************************ 10. Tabs ************************/
+
+.library-nav_tabs { border-bottom: 4px solid #FFD160; }
+
+.library-nav_tabs > li > a{ color: #656565; }
+
+.library-nav_tabs>li.active>a,
+.library-nav_tabs>li.active>a:focus,
+.library-nav_tabs>li.active>a:hover{
+	color: #092541;
+	background-color: #FFD160;
+    border: 1px solid #FFD160;
+}
+
+.library-tab_pane{
+    background: rgba(238, 238, 238, 0.5);
+    z-index:0;
+	padding: 30px 35px;
+}
+
+.library-tab_pane .art_v3 .library-summary-art_image{
+	    padding: 0 40px 5px;
+}
+
+/* Create responsive tab numbers */
+.library-nav_tabs > li > a > .library-nav_label{
+	font-family: 'source_sans_probold', sans-serif;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: .09em;
+
+	display: inline-block;
+	text-indent: -9999px;
+}
+
+.library-nav_tabs > li > a{
+	position: relative;
+}
+
+.library-nav_tabs > li a:before{
+	content: attr(data-label);
+	position:absolute;
+	z-index: 1;
+    top: 50%;
+    left: 50%;
+    margin: -11px 0 0 -5px;
+}
+
+
+
+/* tablet and desktop reset tab labels*/
+@media (min-width: 768px) {
+	.library-nav_tabs > li > a > .library-nav_label{
+		text-indent: 0;
+	}
+	.library-nav_tabs > li a:before{
+		display: none;
+	}
+	.library-tab_pane .art_v3 .library-summary-art_image{
+	    padding: 0;
+	}
+}
+
+
+/************************ 11. Pagination ************************/
+.library-pagination_v0{
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+}
+.library-pagination_v0 .pagination_info{
+	font-family: 'source_sans_prolight', sans-serif;
+	text-align: center;
+}
+
+.library-pagination_v0 .pagination{  line-height: 1; }
+.library-pagination_v0 li{ line-height: 1.428; }
+
+.library-pagination_v0 .pagination li a{
+	color: #17518b;
+	border: 0;
+	background: none;
+}
+
+.library-pagination_v0 .pagination .active a,
+.library-pagination_v0 .pagination .active a:focus,
+.library-pagination_v0 .pagination .active a:hover,
+.library-pagination_v0 .pagination>.active>span,
+.library-pagination_v0 .pagination>.active>span:focus,
+.library-pagination_v0 .pagination>.active>span:hover {
+    color: #FFFFFF;
+    background: none;
+    position: relative;
+    z-index: 2;
+}
+.library-pagination_v0 .pagination li{
+	display: inline-block;
+	position: relative;
+}
+/*icon*/
+.library-pagination_v0 .pagination li.active:after{
+	content: "\f111";
+	font-size: 35px;
+	color: #092541;
+	top: 50%;
+	left: 50%;
+	margin: -23px 0 0 -16px;
+	z-index: 1;
+}
+
+.library-pagination_v0 .chevron{ color: #092541; }
+
+/* tablet and desktop reset tab labels*/
+@media (min-width: 768px) {
+	.library-pagination_v0 .pagination_info{
+		position: absolute;
+	    bottom: 15px;
+	}
+	.library-pagination_v0 .pagination{
+		float: right;
+	}
+}
+
+
+/************************ 12. Articles ************************/
+
+.library-summary{
+	overflow: hidden;
+	margin: 20px 0 0;
+}
+.library-summary img{ width: 100%;}
+.library-summary-art_image{
+	float: none;
+	max-width: 100%;
+	margin-right: 0;
+	margin-bottom: 15px;
+}
+
+/* art_v2 are used with images */
+.art_v2{ background: rgba(238, 238, 238, 0.5); }
+.art_v2 .library-summary-art_image{ padding: 60px 60px 5px; }
+.art_v2 .library-summary-art_image img{ width: 100%; }
+
+/* summary with blockquote */
+.library-summary .library-blockquote{
+	width: 100%;
+	padding: 50px 0 70px;
+}
+.library-summary .library-blockquote:before{ top: 23px; }
+.library-summary .library-blockquote:after{ bottom: 35px; }
+.library-summary .library-blockquote_lead{  font-size: 22px; }
+
+
+/* Tablet and Desktop */
+@media (min-width: 650px){
+
+	.art_v2{
+		display:table;
+		width: 100%;
+	}
+
+	.library-summary-bq-wraper,
+	.art_v2 .library-summary-art_image{
+		display: table-cell;
+		padding: 0;
+		overflow: hidden;
+	}
+	.art_v2 .library-summary-art_image img{
+		width: auto;
+		max-width: none;
+		height: 100%;
+	}
+	.library-summary-bq-wraper{ vertical-align: middle;}
+	.library-summary-bq-wraper{ padding: 0 15px; }
+
+}
+
+/* Tablet and Desktop */
+@media (min-width: 530px) {
+	.art_v1 .library-summary-art_image,
+	.art_v3 .library-summary-art_image{
+		float:left;
+		max-width: 260px;
+		margin-right: 30px;
+	}
+	.library-tab_pane .art_v3 .library-summary-art_image {  padding: 0; }
+
+}

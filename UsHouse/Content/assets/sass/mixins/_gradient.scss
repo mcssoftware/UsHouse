@@ -1,0 +1,5 @@
+
+
+@mixin gradient-y($start-color: #20335a, $end-color: $bg-primary) {
+    background: $end-color linear-gradient(to bottom, $end-color, $start-color );
+}

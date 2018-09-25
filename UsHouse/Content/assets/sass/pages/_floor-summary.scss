@@ -1,0 +1,67 @@
+#floor-summary-date{
+    visibility: hidden;
+    max-width:0;
+    margin-left:-2.5*$base-margin;
+}
+#floor-summary #calendar{
+    overflow:hidden;
+}
+#floor-summary .lcs-tabs {
+padding-left:0!important;
+padding-right:0!important;
+}
+@include media-breakpoint-up(md){
+#floor-tab-content {
+    .container{
+    border-top:$border-width solid $border-color-primary;
+    }
+    
+}
+.floor-icons{
+ float:right;
+}
+.page-title {
+    z-index: 11;
+}
+#floor-summary{
+    .lcs-tabs {
+        width: 100%;
+        
+    }
+    #section-tabs{
+        display:block;
+    }
+    //they have filter so the margin required
+    #bills, #votes{
+        margin-top:1.5 * $base-margin;
+    }
+    .sub-nav li>a{
+        padding-left:2.2 * $base-padding!important;
+        padding-right:2.2 *$base-padding!important;
+    }
+    .sub-nav .active>a{
+        border:$border-color-primary inset 1px;
+    }
+    }
+}
+
+@include media-breakpoint-up(lg){
+    #floor-summary .sub-nav li>a{
+        padding-left:3.9*$base-padding!important;
+        padding-right:3.9*$base-padding!important;
+    }
+}
+@include media-breakpoint-down(sm){
+    .floor-view{
+        margin-top:7.5*$base-margin;
+        h2{
+            text-align:center;
+        }
+    }
+    
+    // #floor-summary{
+    //     #bills-collapse, #floor-proceedings-collapse,#votes-collapse{
+    //         margin-top:3 * $base-margin;
+    //     }
+    // }
+}

@@ -1,0 +1,13 @@
+.site-map{
+    padding-bottom:2*$base-padding;
+    ul{
+        overflow-wrap: break-word;
+    }
+}
+.site-map-heading{
+    font-weight: bold;
+}
+#site-maps hr{
+    margin-top:.5*$base-margin;
+    margin-bottom:.5*$base-margin;
+}

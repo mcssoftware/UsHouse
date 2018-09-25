@@ -1,0 +1,30 @@
+/************************ 0. Reusable settings ************************/
+/* icons using FontAwesome */
+.font-icon-usage,
+.#{$class-prefix}list#{$classname-seperator}ul li:before,
+.#{$class-prefix}pagination#{$classname-seperator}v0 .pagination li.active:after,
+.#{$class-prefix}table#{$classname-seperator}toolbar-footer .dataTables#{$classname-seperator}paginate .previous:before,
+.#{$class-prefix}table#{$classname-seperator}toolbar-footer .dataTables#{$classname-seperator}paginate .next:before,
+.#{$class-prefix}table#{$classname-seperator}toolbar-src#{$classname-seperator}label:before,
+.#{$class-prefix}form#{$classname-seperator}label.required:after,
+.#{$class-prefix}help#{$classname-seperator}block:before {
+    font-family: $icon-font-family;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+}
+
+/* sprite */
+.sprite,
+.#{$class-prefix}form input[type=radio],
+.#{$class-prefix}form input[type=radio] + span,
+.#{$class-prefix}form input[type=checkbox],
+.#{$class-prefix}form input[type=checkbox] + span,
+.#{$class-prefix}carousel#{$classname-seperator}control .#{$class-prefix}carousel#{$classname-seperator}chevron-left,
+.#{$class-prefix}carousel#{$classname-seperator}control .#{$class-prefix}carousel#{$classname-seperator}chevron-right,
+.#{$class-prefix}table#{$classname-seperator}wrapper .dataTables#{$classname-seperator}paginate .paginate#{$classname-seperator}button.current,
+.#{$class-prefix}table#{$classname-seperator}wrapper .dataTables#{$classname-seperator}paginate .paginate#{$classname-seperator}button.current:hover,
+.#{$class-prefix}table#{$classname-seperator}wrapper .dataTables#{$classname-seperator}paginate .paginate#{$classname-seperator}button.current:focus {
+    background: url('/Content/assets/img/library-core-images/library-sprite.png') no-repeat;
+}

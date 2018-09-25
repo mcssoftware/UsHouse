@@ -1,0 +1,143 @@
+
+/****************** 6. Jumbotron ***************/
+
+
+.jumbotron {
+    padding-top: 3*$base-padding;
+    padding-bottom: 3*$base-padding;
+    background: $jumbotron-bg;
+    background-position: center top 0;
+    height: 410px;
+    margin-bottom: 3*$base-margin;
+
+    &.not#{$classname-seperator}in#{$classname-seperator}session {
+        background: $jumbotron_not_in_session-bg;
+        background-position: center top 0;
+    }
+
+    p {
+        margin-bottom: 0;
+        font-size:2.1rem;
+        font-weight:200;
+    }
+
+    .overlay,
+    .container {
+        position: inherit;
+        top: 9px;
+    }
+
+    @include media-breakpoint-up(md) {
+        padding-top: $jumbotron-padding;
+        padding-bottom: $jumbotron-padding;
+    }
+
+    @include media-breakpoint-up (xl) {
+        margin-top: 11.3* $base-margin;
+    }
+
+    @include media-breakpoint-down (lg) {
+        margin-top: 10.6* $base-margin;
+    }
+
+    @include media-breakpoint-down (sm) {
+        margin-top: -($jumbotron-padding/4.8);
+        position: relative;
+
+        &::before {
+            background: rgba($bg-quaternary,.5);
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: absolute;
+            content: "";
+        }
+    }
+}
+
+.jumbotron-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    @include border-radius(0);
+}
+
+.overlay {
+    background: $overlay-bg;
+    height: 350px;
+    position: relative;
+    top: 0;
+}
+
+#feature {
+    text-align: center;
+
+    h1 {
+        font-family: $font-family-source-serif-proregular;
+        font-size: 4.08rem;
+        font-weight:500;
+        color: $feature-color;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        margin-top: $base-margin;
+        margin-bottom: 0;
+        line-height:1.1;
+        padding-bottom:0;
+    }
+
+    @include media-breakpoint-up(md) {
+        text-align: left;
+
+        h1 {
+            font-size: 5.8rem;
+        }
+    }
+}
+
+/************************ 3. Top Session Mobile ************************/
+
+
+.session-id {
+    color: $primary-yellow;
+    font-size: $session_id-font-size;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-weight: $session_id-font-weight;
+}
+
+.session-id-mobile {
+    background: $session-id-mobile-bg;
+    margin-top: 5.4* $base-margin;
+
+    ul {
+        text-align: center;
+        padding-left: 0;
+        width: 100%;
+        position: relative;
+
+        li {
+            list-style: none;
+            color: $session-id-mobile-color;
+            font-size: $session-id-mobile-font-size;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            font-weight: $session-id-mobile-font-weight;
+            padding: 1.5*$base-padding 0;
+            display: inline-block;
+
+            &:first-child, &:last-child {
+                position: absolute;
+                padding-left: 10px;
+                padding-right: 10px;
+
+                &:first-child {
+                    left: 0;
+                }
+
+                &:last-child {
+                    right: 0;
+                }
+            }
+        }
+    }
+}

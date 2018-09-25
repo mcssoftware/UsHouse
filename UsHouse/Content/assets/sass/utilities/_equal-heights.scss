@@ -1,0 +1,59 @@
+﻿
+/** use with elements we want with the same height **/
+.eq-heights { 
+  display: table; 
+
+  &_child {
+    display: table-cell;
+	  float: none;
+
+    @include media-breakpoint-down(sm) {
+      display: block;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    display: block;
+  }
+}
+
+.eq-heights,
+.eq-heights_child { 
+  height: auto; 
+
+  @include media-breakpoint-up(lg) {
+    height: 100%;
+  }
+}
+
+
+/* Fixs centering issues when used on rows */
+.row.eq-heights { 
+  margin: 0 auto;
+
+  /* targets columns (which are the next divs) */
+  > div { 
+    padding-left: 0; 
+
+    @include media-breakpoint-down(sm) {
+      padding: 0;
+    }
+  }
+}
+
+/*** equalheights on double column ***/
+.equalheights {
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+.row.equalheights > [class*="col-"] {
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+/*** SameHeiht with Flex ****/
+/** If browser support fex make all the list elem same height **/
+.flex-eq-heights{
+    display: flex;
+    flex-wrap: wrap;
+}

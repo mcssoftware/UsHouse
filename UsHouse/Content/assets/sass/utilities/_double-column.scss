@@ -1,0 +1,71 @@
+﻿
+/************************ 7. Left Nav on all double columns ************************/
+
+.double-column {
+  ul.active-group {
+    background: $white url('assets/img/tab-bkg-gradient.png') top right -1px repeat-y;
+    border-top: 1px solid $double-column-border-color;
+    border-bottom: 1px solid $double-column-border-color;
+    border-left: 6px solid $border-color-secondary;
+    padding: 0 0 15px 12px;
+    margin: 15px 0 0;
+
+    @include media-breakpoint-down(md) { 
+      left: 0;
+    }
+  }
+
+  ul:first-child.active-group { 
+    margin: 0; 
+  }
+
+  .nav-pills>li.active>a,
+  .nav-pills>li.active>a:focus,
+  .nav-pills>li.active>a:hover {
+	  background: transparent;
+	  color: $text-color-primary;
+	  text-decoration: none;
+  }
+
+  .nav li a {
+	  padding: 0;
+	  line-height: 30px;
+	  color: $secondary-blue;
+	  text-decoration: underline;
+  }
+
+  &.nav-pills { 
+    text-align: left;
+  }
+  
+  .nav-stacked {
+	  padding-left: 15px;
+	  margin-bottom: 15px;
+
+    h2 {
+	    font-family: $base-font-family;
+	    font-size: 18px;
+	    letter-spacing: .025em;
+	    text-transform: uppercase;
+	    color: $text-color-primary;
+    }
+  }
+}
+
+// 
+// Left Nav
+//
+.left-nav {
+  background-image: none;
+  padding-top: 35px;
+
+  li {
+    text-align: left;
+  }
+
+  @include media-breakpoint-up(md) {
+    background-image: url('assets/img/legislative-information-bkg.png');
+		background-repeat: repeat-y;
+    background-position: top right 15px;
+  }
+}

@@ -1,0 +1,43 @@
+// currently only this is defined
+
+.btn-yellow {
+    font-family: $base-font-family;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 0 none;
+    @include border-radius($border-width*2);
+    background-image: linear-gradient(to bottom,$jasmine 10%,$bg-secondary);
+    @include box-shadow(.1rem .1rem 0 0 rgba(232,188,91,1));
+}
+
+.btn-group-lg > .btn, .btn-lg {
+    padding: $base-padding 1.6*$base-padding;
+    font-size: 1.8rem;
+    line-height: 1.3333333;
+    @include border-radius($border-width*6);
+}
+
+.tab-content a, .tab-content#{$classname-seperator}with-forms a {
+    color:inherit;
+}
+
+.#{$class-prefix}btn#{$classname-seperator}group {
+   text-align: center;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.#{$class-prefix}btn#{$classname-seperator}group, .btn-group {
+    text-align: center;
+    overflow: hidden;
+    padding: $base-padding 0;
+}
+
+.#{$class-prefix}btn#{$classname-seperator}group [data-direction='next'], .btn-group [data-direction='next'] {
+    float: right;
+}
+
+.#{$class-prefix}btn#{$classname-seperator}group [data-direction='prev'], .btn-group [data-direction='prev'] {
+    float: left;
+}

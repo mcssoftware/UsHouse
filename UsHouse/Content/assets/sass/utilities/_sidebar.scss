@@ -1,0 +1,66 @@
+//setup for sidebar
+
+.sidebar{
+    @include media-breakpoint-up(md){
+        margin-top:4.5 * $base-margin;
+    }
+    @include media-breakpoint-down(sm){
+        position: relative;
+        width: 100%;
+        padding-right: 1.5 * $base-padding;
+        padding-left: 1.5 * $base-padding;
+        left: 0;
+    }
+    .panel{
+        border-left:6 * $border-width $border-color-secondary solid;
+        @include border-radius(0);
+        @include media-breakpoint-up(xl){
+            border-left-width:.9rem;
+        }
+        @include media-breakpoint-down(sm){
+            border:none!important;
+        }
+    }
+    .panel-body{
+        padding-top:0;
+        margin-top:0;
+    }
+    .sidebar-heading{
+        text-transform:uppercase;
+        color:$text-color-primary;
+        letter-spacing: 0.162rem;;
+        padding:$base-padding 0;
+        font-family:$base-font-family-bold;
+        font-size:1.8rem;
+        line-height:1.4;
+        margin-top:2*$base-margin;
+        margin-bottom:$base-margin;
+        @include media-breakpoint-down(sm){
+            display: none;
+        }
+    }
+}
+
+.sidebar.open.dropdown-menu{
+    border-top: $border-width solid $border-color-quinary!important;
+    top: 1.5 * $base-margin;
+    padding: 1.5 * $base-padding;
+}
+
+.sidebar .sidebar-form{
+    .form-group{
+        margin-bottom:$base-margin;
+        @include media-breakpoint-down(sm){
+            margin-top:-$base-margin;
+        }
+    }
+    .search-btn{
+            padding-top:2*$base-padding;
+            padding-bottom:2*$base-padding;
+            text-align:center;
+    }
+}
+//custom
+.legislative-sidebar{
+    margin-top:-8 * $base-margin;
+}
