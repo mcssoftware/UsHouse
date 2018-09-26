@@ -162,8 +162,6 @@ require([
                         }
                     });
             }
-            }, function (err) {
-                debugger;
-        });
+            });
     }
 });
