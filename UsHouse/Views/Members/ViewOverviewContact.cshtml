@@ -1,0 +1,76 @@
+﻿@model UsHouse.Models.ViewMemberDetailModel
+<!-- Overview and Contact Section -->
+
+<section class="overviewAndContact">
+    <div class="col-md-12 overview">
+        <div class="library-h1-wrap">
+            <h2 class="web-view-heading library-h2">Overview & Contact</h2>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <table class="contact-schedule-section">
+            <tr>
+                <td>
+                    <div class="member" tabindex="0">
+                        <h3 class="library-h3">Contact</h3>
+                        <span class="member-name" aria-label=", The Honorable @Model.Member.officialName, ">
+                            The Honorable @Model.Member.officialName
+                        </span>
+                        <br />
+                        @{
+                            int rindex = Model.Member.addresses.Where(x => x.name == "DCOffice").Select(c => c.streetAddress).FirstOrDefault().LastIndexOf(' ');
+                            string mroom = Model.Member.addresses.Where(x => x.name == "DCOffice").Select(c => c.streetAddress).FirstOrDefault();
+                            string mroomnumber = Model.Member.addresses.Where(x => x.name == "DCOffice").Select(c => c.streetAddress).FirstOrDefault().Substring(rindex);
+                            string moffice = "";
+
+                            if (mroom.Contains("CHOB"))
+                            {
+                                moffice = "Cannon House Office Building";
+                            }
+                            else if (mroom.Contains("RHOB"))
+                            {
+                                moffice = "Rayburn House Office Building";
+                            }
+                            else if (mroom.Contains("LHOB"))
+                            {
+                                moffice = "Longworth House Office Building";
+                            }
+                            else
+                            {
+                                moffice = "House Office Building";
+                            }
+                        }
+                        <span aria-label="@mroomnumber @moffice, ">
+                            @string.Format("{0} {1}", mroomnumber, moffice)
+                        </span>
+                        <br />
+                        <span class="address">
+                            @Model.Member.addresses.Where(x => x.name == "DCOffice").Select(c => c.addressLocality).FirstOrDefault(),
+                            @Model.Member.addresses.Where(x => x.name == "DCOffice").Select(c => c.addressRegion).FirstOrDefault(),
+                            @Model.Member.addresses.Where(x => x.name == "DCOffice").Select(c => c.postalCode).FirstOrDefault()
+                        </span>
+                    </div>
+                    <p class="network">
+                        <span class="phone" tabindex="0" aria-label="phone, @Model.Member.addresses.Where(x => x.name == "DCOffice").Select(c => c.telephone).FirstOrDefault()">
+                            Phone: @Model.Member.addresses.Where(x => x.name == "DCOffice").Select(c => c.telephone).FirstOrDefault()
+                        </span>    
+                        @{
+                            if (!string.IsNullOrEmpty(Model.Member.websiteUrl))
+                            {
+                            <br />
+                            <span class="phone">
+                                Website: <a href=@Model.Member.websiteUrl aria-label="go to website @Model.Member.websiteUrl" class="external" target="_blank" tabindex="0">@Model.Member.websiteUrl <span class="fa fa-external-link"></span></a>
+                            </span>
+                            }
+                        }
+                    </p>
+                </td>
+                
+                <td>
+                    @Html.Partial("ViewMemberDistrict", Model)
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>

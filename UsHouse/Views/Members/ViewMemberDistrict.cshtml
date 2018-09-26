@@ -1,0 +1,30 @@
+﻿@model UsHouse.Models.ViewMemberDetailModel
+
+@if (Model != null && Model.Member != null && Model.Member.congresses.Count() > 0)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div id="mapContainer"></div>
+            <div id="expand" class="esri-widget--button esri-widget esri-interactive">
+                <a href='@Url.Action("Index","Members")#FindRepresentative'><span class="fa fa-arrows-alt"></span></a>
+            </div>
+            @Html.HiddenFor(x => x.Member.congresses.First().stateCode)
+            @Html.HiddenFor(x => x.Member.congresses.First().stateDistrict)
+        </div>
+    </div>
+}
+<style>
+    .esri-attribution__sources {
+        display: none !important;
+    }
+
+    .esri-attribution__powered-by {
+        display: none !important;
+    }
+
+    #expand {
+        color: #0c2b49;
+        line-height: 20px;
+        font-size: 17px;
+    }
+</style>

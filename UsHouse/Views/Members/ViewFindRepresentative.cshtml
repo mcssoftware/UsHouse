@@ -1,0 +1,29 @@
+﻿@model UsHouse.Models.ViewMemberProfileModel
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="library-h1" tabindex="0">Member Profiles</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 members-list_tools">
+        <h2 class="library-h2">Map View</h2>
+        <div class="font-icon-usage member-list-icons">
+            <a href="#MemberProfiles" data-view="ViewMemberProfiles"><span class="fa fa-th grid-view"></span></a>
+            <a href="#MemberList" data-view="ViewMemberList"><span class="fa fa-list-ul list-view"></span></a>
+            <a href="#FindRepresentative" style="margin-left:-2px;">
+                <span class="detail-view">
+                    <img src="~/Content/assets/img/mapicon-active.png" />
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="mapContainer"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    convertMemberListToDictionary(@Html.Raw(Json.Encode(Model)));
+</script>

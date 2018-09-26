@@ -1,0 +1,35 @@
+﻿@model UsHouse.Models.ViewMemberDetailModel
+
+<section class="subcommittees">
+    <div class="col-md-12 web-view-heading">
+        <span class="library-h2">Committee and Subcommittee Assignments</span>
+        <hr />
+    </div>
+    <div class="col-md-12">
+        @foreach (var committee in Model.Member.congresses.First().committeeAssignments.OrderBy(x => x.committeeName))
+        {
+            if (committee.committeeCode != null)
+            {
+                string comCode = committee.committeeCode.ToString().Substring(0, 2);
+            <a class="library-committeePanel-subItems" href="@Url.Action("../Committees/" + @committee.committeeCode, "committees")" tabindex="0" aria-label="view committee detail">@committee.committeeName</a>
+                if (Model.Member.congresses.First().subCommitteeAssignments != null && Model.Member.congresses.First().subCommitteeAssignments.Any())
+                {
+                <ul class="library-list_ul">
+                    @foreach (var subcommittee in Model.Member.congresses.First().subCommitteeAssignments.OrderBy(x => x.subCommitteeName))
+                    {
+                        string scomCode = subcommittee.subCommitteeCode.ToString().Substring(0, 2);
+                        if (comCode == scomCode)
+                        {
+
+                        <li><a class="library-committeePanel-subItems" href="@Url.Action("../Committees/" + @subcommittee.subCommitteeCode, "committees")" tabindex="0" aria-label="view committee detail">@subcommittee.subCommitteeName</a></li>
+                        }
+                    }
+                </ul>
+                }
+            }
+            else
+            {<span tabindex="0">There are no Committee assignments.</span> }
+        }
+        <hr />
+    </div>
+</section>

@@ -1,0 +1,179 @@
+﻿@using UsHouse.Models
+@model UsHouse.Models.ViewMemberProfileModel
+
+
+@{
+    List<Member> memberList = Model.Members;
+    if (Model == null)
+    {
+        <div class="api-warning">
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert" title="Alert Information">&times;</a>
+                There was a problem with the Vacancies information.Please try again later.
+            </div>
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="library-h1">Current Vacancies of the 115th Congress</h1>
+         <h2>Session 2</h2>
+        <div class="row leadership">
+            <ul class="list-no_style">
+                <li class="vacancy_release">
+                    @foreach (Member member in memberList.OrderByDescending(x => x.predecessor.predVacateDate != null ? x.predecessor.predVacateDate.date : x.statusDate))
+                    {
+                        var resignedDate = "";
+                        if (member.active == "no") { resignedDate = @member.statusDate.Substring(0, 4) + "/" + @member.statusDate.Substring(4, 2) + "/" + @member.statusDate.Substring(6, 2); }
+                        else { resignedDate = @member.predecessor.predVacateDate.date.Substring(0, 4) + "/" + @member.predecessor.predVacateDate.date.Substring(4, 2) + "/" + @member.predecessor.predVacateDate.date.Substring(6, 2); }
+
+                        if (@DateTime.Parse(resignedDate) > @DateTime.Parse("2018/01/03"))
+                        {
+
+                            var cimgURL = "/content/assets/img/members/" + @member._id + ".jpg";
+                            var pimgURL = "/content/assets/img/members/" + @member.predecessor.usCongressBio + ".jpg";
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <p class="border_bottom">
+                                    @member.congresses.First().stateCode &ndash;
+                                    @(member.congresses.First().stateDistrict.Length == 0 ? member.congresses.First().position : member.congresses.First().stateDistrict)<text> District</text>
+                                </p>
+                            </div>
+                            if (member.active == "no")
+                            {
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <figure class="vacancy_release-img col-lg-5 photo-size_thumb">
+                                        <a href="@Url.Action("../members/" + @member._id, "Members")" title="View Profile" class="library-link">
+                                            <img src="@Url.Content(cimgURL)" alt="Photo of Rep. @member.bioGivenNames">
+                                        </a>
+                                        <figcaption class="vacancy_release-img-bio">
+                                            <p class="title" aria-hidden="true">Resigned @DateTime.Parse(resignedDate).ToString("MMM. dd, yyyy")</p>
+                                            <h3 class="library-h3">Rep. @member.givenName  @member.middleName @member.familyName</h3>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            }
+                            else
+                            {
+
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <figure class="vacancy_release-img col-lg-5 photo-size_thumb">
+                                        <img src="@Url.Content(pimgURL)" alt="Photo of Rep. @member.predecessor.givenName">
+                                        <figcaption class="vacancy_release-img-bio">
+                                            <p class="title">Resigned @DateTime.Parse(resignedDate).ToString("MMM. dd, yyyy")</p>
+                                            <h3 class="library-h3">Rep. @member.predecessor.givenName  @member.predecessor.middleName @member.predecessor.familyName</h3>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            }
+                            
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                                @if (member.active != "no")
+                                {
+                                    var succededDate = @member.congresses.First().electionYear + "/" + @member.congresses.First().electionMonth + "/" + @member.congresses.First().electionDay;
+                                    <figure class="vacancy_release-img col-lg-5 photo-size_thumb">
+                                        <a href="@Url.Action("../members/" + @member._id, "Members")" title="View Profile" class="library-link">
+                                            <img src="@Url.Content(cimgURL)" alt="Photo of Rep. @member.bioGivenNames">
+                                        </a>
+                                        <figcaption class="vacancy_release-img-bio">
+                                            <p class="title">
+                                                Succeded @DateTime.Parse(succededDate).ToString("MMM. dd, yyyy")<br />
+                                            </p>
+                                            <h3 class="library-h3">Rep. @member.givenName  @member.middleName @member.familyName</h3>
+                                            <p class="title">
+                                                Oath of Office on @DateTime.Parse(member.oathOfOfficeDate).ToString("MMM. dd, yyyy")
+                                            </p>
+                                        </figcaption>
+                                    </figure>
+                                }
+
+                            </div>
+                        }
+                    }
+
+                </li>
+            </ul>
+    
+      <h2>Session 1</h2>
+    
+            <ul class="list-no_style">
+                <li class="vacancy_release">
+                    @foreach (Member member in memberList.OrderByDescending(x => x.predecessor.predVacateDate != null ? x.predecessor.predVacateDate.date : x.statusDate)){
+                            var resignedDate = "";
+                            if (member.active == "no"){resignedDate = @member.statusDate.Substring(0, 4) + "/" + @member.statusDate.Substring(4, 2) + "/" + @member.statusDate.Substring(6, 2);}
+                            else{resignedDate = @member.predecessor.predVacateDate.date.Substring(0, 4) + "/" + @member.predecessor.predVacateDate.date.Substring(4, 2) + "/" + @member.predecessor.predVacateDate.date.Substring(6, 2);}
+
+                           if (@DateTime.Parse(resignedDate) < @DateTime.Parse("2018/01/03"))   {
+
+                                var cimgURL = "/content/assets/img/members/" + @member._id + ".jpg";
+                                var pimgURL = "/content/assets/img/members/" + @member.predecessor.usCongressBio + ".jpg";
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <p class="border_bottom">
+                                        @member.congresses.First().stateCode &ndash;
+                                        @(member.congresses.First().stateDistrict.Length == 0 ? member.congresses.First().position : member.congresses.First().stateDistrict)<text> District</text>
+                                    </p>
+                                </div>
+                                if (member.active == "no")
+                                {
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <figure class="vacancy_release-img col-lg-5 photo-size_thumb">
+                                        <a href="@Url.Action("../members/" + @member._id, "Members")" title="View Profile" class="library-link">
+                                            <img src="@Url.Content(cimgURL)" alt="Photo of Rep. @member.bioGivenNames"></a>
+                                        <figcaption class="vacancy_release-img-bio">
+                                            <p class="title" aria-hidden="true">Resigned @DateTime.Parse(resignedDate).ToString("MMM. dd, yyyy")</p>
+                                            <h3 class="library-h3">Rep. @member.givenName  @member.middleName @member.familyName</h3>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                }
+                                else
+                                {
+
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <figure class="vacancy_release-img col-lg-5 photo-size_thumb">
+                                        <img src="@Url.Content(pimgURL)" alt="Photo of Rep. @member.predecessor.givenName">
+                                        <figcaption class="vacancy_release-img-bio">
+                                            <p class="title">Resigned @DateTime.Parse(resignedDate).ToString("MMM. dd, yyyy")</p>
+                                            <h3 class="library-h3">Rep. @member.predecessor.givenName  @member.predecessor.middleName @member.predecessor.familyName</h3>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                }
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                                    @if (member.active != "no")
+                                    {
+                                        var succededDate = @member.congresses.First().electionYear + "/" + @member.congresses.First().electionMonth + "/" + @member.congresses.First().electionDay;
+                                        <figure class="vacancy_release-img col-lg-5 photo-size_thumb">
+                                            <a href="@Url.Action("../members/" + @member._id, "Members")" title="View Profile" class="library-link">
+                                                <img src="@Url.Content(cimgURL)" alt="Photo of Rep. @member.bioGivenNames">
+                                            </a>
+                                            <figcaption class="vacancy_release-img-bio">
+                                                <p class="title">
+                                                    Succeded @DateTime.Parse(succededDate).ToString("MMM. dd, yyyy")<br /></p>
+                                                    <h3 class="library-h3">Rep. @member.givenName  @member.middleName @member.familyName</h3>
+                                                <p class="title">
+                                                    Oath of Office on @DateTime.Parse(member.oathOfOfficeDate).ToString("MMM. dd, yyyy")
+                                                </p>
+                                            </figcaption>
+                                        </figure>
+                                    }
+
+                                </div>
+                                }
+                            }
+                       
+
+</li>
+        </ul>
+    </div>
+
+</div>
+</div>

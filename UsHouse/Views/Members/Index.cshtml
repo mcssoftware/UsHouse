@@ -1,0 +1,97 @@
+﻿@using UsHouse.Models
+@model UsHouse.Models.SessionSummary
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="session-id-mobile visible-xs">
+    <ul>
+        <li><svg role="img" aria-label="Yellow Star" xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="8.5 -3.9 19 17.8"><polygon points="27.5 3 20.3 3 18.1 -3.9 15.8 3 8.5 3 14.4 7.1 12.2 13.9 18 9.7 23.9 13.9 21.7 7.1 " fill="#FFD262" /></svg></li>
+        <li>@Model.eventName</li>
+        <li><svg role="img" aria-label="Yellow Star" xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="8.5 -3.9 19 17.8"><polygon points="27.5 3 20.3 3 18.1 -3.9 15.8 3 8.5 3 14.4 7.1 12.2 13.9 18 9.7 23.9 13.9 21.7 7.1 " fill="#FFD262" /></svg></li>
+    </ul>
+</div>
+
+<section id="main-content" class="main-view container double-column about" data-main="about">
+    <div class="row equalheights">
+        <div class="col-xs-12 col-sm-12 col-md-3 left-nav left-nav-group">
+            <ul class="nav nav-pills nav-stacked" data-load-views="true" role="tablist">
+                <li><h2 class=".library-h2">Member Information</h2></li>
+                <li role="tab" class="active">
+                    <a class="init" href="#MemberProfiles1" data-custom-nav="sidenav" data-view="ViewMemberProfiles" aria-controls="MemberProfiles" data-toggle="pill" tabindex="0">Member Profiles</a>
+                </li>
+                <li role="tab" hidden>
+                    <a id="showMemberList" href="#MemberList1" data-custom-nav="sidenav" data-view="ViewMemberList" aria-controls="MemberLists" data-toggle="pill" tabindex="0">Member List</a>
+                </li>
+                <li role="tab" hidden>
+                    <a id="showFindRepresentative" href="#FindRepresentative1" data-custom-nav="sidenav" data-view="ViewFindRepresentative" aria-controls="FindRepresentative" data-toggle="pill" tabindex="0">Find Your Representatives</a>
+                </li>
+                @*<li role="tab" hidden>
+                        <a id="showMemberGroup" href="#MemberGroup" data-custom-nav="sidenav" data-view="ViewMemberGroup" aria-controls="MemberGroups" data-toggle="pill" tabindex="0">Member Profiles</a>
+                    </li>*@
+
+                <li role="tab">
+                    <a href="#leadership" data-custom-nav="sidenav" data-view="ViewLeadership" aria-controls="leadership" data-toggle="pill" tabindex="0">Leadership</a>
+                </li>
+                <li role="tab">
+                    <a href="http://history.house.gov/Institution/Election-Statistics/Election-Statistics/" data-custom-nav="sidenav" class="external" target="_blank" title="Election Statistics" tabindex="0">Election Statistics</a>
+                </li>
+                <li role="tab">
+                    <a href="#Vacancies" data-custom-nav="sidenav" data-view="ViewVacancies" aria-controls="Vacancies" data-toggle="pill" tabindex="0">Current Vacancies</a>
+                </li>
+            </ul>
+        </div>
+        <input type="number" id="currentPage" hidden value="@ViewBag.Page" />
+        <input type="text" id="currentKeyword" hidden value="@ViewBag.Keyword" />
+        <div class="tab-content col-xs-12 col-sm-8 col-md-9">
+            <div role="tabpanel" class="tab-pane library-tab_pane active" id="MemberProfiles1" tabindex="0"></div>
+            <div role="tabpanel" class="tab-pane library-tab_pane active" id="MemberList1" tabindex="0"></div>
+            <div role="tabpanel" class="tab-pane library-tab_pane active" id="FindRepresentative1" tabindex="0"></div>
+            @*<div role="tabpanel" class="tab-pane library-tab_pane active" id="MemberGroup" tabindex="0"></div>*@
+            <div role="tabpanel" class="tab-pane library-tab_pane" id="leadership" tab-index="0"></div>
+            <div role="tabpanel" class="tab-pane library-tab_pane" id="ElectionStatistics" tabindex="0"></div>
+            <div role="tabpanel" class="tab-pane library-tab_pane" id="Vacancies" tabindex="0"></div>
+        </div>
+    </div>
+
+</section>
+<script>
+    var MyAppUrlSettings = {
+        ViewLeadership: '@Url.Action("ViewLeadership", "Members")',
+        ViewMemberProfiles: '@Url.Action("ViewMemberProfiles", "Members")',
+        ViewMemberList: '@Url.Action("ViewMemberList", "Members")',
+        ViewMemberGroup: '@Url.Action("ViewMemberGroup", "Members")',
+        ViewFindRepresentative: '@Url.Action("ViewFindRepresentative", "Members")',
+        ViewVacancies: '@Url.Action("ViewVacancies", "Members")'
+    }
+    document.title = 'Office of the Clerk, U.S. House of Representatives - Member Information';
+</script>
+<style>
+    .esri-menu li:hover {
+        background-color: #e3b000 !important;
+    }
+
+    .esri-menu li:active,
+    .esri-menu .esri-search__source--active {
+        background-color: #ffd262;
+    }
+</style>
+@{ var version = "?v=1";}
+@section Map {
+    <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.8/"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/map.js")@version"></script>
+    <script type="text/javascript">
+        var propertyNames = {
+            "StateLayer": {
+                "Id": "STATEFP",
+                "Name": "NAME"
+            },
+            "DistrictLayer": {
+                "StateId": "STATEFP",
+                "DistrictNumber": "CD115FP"
+            }
+        };
+    </script>
+}

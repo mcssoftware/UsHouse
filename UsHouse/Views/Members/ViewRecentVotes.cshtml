@@ -1,0 +1,170 @@
+﻿@using Clerk.LCS.Services.Extensions
+@using System.Text.RegularExpressions
+@model UsHouse.Models.ViewMemberVotesModel
+<section class="recentvotes">
+    <div class="col-md-12 web-view-heading">
+        <span class="library-h2">Recent Votes</span>
+        <hr />
+    </div>
+    <div class="col-md-12">
+        @if (Model != null)
+        {
+            <table data-limit="10" data-ordering="true" data-searching="false" class="library-table table no-footer table-striped load-more-paging">
+                <caption class="sr-only">Recent Votes</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Roll Call<br/>Number</th>
+                        <th scope="col">Bill<br />Number</th>
+                        <th scope="col">Bill Title</th>
+                        <th scope="col">Vote</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Votes != null && Model.Votes.Any())
+                    {
+                        foreach (var vote in Model.Votes)
+                        {
+                            <tr>
+                                <td data-label="Date" tabindex="0">@if (vote.startDate != null && vote.startDate.HasValue)
+                                {<text>@vote.startDate.Value.ToString("M/d/yyyy")</text>}</td>
+                                <td data-label="Roll Call Number" class="nowrap"><a tabindex="0" href="@Url.Action(@vote._id,"Votes",new { @Page= Model.Pagination.Pagination.page + 1})">@vote.rollCallNum</a></td>
+                                <td data-label="Bill Number" class="nowrap">
+                                    @if (!string.IsNullOrEmpty(vote.legisNum))
+                                    {
+                                        var legisNumText = vote.legisNum.ToUpper();
+                                        if (new string[] { "ADJOURN", "JOURNAL", "QUORUM", "MOTION" }.Contains(legisNumText))
+                                        {
+                                            <text>@legisNumText</text>
+                                        }
+                                        else
+                                        {
+                                            if (legisNumText.Contains("HRES"))
+                                            {
+                                                legisNumText = legisNumText.Replace("HRES", "H. Res. ");
+                                            }
+                                            else if (legisNumText.Contains("HR"))
+                                            {
+                                                legisNumText = legisNumText.Replace("HR", "H. R. ");
+                                            }
+                                            else if (legisNumText.Contains("HCONRES"))
+                                            {
+                                                legisNumText = legisNumText.Replace("HCONRES", "H. Con. Res. ");
+                                            }
+                                            else if (legisNumText.Contains("HJRES"))
+                                            {
+                                                legisNumText = legisNumText.Replace("HJRES", "H. J. Res. ");
+                                            }
+                                            else if (legisNumText.Contains("SRES"))
+                                            {
+                                                legisNumText = legisNumText.Replace("SRES", "S. Res. ");
+                                            }
+                                            else if (legisNumText.Contains("SCONRES"))
+                                            {
+                                                legisNumText = legisNumText.Replace("SCONRES", "S. Con. Res. ");
+                                            }
+                                            else if (legisNumText.Contains("SJRES"))
+                                            {
+                                                legisNumText = legisNumText.Replace("SJRES", "S. J. Res. ");
+                                            }
+                                            else if (legisNumText.Contains("S"))
+                                            {
+                                                legisNumText = legisNumText.Replace("S", "S. ");
+                                            }
+                                            <span class="legisNum" hidden>@legisNumText</span>
+                                        }
+                                    }
+                                </td>
+                                <td data-label="Bill Title" tabindex="0">
+                                    @if (!string.IsNullOrEmpty(vote.amendmentAuthor))
+                                    {@vote.amendmentAuthor}
+                                    else if (!string.IsNullOrEmpty(vote.description))
+                                    {@vote.description}
+                                </td>
+                                <td data-label="Vote" tabindex="0">
+                                    @if (vote.members != null && vote.members.Any(x => x.usCongressBio == Convert.ToString(ViewBag.MemberId)))
+                                    {
+                                        var member = @vote.members.SingleOrDefault(x => x.usCongressBio == Convert.ToString(ViewBag.MemberId));
+                                        member.vote = string.Equals(member.vote, "yea", StringComparison.InvariantCultureIgnoreCase) ? "Aye" : member.vote;
+                                        member.vote = string.Equals(member.vote, "nay", StringComparison.InvariantCultureIgnoreCase) ? "No" : member.vote;
+                                        member.vote = string.Equals(member.vote, "not-voting", StringComparison.InvariantCultureIgnoreCase) ? member.vote.Replace("-", " ") : member.vote;
+                                        <text>@member.vote.ToString()</text> }
+                                </td>
+                                <td data-label="Status" tabindex="0">@vote.result</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" tabindex="0">No votes found</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            if (Model.Pagination != null && Model.Votes != null && Model.Votes.Any())
+            {
+                <nav class="library-pagination_v0">
+                    <div class="pagination_info">@Model.Pagination.Result</div>
+                    <ul class="pagination">
+                        @if (Model.Pagination.Pagination != null)
+                        {
+                            if (Model.Pagination.Pagination.page > 0)
+                            {
+                                <li>
+                                    <a href="#" aria-label="Prev" onclick="new Ushouse.MembersDetailsView().loadMembersVotes('@Url.Action("ViewRecentVotes", new
+                                                                                                                      {
+                                                                                                                          @memberID = ViewBag.MemberId,
+                                                                                                                          @page = Model.Pagination.Pagination.page
+                                                                                                                      })', true);return false;">
+                                        <span class="fa fa-chevron-left chevron" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                            }
+                            for (var i = Model.Pagination.PageStart; i <= Model.Pagination.PageEnd; i++)
+                            {
+
+                                if (Model.Pagination.Pagination.page + 1 == i)
+                                {
+                                    <li class="active">
+                                        <a href="#"
+                                           onclick="new Ushouse.MembersDetailsView().loadMembersVotes('@Url.Action("ViewRecentVotes", new
+                                                                                       {
+                                                                                                       @memberID=ViewBag.MemberId,
+                                                                                           @page = @i,
+                                                                                       })', true);return false;">@i<span class="sr-only">(current)</span></a>
+                                                                                </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="#"
+                                           onclick="new Ushouse.MembersDetailsView().loadMembersVotes('@Url.Action("ViewRecentVotes", new
+                                                                                       {
+                                                                                                   @memberID=ViewBag.MemberId,
+                                                                                           @Page = @i
+                                                                                       })', true);return false;">@i</a>
+                                                                                </li>
+
+                                }
+                            }
+                            if (Model.Pagination.Pagination.page < Model.Pagination.Pagination.number_pages - 1)
+                            {
+                                <li>
+                                    <a href="#" aria-label="Next" onclick="new Ushouse.MembersDetailsView().loadMembersVotes('@Url.Action("ViewRecentVotes", new
+                                                                                                              {
+                                                                                                                              @memberID=ViewBag.MemberId,
+                                                                                                                  @Page = Model.Pagination.Pagination.page + 2
+                                                                                                              })', true);return false;">
+                                        <span class="fa fa-chevron-right chevron" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </nav>
+            }
+        }
+    </div>
+</section>

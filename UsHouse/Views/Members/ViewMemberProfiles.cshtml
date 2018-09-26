@@ -1,0 +1,108 @@
+﻿@using UsHouse.Models
+@model UsHouse.Models.ViewMemberProfileModel
+
+@{
+    List<Member> memberList = Model.Members;
+    if (Model == null)
+    {
+        <div class="api-warning">
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert" title="Alert Information">&times;</a>
+                There was a problem with the Member Profile information.Please try again later.
+            </div>
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="library-h1" tabindex="0">Member Profiles</h1>
+        @*<p class="library-lead border_bottom">
+                Brief overview of member profiles.
+            </p>*@
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 col-lg-10">
+        <form class="library-form">
+            <div class="form-group library-form_group members-list_search">
+                <label for="search-member" class="visuallyhidden" aria-hidden="true">Search Member: </label>
+                <input type="text" class="form-control library-form_control search" id="search-member" name="search-member" aria-label="Search Members by Name, District, or Keyword" placeholder="Search Members by Name, District, or Keyword">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row" id="members-list-filter">
+    <div class="col-md-12 members-list_tools">
+        <h2 class="library-h2">All Members</h2>
+        <div class="font-icon-usage member-list-icons">
+            <a href="#MemberProfiles"><span class="fa activeView fa-th grid-view"></span></a>
+            <a href="#MemberList" data-view="ViewMemberList"><span class="fa fa-list-ul list-view"></span></a>
+            <a href="#FindRepresentative" data-view="ViewFindRepresentative" style="margin-left:-3px;">
+                <span class="detail-view">
+                    <img src="~/Content/assets/img/mapicon.png"/>
+                </span>
+            </a>
+        </div>
+        <nav class="library-pagination_v0">
+            <div class="pagination_info"></div>
+            <ul class="toppagination"></ul>
+        </nav>
+    </div>
+    <ul class="list-no_style members-list flex-eq-heights" id="members" aria-label="members">
+        @{
+            foreach (Member member in memberList)
+            {
+                string imgURL = string.Format("/content/assets/img/members/{0}.jpg", member._id);
+                <li class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="members-list_content">
+                        <div id="memberlist"></div>
+
+                        <figure class="photo-size_portrait">
+                            <a onclick="getComputedUrl('/members/@member._id');" href="@Url.Action("../members/" + @member._id, "Members")" title="@member.officialName" class="members-link">
+                                <img src="@Url.Content(imgURL)" alt="Photo of @member.officialName">
+                            </a>
+                        </figure>
+
+                        <a onclick="getComputedUrl('/members/@member._id');" href="@Url.Action("../members/" + @member._id , "Members")" title="View Profile" class="library-link members-link" aria-label="@member.familyName, @member.givenName  @member.middleName , state: @member.congresses.First().stateCode , district: @member.congresses.First().stateDistrict , party: @member.congresses.First().partyAffiliations.First().name">
+                            <h2 class="member-name" data-name="@member.sortName">
+                                @member.familyName, @member.givenName  @member.middleName
+                                @if (!string.IsNullOrEmpty(member.honorificSuffix))
+                                {
+                                    <text> </text>@member.honorificSuffix
+                                }
+                            </h2>
+                            <span class="name" hidden>@member.sortName</span>
+                        </a>
+
+                        <dl class="library-dl dl_inline-pairs">
+                            <dt>State:</dt>
+                            <dd class="state" data-state="@member.congresses.First().stateCode">@member.congresses.First().stateCode</dd>
+                            <dt>District:</dt>
+                            <dd class="district" data-district="@member.congresses.First().stateDistrict">
+                                @if (member.congresses.First().stateDistrict.Length == 0)
+                                {
+                                    <text>Delegate</text>
+                                }
+                                else
+                                {
+                                    @member.congresses.First().stateDistrict;
+                                }
+                            </dd>
+                            <dt>Party:</dt>
+                            <dd class="party" data-party="@member.congresses.First().partyAffiliations.First().name">@member.congresses.First().partyAffiliations.First().name</dd>
+                        </dl>
+                    </div>
+                </li>
+            }
+        }
+    </ul>
+    <div class="col-md-12 border_top members-list_tools">
+        <nav class="library-pagination_v0">
+            <div class="pagination_info"></div>
+            <ul class="bottompagination"></ul>
+        </nav>
+    </div>
+</div>

@@ -21,7 +21,7 @@
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode /> 
+    <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -1000,8 +1000,6 @@
   <ItemGroup>
     <Folder Include="Content\assets\vendor\azuremediaplayer-2.1.5\assets\fonts\" />
     <Folder Include="Content\assets\vendor\azuremediaplayer-2.1.5\assets\icons\" />
-    <Folder Include="Views\Members\" />
-    <Folder Include="Views\Navigation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1014,6 +1012,17 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\Members\ViewCommittees.cshtml" />
+    <Content Include="Views\Members\ViewFindRepresentative.cshtml" />
+    <Content Include="Views\Members\ViewLeadership.cshtml" />
+    <Content Include="Views\Members\ViewMemberDetails.cshtml" />
+    <Content Include="Views\Members\ViewMemberDistrict.cshtml" />
+    <Content Include="Views\Members\ViewMemberList.cshtml" />
+    <Content Include="Views\Members\ViewMemberProfiles.cshtml" />
+    <Content Include="Views\Members\ViewOverviewContact.cshtml" />
+    <Content Include="Views\Members\ViewRecentVotes.cshtml" />
+    <Content Include="Views\Members\ViewVacancies.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
