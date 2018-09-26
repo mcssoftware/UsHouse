@@ -173,6 +173,7 @@
     <Compile Include="Models\UsStates.cs" />
     <Compile Include="Models\ViewMemberProfileModel.cs" />
     <Compile Include="Models\ViewMemberVotesModel.cs" />
+    <Compile Include="Models\ViewNavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\LegislativeActivityService.cs" />
     <Compile Include="Service\MemberInformationService.cs" />

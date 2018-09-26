@@ -15,6 +15,11 @@ namespace UsHouse.Service
             return (new System.Web.Script.Serialization.JavaScriptSerializer()).Deserialize<SessionSummary>(text);
         }
 
+        internal HouseStatistics GetHouseStatistics(uint congressNumber)
+        {
+            return new HouseStatistics { };
+        }
+
         //internal Task GetRecentVotesForMember(string memberID, object currentCongress, uint v)
         //{
         //    throw new NotImplementedException();

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using UsHouse.Models;
 using UsHouse.Service;
 
 namespace UsHouse.Controllers
 {
-    public class MembersController : AsyncController
+    public class MembersController : Controller
     {
         private readonly LegislativeActivityService service;
         private readonly MemberInformationService mService;
@@ -23,13 +24,13 @@ namespace UsHouse.Controllers
 
         public MembersController(LegislativeActivityService clerkService, MemberInformationService memberService)
         {
-            memberpath = Server.MapPath("~/App_Data/members.json");
-            sessionpath = Server.MapPath("~/App_Data/sessionsummary.json");
+            memberpath = HostingEnvironment.MapPath("~/App_Data/members.json");
+            sessionpath = HostingEnvironment.MapPath("~/App_Data/sessionsummary.json");
             service = clerkService ?? throw new ArgumentNullException(nameof(clerkService));
             this.mService = memberService ?? throw new ArgumentNullException(nameof(memberService));
         }
 
-        public ViewResult IndexAsync(uint page = 1, string keyword = "")
+        public ActionResult Index(uint page = 1, string keyword = "")
         {
             ViewBag.Page = page;
             ViewBag.Keyword = keyword;

@@ -1,9 +1,12 @@
-﻿<nav id="main-navbar" class="navbar navbar-static" role="navigation" arial-label="Main Menu">
+﻿@using Clerk.LCS.Services.Extensions
+@model Clerk.LCS.Web.Models.ViewNavigationModel
+
+<nav id="main-navbar" class="navbar navbar-static" role="navigation" arial-label="Main Menu">
     <div class="container">
         <div class="row">
             <div class="navbar-header">
                 <div class="logo visible-xs">
-                    <a href="@Url.Action(" Index", "Home" )" title="Office of the Clerk, U.S. House of Representatives">
+                    <a href="@Url.Action("Index", "Home")" title="Office of the Clerk, U.S. House of Representatives">
                         <img src="@Url.Content("~/Content/assets/img/clerk-logo-web.svg")" title="Office of the Clerk, U.S. House of Representatives" alt="Office of the Clerk, U.S. House of Representatives" />
                     </a>
                 </div>
@@ -30,9 +33,9 @@
                                 <label class="sr-only" for="clerk-search-mobile">Search Office of the Clerk</label>
                                 <input type="text" name="clerk-search-mobile" id="clerk-search-mobile" value="" tabindex="0" placeholder="Search Office of the Clerk">
                                 @*<button class="btn btn-default" type="submit">
-                                    <i class="fa fa-search"></i>
-                                    <span class="sr-only">Search button</span>
-                                </button>*@
+                                        <i class="fa fa-search"></i>
+                                        <span class="sr-only">Search button</span>
+                                    </button>*@
                             </div>
                         </form>
                     </li>
@@ -46,14 +49,14 @@
                                         <h3 class="menu-title">Legislative Information</h3>
                                     </li>
                                     <li role="menuitem">
-                                        @*<a tabindex="0" href="@Url.Action(" Index", "FloorSummary" )" title="Legislative Activity">Legislative Activity</a>*@
+                                        @*<a tabindex="0" href="@Url.Action("Index", "FloorSummary")" title="Legislative Activity">Legislative Activity</a>*@
                                         <a tabindex="0" href="http://clerk.house.gov/floorsummary/floor.aspx" title="Legislative Activity" target="_blank">Legislative Activity</a>
                                     </li>
                                     <li role="menuitem">
-                                        <a tabindex="0" href="@Url.Action(" Index", "Votes" )" title="Votes">Roll Call Votes</a>
+                                        <a tabindex="0" href="@Url.Action("Index", "Votes")" title="Votes">Roll Call Votes</a>
                                     </li>
                                     <li role="menuitem">
-                                        <a tabindex="0" href="@Url.Action(" Index", "DischargePetition" )" title="Discharge Petitions">Discharge Petitions</a>
+                                        <a tabindex="0" href="@Url.Action("Index", "DischargePetition")" title="Discharge Petitions">Discharge Petitions</a>
                                     </li>
                                     <li role="menuitem">
                                         <a tabindex="0" href="https://live.house.gov" title="HouseLive 2.0" target="_blank">HouseLive 2.0</a>
@@ -62,17 +65,39 @@
                                         <a tabindex="0" href="http://houselive.gov/" title="Video Archives" target="_blank">Video Archives</a>
                                     </li>
                                     <li role="menuitem">
-                                        <a tabindex="0" href="@Url.Action(" Index", "SelectedMemorial" )" title="Selected Memorials">Selected Memorials</a>
+                                        <a tabindex="0" href="@Url.Action("Index", "SelectedMemorial")" title="Selected Memorials">Selected Memorials</a>
                                     </li>
                                 </ul>
                                 @{
-                                var sessionStatus = "House Not In Session";
-                                var sessionDate = string.Format("Next Session: Tomorrow at");
-
+                                    string sessionStatus = string.Empty;
+                                    string sessionDate = string.Empty;
+                                    if (Model.SessionSummary.inSessionNow)
+                                    {
+                                        sessionStatus = "House Is In Session";
+                                        sessionDate = string.Format(new MyCustomDateProvider(), "{0}", Model.SessionSummary.sessionStartDate.GetValueOrDefault());
+                                    }
+                                    else
+                                    {
+                                        if (Model.SessionSummary.nextSessionStartDate.GetValueOrDefault().Date == DateTime.UtcNow.ToEasternStandardTime().Date)
+                                        {
+                                            sessionStatus = "House In Session Today";
+                                            sessionDate = string.Format("House Convens at {0}", Model.SessionSummary.nextSessionStartDate.GetValueOrDefault().ToString("h:mm tt"));
+                                        }
+                                        else if (Model.SessionSummary.nextSessionStartDate.GetValueOrDefault().Date == DateTime.UtcNow.ToEasternStandardTime().AddDays(1).Date)
+                                        {
+                                            sessionStatus = "House Not In Session";
+                                            sessionDate = string.Format("Next Session: Tomorrow at {0}", Model.SessionSummary.nextSessionStartDate.GetValueOrDefault().ToString("h:mm tt"));
+                                        }
+                                        else
+                                        {
+                                            sessionStatus = "House Not In Session";
+                                            sessionDate = string.Format("Next Session: {0} at {1}", string.Format(new MyCustomDateProvider(), "{0}", Model.SessionSummary.nextSessionStartDate.GetValueOrDefault()), Model.SessionSummary.nextSessionStartDate.GetValueOrDefault().ToString("h:mm tt"));
+                                        }
+                                    }
                                 }
                                 <ul class="menu-session-status">
                                     <li>
-                                        <h5 id="menu-session-event-name" tabindex="0"></h5>
+                                        <h5 id="menu-session-event-name" tabindex="0">@Model.SessionSummary.eventName</h5>
                                     </li>
                                     <li>
                                         <h3 id="menu-session-status" tabindex="0" class="menu-subtitle">@sessionStatus</h3>
@@ -129,10 +154,10 @@
                                         <h3 class="menu-title">Member Information</h3>
                                     </li>
                                     <li role="menuitem">
-                                        <a tabindex="0" href="@Url.Action(" Index", "Members" )" title="Member Profiles" target="_self">Member Profiles</a>
+                                        <a tabindex="0" href="@Url.Action("Index", "Members")" title="Member Profiles" target="_self">Member Profiles</a>
                                     </li>
                                     <li role="menuitem">
-                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "Members" )#Leadership" title="Leadership" target="_self">Leadership</a>
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action("Index", "Members")#Leadership" title="Leadership" target="_self">Leadership</a>
                                     </li>
                                     <li role="menuitem">
                                         <a tabindex="0" href="http://history.house.gov/Institution/Election-Statistics/Election-Statistics/" title="Election Information" target="_blank">Election Information</a>
@@ -142,20 +167,20 @@
                                     </li>
                                 </ul>
                                 @{
-                                uint memberTotal = 435;
+                                    uint memberTotal = Model.HouseStatistics.republicanNumber + Model.HouseStatistics.democratNumber + Model.HouseStatistics.independentNumber + Model.HouseStatistics.vacancyNumber;
                                 }
                                 <ul class="list-unstyled equal-height-list" style="max-width: 384px">
                                     <li>
                                         <div id="menu-member-stats" class="member-stats_chart">
                                             <dl id="chart">
-                                                <dt>Republicans<span>236</span></dt>
-                                                <dd><span id="data-one" style="width:@((int)Math.Ceiling(((double)236 / memberTotal) * 100))%;">236</span></dd>
-                                                <dt>Democrats<span>193</span></dt>
-                                                <dd><span id="data-two" style="width:@((int)Math.Ceiling(((double)193 / memberTotal) * 100))%;">193</span></dd>
-                                                <dt>Independents<span>0</span></dt>
-                                                <dd><span id="data-three" style="width:@((int)Math.Ceiling(((double)0 / memberTotal) * 100))%;">0</span></dd>
-                                                <dt>Vacancies<span>6</span></dt>
-                                                <dd><span id="data-four" style="width:@((int)Math.Ceiling(((double)6 / memberTotal) * 100))%;">6</span></dd>
+                                                <dt>Republicans<span>@Model.HouseStatistics.republicanNumber</span></dt>
+                                                <dd><span id="data-one" style="width:@((int)Math.Ceiling(((double)Model.HouseStatistics.republicanNumber / memberTotal) * 100))%;">@Model.HouseStatistics.republicanNumber</span></dd>
+                                                <dt>Democrats<span>@Model.HouseStatistics.democratNumber</span></dt>
+                                                <dd><span id="data-two" style="width:@((int)Math.Ceiling(((double)Model.HouseStatistics.democratNumber / memberTotal) * 100))%;">@Model.HouseStatistics.democratNumber</span></dd>
+                                                <dt>Independents<span>@Model.HouseStatistics.independentNumber</span></dt>
+                                                <dd><span id="data-three" style="width:@((int)Math.Ceiling(((double)Model.HouseStatistics.independentNumber / memberTotal) * 100))%;">@Model.HouseStatistics.independentNumber</span></dd>
+                                                <dt>Vacancies<span>@Model.HouseStatistics.vacancyNumber</span></dt>
+                                                <dd><span id="data-four" style="width:@((int)Math.Ceiling(((double)Model.HouseStatistics.vacancyNumber / memberTotal) * 100))%;">@Model.HouseStatistics.vacancyNumber</span></dd>
                                             </dl>
                                         </div>
                                     </li>
@@ -233,11 +258,11 @@
                                     </li>
                                     <li role="listitem">
                                         <i class="fa fa-angle-double-right"></i>&nbsp;<span tabindex="0">Mailing Labels</span><br />
-                                        [<a href="@Url.Action(" WordMailingLabel", "Members" )" title="Mailing Labels" target="_blank">MS Word</a> | <a href="http://clerk.house.gov/member_info/wp-labels-115.wpd" title="Official Lists" target="_blank">Word Perfect</a> | <a tabindex="-1" href="@Url.Action(" TextMailingLabel", "Members" )" title="Mailing Labels" target="_blank">Text File</a>]
+                                        [<a href="@Url.Action("WordMailingLabel", "Members")" title="Mailing Labels" target="_blank">MS Word</a> | <a href="http://clerk.house.gov/member_info/wp-labels-115.wpd" title="Official Lists" target="_blank">Word Perfect</a> | <a tabindex="-1" href="@Url.Action("TextMailingLabel", "Members")" title="Mailing Labels" target="_blank">Text File</a>]
                                     </li>
                                     <li role="listitem">
                                         <i class="fa fa-angle-double-right"></i>&nbsp;<span tabindex="0">Member Data</span><br />
-                                        [<a href="@Url.Action(" ExcelMemberData", "Members" )" title="Member Data" target="_blank">Excel</a> | <a href="http://clerk.house.gov/xml/lists/MemberData.xml" title="Member Data" target="_blank">XML</a> | <a tabindex="-1" href="http://clerk.house.gov/member_info/MemberData_UserGuide.pdf" title="Official Lists" target="_blank">User Guide</a>]
+                                        [<a href="@Url.Action("ExcelMemberData", "Members")" title="Member Data" target="_blank">Excel</a> | <a href="http://clerk.house.gov/xml/lists/MemberData.xml" title="Member Data" target="_blank">XML</a> | <a tabindex="-1" href="http://clerk.house.gov/member_info/MemberData_UserGuide.pdf" title="Official Lists" target="_blank">User Guide</a>]
                                     </li>
                                     <li role="listitem">
                                         <i class="fa fa-angle-double-right"></i>&nbsp;<a href="https://www.congress.gov/members" title="Members on Congress.gov" target="_blank">Members on Congress.gov</a>
@@ -443,16 +468,16 @@
                                         <h3 class="menu-title">About the Clerk</h3>
                                     </li>
                                     <li role="menuitem">
-                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "About" )#OverviewContact" title="The Clerk of the House" target="_self">Overview & Contact</a>
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action("Index", "About")#OverviewContact" title="The Clerk of the House" target="_self">Overview & Contact</a>
                                     </li>
                                     <li role="menuitem">
-                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "About" )#DutyOfClerk" title="Duties of the Clerk" target="_self">Duties of the Clerk</a>
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action("Index", "About")#DutyOfClerk" title="Duties of the Clerk" target="_self">Duties of the Clerk</a>
                                     </li>
                                     <li role="menuitem">
-                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "About" )#OfficeService" title="Offices and Services" target="_self">Offices and Services</a>
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action("Index", "About")#OfficeService" title="Offices and Services" target="_self">Offices and Services</a>
                                     </li>
                                     <li role="menuitem">
-                                        <a tabindex="0" class="partial-view-link" href="@Url.Action(" Index", "About" )#HistoryOfOffice" title="History of the Office" target="_self">History of the Office</a>
+                                        <a tabindex="0" class="partial-view-link" href="@Url.Action("Index", "About")#HistoryOfOffice" title="History of the Office" target="_self">History of the Office</a>
                                     </li>
                                 </ul>
                             </div>
@@ -461,8 +486,8 @@
                                     <li><h3 class="menu-subtitle">The Clerk of the House</h3></li>
                                     <li role="listitem" tabindex="0" aria-label="the honorable karen l haas, clerk of the u s house of representatives">
                                         @*<img src="~/Content/assets/img/haas.jpg" />
-                                        <br />
-                                        <br />*@
+                                            <br />
+                                            <br />*@
                                         <b>THE HONORABLE KAREN L. HAAS</b><br>
                                         <i>Clerk of the U.S. House of Representatives</i><br>
                                     </li>
@@ -523,7 +548,7 @@
     </div>
 </nav>
 
-<input type="hidden" id="inSessionDateList" value="">
+<input type="hidden" id="inSessionDateList" value="@(Model.SessionSummary.sessionDays != null ? String.Join(",", Model.SessionSummary.sessionDays) : string.Empty)">
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
