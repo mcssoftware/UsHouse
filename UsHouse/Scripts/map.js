@@ -1,16 +1,26 @@
 var memberDictionary;
+var selectedMemberLocation = null; // for member from url
+
 function convertMemberListToDictionary(memberList) {
+    var memberIdMatch = /\?memberId=(.*)#/gi.exec(location.href);
     memberDictionary = {};
     for (var i = 0; i < memberList.Members.length; i++) {
         var memberInfo = memberList.Members[i];
         try {
             var state = memberInfo.congresses[0].stateCode;
             var match = /(.*)\s\(.*\)/gi.exec(state);
-            if (match != null && typeof match[1] != "undefined") {
+            if (match !== null && typeof match[1] !== "undefined") {
                 state = match[1];
             }
             if (typeof memberDictionary[state] === "undefined") {
                 memberDictionary[state] = [];
+            }
+            if (memberIdMatch !== null && memberInfo._id === memberIdMatch[1] && memberInfo.congresses.length > 0) {
+                var data = memberInfo.congresses[0];
+                selectedMemberLocation = {
+                    state: seperateStateCode(data.stateCode).name,
+                    districtNum: removeOrdinal(data.stateDistrict),
+                };
             }
             memberDictionary[state].push(memberInfo);
         } catch (e) { }
@@ -21,22 +31,28 @@ var dojoConfig = {
         "esri-featurelayer-webgl": 1
     }
 };
+
 var loadingMap = false;
 function initializeMap() {
     if (loadingMap) return;
-    loadingMap = true;
+    //loadingMap = true;
+    var currentWindowSize = window.outerWidth;
+    window.onresize = function () {
+        if ((currentWindowSize > 768 && window.outerWidth <= 768) || (currentWindowSize <= 768 && window.outerWidth > 768)) {
+            loadingMap = false;
+        }
+    };
     var stateDictionary = {};
-
     require([
-    "esri/WebMap",
-    "esri/views/MapView",
-    "esri/layers/FeatureLayer",
-    "esri/widgets/Search",
-    "esri/tasks/Locator",
-    "esri/widgets/Home",
-    "esri/layers/GraphicsLayer",
-    "esri/symbols/PictureMarkerSymbol",
-    "dojo/domReady!"
+        "esri/WebMap",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer",
+        "esri/widgets/Search",
+        "esri/tasks/Locator",
+        "esri/widgets/Home",
+        "esri/layers/GraphicsLayer",
+        "esri/symbols/PictureMarkerSymbol",
+        "dojo/domReady!"
     ], function (WebMap, MapView, FeatureLayer, Search, Locator, Home, GraphicsLayer, PictureMarkerSymbol) {
         var selectedState = null;
         // var selectedDistrict = null;
@@ -60,7 +76,7 @@ function initializeMap() {
 
         var popupTemplate = {
             title: "Info:",
-            content: function(features) {
+            content: function (features) {
                 if (isDefined(features) && isDefined(features.graphic) && isDefined(features.graphic.attributes)) {
                     return getDistrictInfoByGeoid(features.graphic.attributes);
                 } else {
@@ -96,29 +112,29 @@ function initializeMap() {
             graphics: []
         });
 
-        map = new WebMap({
+        var map = new WebMap({
             portalItem: { // autocasts as new PortalItem()
                 id: "70943bda8a37419f863a361ccc00a216"
             },
             layers: [usStatelayer, usdistrictlayer, graphicsLayer]
         });
-
-        mapview = new MapView({
+        var mapview = new MapView({
             container: "mapContainer",
             map: map,
             zoom: 4,
             center: [-96.07963094180764, 38.77845724234052], // longitude, latitude
             popup: {
-                title: "Member Information",
+                title: "Info:",
                 highlightEnabled: true,
                 dockEnabled: true,
                 dockOptions: {
+                    buttonEnabled: false,
                     breakpoint: false,
                     position: "bottom-right"
                 }
             },
             ui: {
-                components: ["attribution"]
+                components: ["attribution", "zoom"]
             },
             constraints: {
                 minZoom: 4,
@@ -156,29 +172,29 @@ function initializeMap() {
                 suggestionsEnabled: true,
                 minSuggestCharacters: 0
             },
-                {
-                    locator: new Locator({
-                        url: "//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
-                        countryCode: "US"
-                    }),
-                    singleLineFieldName: "SingleLine",
-                    outFields: ["Addr_type", "City", "StAddr"],
-                    name: "Address lookup",
-                    localSearchOptions: {
-                        minScale: 300000,
-                        distance: 50000
-                    },
-                    placeholder: "Search Geocoder",
-                    maxResults: 3,
-                    maxSuggestions: 6,
-                    suggestionsEnabled: true,
-                    minSuggestCharacters: 0
-                }
+            {
+                locator: new Locator({
+                    url: "//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+                    countryCode: "US"
+                }),
+                singleLineFieldName: "SingleLine",
+                outFields: ["Addr_type", "City", "StAddr"],
+                name: "Address lookup",
+                localSearchOptions: {
+                    minScale: 300000,
+                    distance: 50000
+                },
+                placeholder: "Search Geocoder",
+                maxResults: 3,
+                maxSuggestions: 6,
+                suggestionsEnabled: true,
+                minSuggestCharacters: 0
+            }
             ];
             // intialize search widget
             searchWidgets = new Search({
                 view: mapview,
-                //goToOverride: function (a, b) { }, // remove default goto of search
+                goToOverride: function (a, b) { }, // remove default goto of search
                 sources: sources,
                 includeDefaultSources: false
             });
@@ -195,8 +211,17 @@ function initializeMap() {
             searchWidgets.on("search-clear", function (event) {
                 clearPoint();
             });
-        }
 
+            $("#mapLink").on("click", function () {
+                selectedState = "";
+                usdistrictlayer.popupEnabled = false;
+                usdistrictlayer.definitionExpression = "1=0";
+                searchWidgets.clear();
+                mapview.popup.close();
+                clearPoint();
+                homeBtn.go();
+            });
+        }
 
         /******************************************************************
          * Event handler
@@ -206,8 +231,14 @@ function initializeMap() {
          * @param {*} view
          */
         function enableEventsOnMapView(view) {
+            if (!/\?memberId=(.*)#/gi.exec(location.href)) {
+                selectedMemberLocation = null;
+            }
             view.whenLayerView(usStatelayer).then(function () {
                 view.whenLayerView(usdistrictlayer).then(function (layerView) {
+                    if (selectedMemberLocation !== null) {
+                        selectDefaultDistrict();
+                    }
                     var promise;
                     var tooltip = createTooltip();
                     view.on("pointer-move", function (event) {
@@ -251,7 +282,7 @@ function initializeMap() {
                                     return result.graphic.layer === usStatelayer;
                                 })[0].graphic;
                                 var stateFp = feature.attributes.STATEFP;
-                                if (selectedState != stateFp) {
+                                if (selectedState !== stateFp) {
                                     if (usdistrictlayer.popupEnabled) {
                                         usdistrictlayer.popupEnabled = false;
                                     }
@@ -260,6 +291,9 @@ function initializeMap() {
                                 } else {
                                     if (!usdistrictlayer.popupEnabled) {
                                         usdistrictlayer.popupEnabled = true;
+                                    }
+                                    if (isDefined(mapview.popup)) {
+                                        mapview.popup.collapsed = false;
                                     }
                                 }
                             }
@@ -283,12 +317,37 @@ function initializeMap() {
                         view.popup.close();
                         clearPoint();
                     });
+
                 });
             });
         }
 
         initializeMapUIComponent();
         enableEventsOnMapView(mapview);
+        /** function that handles the district rendering and popup open when member's data from querystring is received */
+        function selectDefaultDistrict() {
+            usStatelayer.queryFeatures({
+                where: propertyNames.StateLayer.Name + "='" + selectedMemberLocation.state + "'",
+                returnGeometry: true,
+                outFields: [propertyNames.StateLayer.Id]
+            }).then(function (response) {
+                var features = response.features;
+                var stateFp = features[0].attributes[propertyNames.StateLayer.Id];
+                stateSelected(stateFp);
+                goTo(features[0].geometry, true);
+                usdistrictlayer.queryFeatures({
+                    where: propertyNames.DistrictLayer.DistrictNumber + "=" + selectedMemberLocation.districtNum + " and " +
+                        propertyNames.DistrictLayer.StateId + "=" + stateFp,
+                    returnGeometry: true,
+                    outFields: ["*"]
+                }).then(function (districtResponse) {
+                    usdistrictlayer.popupEnabled = true;
+                    var features = districtResponse.features;
+                    mapview.popup.content = (isDefined(features) && isDefined(features[0]) && isDefined(features[0].attributes)) ? getDistrictInfoByGeoid(features[0].attributes) : "";
+                    mapview.popup.open();
+                });
+            });
+        }
 
         /**
          * @summary: the function handles the search completion
@@ -408,22 +467,22 @@ function initializeMap() {
                     center: [-163, 63.17],
                     zoom: 4.7
                 }, {
-                    duration: 2000,
-                    easing: "ease-in-out"
-                });
+                        duration: 2000,
+                        easing: "ease-in-out"
+                    });
             } else {
                 mapview.goTo({
                     target: geometry,
                 }, {
-                    duration: 2000,
-                    easing: "ease-in-out"
-                }).then(function () {
-                    if (mapview.zoom < 12) {
-                        mapview.zoom = mapview.zoom - 0.05;
-                    } else {
-                        mapview.zoom = 12;
-                    }
-                });
+                        duration: 2000,
+                        easing: "ease-in-out"
+                    }).then(function () {
+                        if (mapview.zoom < 12) {
+                            mapview.zoom = mapview.zoom - 0.05;
+                        } else {
+                            mapview.zoom = 12;
+                        }
+                    });
             }
         }
 
@@ -475,7 +534,6 @@ function initializeMap() {
             // }
             return "";
         }
-
 
         /**
          * Creates a tooltip to display a the construction year of a building.
@@ -536,26 +594,6 @@ function initializeMap() {
                 }
             };
         }
-
-        /**
-         * @summary: just a function for convenient use
-         * @param {*} value
-         * @returns
-         */
-        function isDefined(value) {
-            return value !== null && typeof (value) !== "undefined";
-        }
-
-        function removeOrdinal(value) {
-            if (typeof value === "string" && value.length > 0 && value != "At Large") {
-                var match = /(.*)(st|nd|rd|th)/gi.exec(value);
-                if (isDefined(match) && isDefined(match[1])) {
-                    var number = parseInt(match[1], 10);
-                    return (number < 10) ? '0' + number.toString() : number.toString();
-                }
-            }
-            return "00";
-        }
     });
 
     var Tooltip = {
@@ -576,7 +614,7 @@ function initializeMap() {
             }
 
             var pos_left = Tooltip.target.offsetLeft + (Tooltip.target.offsetWidth / 2) - (Tooltip.tooltip.offsetWidth /
-                    2),
+                2),
                 pos_top = Tooltip.target.offsetTop - Tooltip.tooltip.offsetHeight - 20;
             Tooltip.tooltip.className = '';
             console.log('(' + pos_left + ', ' + pos_top + ')')
@@ -606,5 +644,36 @@ function initializeMap() {
             Tooltip.tooltip.className = Tooltip.tooltip.className.replace('show', '');
         }
     };
+}
 
+/**
+* @summary: for cases where "Alabama (Al)" comes in combinations
+* @param {any} value
+*/
+function seperateStateCode(value) {
+    var match = /(.*).\(([a-zA-Z]{2})\)$/gi.exec(value);
+    return {
+        name: match[1],
+        code: match[2]
+    };
+}
+
+/**
+* @summary: just a function for convenient use
+* @param {*} value
+* @returns
+*/
+function isDefined(value) {
+    return value !== null && typeof (value) !== "undefined";
+}
+
+function removeOrdinal(value) {
+    if (typeof value === "string" && value.length > 0 && value != "At Large") {
+        var match = /(.*)(st|nd|rd|th)/gi.exec(value);
+        if (isDefined(match) && isDefined(match[1])) {
+            var number = parseInt(match[1], 10);
+            return (number < 10) ? '0' + number.toString() : number.toString();
+        }
+    }
+    return "00";
 }

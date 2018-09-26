@@ -1,12 +1,11 @@
-﻿var map;
-var mapview;
+﻿
 var dojoConfig = {
     has: {
         "esri-featurelayer-webgl": 1
     }
 };
 require([
-     "esri/Map",
+    "esri/Map",
     "esri/WebMap",
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
@@ -14,6 +13,8 @@ require([
     "esri/Graphic",
     "dojo/domReady!"
 ], function (Map, WebMap, MapView, FeatureLayer, GraphicsLayer, Graphic) {
+    var map;
+    var mapview;
     function isDefined(value) {
         if (value !== null && typeof value !== "undefined") return true;
         return false;
@@ -43,10 +44,9 @@ require([
         }
     }
 
-    var mapContainer = document.getElementById("mapContainer");
+    var mapContainer = document.getElementById("membersMap");
     var state = document.getElementById("stateCode");
     var district = document.getElementById("stateDistrict");
-
     if (!isDefined(mapContainer) || !isDefined(state) || !isDefined(district)) return;
     var stateName = getStateName($(state).val());
     var districtNumber = removeOrdinal($(district).val());
@@ -54,7 +54,6 @@ require([
         districtNumber = 98; // Resident Commissioner District or Delegate District (at Large)
     }
     if (!isDefined(stateName) || !isDefined(districtNumber)) return;
-
     var usStatelayer = new FeatureLayer({
         url: "https://services1.arcgis.com/o90r8yeUBWgKSezU/arcgis/rest/services/US_Territories/FeatureServer",
         outFields: [propertyNames.StateLayer.Id, propertyNames.StateLayer.Name],
@@ -87,7 +86,7 @@ require([
     });
 
     mapview = new MapView({
-        container: "mapContainer",
+        container: "membersMap",
         map: map,
         popup: {
             title: "NAMELSAD",
@@ -118,8 +117,9 @@ require([
             returnGeometry: false,
             outFields: [propertyNames.StateLayer.Id]
         }).then(function (response) {
+            var query = propertyNames.DistrictLayer.DistrictNumber + "='" + districtNumber + "' and " + propertyNames.DistrictLayer.StateId + "=" + response.features[0].attributes[propertyNames.StateLayer.Id];
             return usdistrictlayer.queryFeatures({
-                where: propertyNames.DistrictLayer.DistrictNumber + "='" + districtNumber + "' and " + propertyNames.DistrictLayer.StateId + "=" + response.features[0].attributes[propertyNames.StateLayer.Id],
+                where: query,
                 returnGeometry: true,
                 outFields: [propertyNames.DistrictLayer.StateId, propertyNames.DistrictLayer.DistrictNumber]
             });
@@ -152,16 +152,18 @@ require([
                 mapview.goTo({
                     target: feature.geometry,
                 }, {
-                    duration: 1000,
-                    easing: "ease-in-out"
-                }).then(function () {
-                    if (mapview.zoom < 11) {
-                        mapview.zoom = mapview.zoom - 0.05;
-                    } else {
-                        mapview.zoom = 11;
-                    }
-                });
+                        duration: 1000,
+                        easing: "ease-in-out"
+                    }).then(function () {
+                        if (mapview.zoom < 11) {
+                            mapview.zoom = mapview.zoom - 0.05;
+                        } else {
+                            mapview.zoom = 11;
+                        }
+                    });
             }
+            }, function (err) {
+                debugger;
         });
     }
 });

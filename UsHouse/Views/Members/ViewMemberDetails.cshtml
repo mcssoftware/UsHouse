@@ -61,12 +61,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    @*<div class="row">
                         <div class="col-md-12">
                             <h3 class="library-h3" style="margin-bottom:0">Help</h3>
                             @Html.Action("Resource", "Help", new { @hashValue = "Member" })
                         </div>
-                    </div>
+                    </div>*@
                 </section>
             </div>
         <!-- Main Content -->
@@ -130,23 +130,6 @@
                             </div>
                         </div>
                     }
-                    @if (Model.Member.congresses.First().position != "Delegate" && Model.Member.congresses.First().position != "Resident Commissioner")
-                    {
-                        <div class="panel library-panel" id="recentvotes">
-                            <div class="accordion-heading library-panel_heading" role="tab" id="heading-4">
-                                <h3 class="library-panel_title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsible-4" aria-expanded="false" aria-controls="collapsible-1">
-                                        Recent Votes
-                                    </a>
-                                </h3>
-                            </div>
-                            <div id="collapsible-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-4">
-                                <div id="recent-votes" class="panel-body row">
-
-                                </div>
-                            </div>
-                        </div>
-                    }
                 </section>
             </div>
         }
@@ -154,14 +137,6 @@
 </div>
 <script>
     document.title = 'Office of the Clerk, U.S. House of Representatives - @Model.Member.officialName';
-    document.addEventListener('DOMContentLoaded', function () {
-        new Ushouse.MembersDetailsView().loadMembersVotes('@Url.Action("ViewRecentVotes",
-                                                       new {
-                                                           @memberID=Model.Member._id,
-                                                           @page=ViewBag.Page
-        })', false);
-
-    }, false);
 </script>
 @{ var version = "?v=" + Guid.NewGuid().ToString().ToLower();}
 @section Map {
@@ -176,7 +151,7 @@
             },
             "DistrictLayer": {
                 "StateId": "STATEFP",
-                "DistrictNumber": "CD114FP"
+                "DistrictNumber": "CD115FP"
             }
         };
     </script>

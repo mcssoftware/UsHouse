@@ -83,15 +83,15 @@ namespace UsHouse.Controllers
             return PartialView();
         }
 
-
+        [Route("members/{memberID:length(7)}")]
         public ActionResult ViewMemberDetails(string memberID, uint page = 1)
         {
             Member member = new Member();
             try
             {
                 member = mService.GetMemberById(memberpath, memberID);
-                State = UsStates.ConvertCode(member.congresses.First().stateCode);
-                member.congresses.First().stateCode = State.State + " (" + member.congresses.First().stateCode + ")";
+                //State = UsStates.ConvertCode(member.congresses.First().stateCode);
+                //member.congresses.First().stateCode = State.State + " (" + member.congresses.First().stateCode + ")";
             }
             catch (Exception ex)
             {

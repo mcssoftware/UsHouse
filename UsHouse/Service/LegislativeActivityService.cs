@@ -19,10 +19,5 @@ namespace UsHouse.Service
         {
             return new HouseStatistics { };
         }
-
-        //internal Task GetRecentVotesForMember(string memberID, object currentCongress, uint v)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

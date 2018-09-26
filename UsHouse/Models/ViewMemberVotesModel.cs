@@ -8,4 +8,5 @@ namespace UsHouse.Models
     public class ViewMemberVotesModel
     {
     }
+
 }

@@ -175,6 +175,7 @@
     <Compile Include="Models\ViewMemberVotesModel.cs" />
     <Compile Include="Models\ViewNavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\DateExtensions.cs" />
     <Compile Include="Service\LegislativeActivityService.cs" />
     <Compile Include="Service\MemberInformationService.cs" />
     <Compile Include="Service\StringExtentions.cs" />
