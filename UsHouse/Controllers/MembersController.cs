@@ -13,6 +13,8 @@ namespace UsHouse.Controllers
     {
         private readonly LegislativeActivityService service;
         private readonly MemberInformationService mService;
+        private readonly string memberpath;
+        private readonly string sessionpath;
 
         public UsStates State { get; set; }
 
@@ -21,6 +23,8 @@ namespace UsHouse.Controllers
 
         public MembersController(LegislativeActivityService clerkService, MemberInformationService memberService)
         {
+            memberpath = Server.MapPath("~/App_Data/members.json");
+            sessionpath = Server.MapPath("~/App_Data/sessionsummary.json");
             service = clerkService ?? throw new ArgumentNullException(nameof(clerkService));
             this.mService = memberService ?? throw new ArgumentNullException(nameof(memberService));
         }
@@ -29,42 +33,42 @@ namespace UsHouse.Controllers
         {
             ViewBag.Page = page;
             ViewBag.Keyword = keyword;
-            return View(service.GetSessionSummary());
+            return View(service.GetSessionSummary(sessionpath));
         }
 
-        public async Task<ActionResult> ViewMemberProfiles()
+        public ActionResult ViewMemberProfiles()
         {
             ViewMemberProfileModel model = new ViewMemberProfileModel()
             {
-                Members = await GetAllMembers()
+                Members = GetAllMembers()
             };
             return PartialView(model);
         }
 
-        public async Task<ActionResult> ViewMemberList()
+        public ActionResult ViewMemberList()
         {
             ViewMemberProfileModel model = new ViewMemberProfileModel()
             {
-                Members = await GetAllMembers()
+                Members = GetAllMembers()
             };
             return PartialView(model);
         }
 
-        public async Task<ActionResult> ViewFindRepresentative()
+        public ActionResult ViewFindRepresentative()
         {
             ViewMemberProfileModel model = new ViewMemberProfileModel()
             {
-                Members = await GetAllMembers()
+                Members = GetAllMembers()
             };
             return PartialView(model);
         }
 
-        private async Task<List<Member>> GetAllMembers()
+        private List<Member> GetAllMembers()
         {
             List<Member> memberList = new List<Member>();
             try
             {
-                memberList = await mService.GetMembers();
+                memberList = mService.GetMembers(memberpath);
             }
             catch (Exception ex)
             {
@@ -79,13 +83,12 @@ namespace UsHouse.Controllers
         }
 
 
-        public async Task<ActionResult> ViewMemberDetails(string memberID, uint page = 1)
+        public ActionResult ViewMemberDetails(string memberID, uint page = 1)
         {
             Member member = new Member();
             try
             {
-                List<Member> pageMember = await mService.GetMemberById(memberID);
-                member = pageMember.FirstOrDefault();
+                member = mService.GetMemberById(memberpath, memberID);
                 State = UsStates.ConvertCode(member.congresses.First().stateCode);
                 member.congresses.First().stateCode = State.State + " (" + member.congresses.First().stateCode + ")";
             }
@@ -96,16 +99,16 @@ namespace UsHouse.Controllers
             ViewMemberDetailModel model = new ViewMemberDetailModel()
             {
                 Member = member,
-                SessionSummary = service.GetSessionSummary()
+                SessionSummary = service.GetSessionSummary(sessionpath)
             };
             ViewBag.Page = page;
             return PartialView(model);
         }
 
-        private async Task<List<Member>> GetLegislativeMembers()
+        private List<Member> GetLegislativeMembers()
         {
             List<Member> memberList = new List<Member>();
-            memberList = await mService.GetMembers();
+            memberList = mService.GetMembers(memberpath);
 
             foreach (var member in memberList)
             {

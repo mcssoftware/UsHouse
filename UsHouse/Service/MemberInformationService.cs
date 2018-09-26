@@ -9,14 +9,16 @@ namespace UsHouse.Service
 {
     public class MemberInformationService
     {
-        internal Task<List<Member>> GetMembers()
+        internal List<Member> GetMembers(string path)
         {
-            throw new NotImplementedException();
+            string text = System.IO.File.ReadAllText(path);
+            return (new System.Web.Script.Serialization.JavaScriptSerializer()).Deserialize<List<Member>>(text);
         }
 
-        internal Task<List<Member>> GetMemberById(string memberID)
+        internal Member GetMemberById(string path, string memberID)
         {
-            throw new NotImplementedException();
+            var members = GetMembers(path);
+            return members.FirstOrDefault(a => a._id == memberID);
         }
     }
 }

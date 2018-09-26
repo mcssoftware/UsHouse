@@ -9,14 +9,15 @@ namespace UsHouse.Service
 {
     public class LegislativeActivityService
     {
-        internal SessionSummary GetSessionSummary()
+        internal SessionSummary GetSessionSummary(string path)
         {
-            throw new NotImplementedException();
+            string text = System.IO.File.ReadAllText(path);
+            return (new System.Web.Script.Serialization.JavaScriptSerializer()).Deserialize<SessionSummary>(text);
         }
 
-        internal Task GetRecentVotesForMember(string memberID, object currentCongress, uint v)
-        {
-            throw new NotImplementedException();
-        }
+        //internal Task GetRecentVotesForMember(string memberID, object currentCongress, uint v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
