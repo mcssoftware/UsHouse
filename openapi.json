@@ -1,0 +1,3876 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "House API",
+    "description": "House API Version 2",
+    "version": "2.0"
+  },
+  "paths": {
+    "/committees": {
+      "get": {
+        "tags": [
+          "Committees"
+        ],
+        "summary": "Committees",
+        "description": "Get all committees",
+        "operationId": "get-committees",
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitteesGet200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitteesGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committees/{id}": {
+      "get": {
+        "tags": [
+          "Committees"
+        ],
+        "summary": "Committee by id",
+        "description": "Get committee by id",
+        "operationId": "get-committee-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique two-letter + two-number code used internally by the House to identify the (sub)committee, case insensitive.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitteesGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitteesGetById200Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/committeeMeetings": {
+      "get": {
+        "tags": [
+          "Committee Meetings"
+        ],
+        "summary": "Committee Meetings",
+        "description": "Get all committee meetings",
+        "operationId": "get-committee-meetings",
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitteeMeetingsGet200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitteeMeetingsGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committeeMeetings/{id}": {
+      "get": {
+        "tags": [
+          "Committee Meetings"
+        ],
+        "summary": "Committee Meeting by id",
+        "description": "Get committee meeting by id",
+        "operationId": "get-committee-meeting-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The numeric event ID for the meeting on the U.S. House calendar",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitteeMeetingsGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitteeMeetingsGetById200Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/congresses": {
+      "get": {
+        "tags": [
+          "Congresses"
+        ],
+        "summary": "Congresses",
+        "description": "Get all congresses",
+        "operationId": "get-congresses",
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CongressesGet200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CongressesGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/congresses/{type}/{congressnumber}": {
+      "get": {
+        "tags": [
+          "Congresses"
+        ],
+        "summary": "Congress by congress number",
+        "description": "Get congress by congress number",
+        "operationId": "get-congress-by-congress-number",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "description": "The congress type: \"Continental\", \"StampAct\", \"Confederation\", \"US\"",
+            "required": true,
+            "schema": {
+              "enum": [
+                "Continental",
+                "StampAct",
+                "Confederation",
+                "US"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "congressnumber",
+            "in": "path",
+            "description": "The congress number",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CongressesGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CongressesGetById200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/congresses/{type}/{congressnumber}/{chamber}/CongressSessions/{sessionNumber}": {
+      "get": {
+        "tags": [
+          "Congresses"
+        ],
+        "summary": "Congress by Session Number",
+        "description": "Get congress by session number",
+        "operationId": "get-congress-by-session-number",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "description": "The congress type: \"Continental\", \"StampAct\", \"Confederation\", \"US\"",
+            "required": true,
+            "schema": {
+              "enum": [
+                "Continental",
+                "StampAct",
+                "Confederation",
+                "US"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "congressnumber",
+            "in": "path",
+            "description": "The congress number",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "chamber",
+            "in": "path",
+            "description": "The congressional branch: \"House\", \"Senate\"",
+            "required": true,
+            "schema": {
+              "title": "ChamberType",
+              "enum": [
+                "House",
+                "Senate"
+              ],
+              "type": "string",
+              "description": "The congressional branch."
+            }
+          },
+          {
+            "name": "sessionNumber",
+            "in": "path",
+            "description": "Format - int32. The session number",
+            "required": true,
+            "schema": {
+              "title": "SessionNumber",
+              "enum": [
+                1,
+                2
+              ],
+              "type": "integer",
+              "description": "The session number.",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CongressesGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CongressesGetById200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dischargepetitions": {
+      "get": {
+        "tags": [
+          "Discharge Petitions"
+        ],
+        "summary": "DischargePetitions",
+        "description": "Get all dischargePetitions",
+        "operationId": "get-dischargepetitions",
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DischargepetitionsGet200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DischargepetitionsGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dischargepetitions/{id}": {
+      "get": {
+        "tags": [
+          "Discharge Petitions"
+        ],
+        "summary": "DischargePetition by id",
+        "description": "Get dischargePetition by id",
+        "operationId": "get-dischargepetition-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique ID for the discharge petition consisting of the congress number (e.g., 116), plus the session number (e.g., 2), plus the discharge petition number",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DischargepetitionsGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DischargepetitionsGetById200Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/floorProceedings": {
+      "get": {
+        "tags": [
+          "Floor Proceedings"
+        ],
+        "summary": "FloorProceeding",
+        "description": "Get all floorProceedings",
+        "operationId": "get-floorProceeding",
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FloorProceedingsGet200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/FloorProceedingsGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/floorProceedings/{id}/FloorEvents/{eventid}": {
+      "get": {
+        "tags": [
+          "Floor Proceedings"
+        ],
+        "summary": "Floor Event by id",
+        "description": "Get floor event by id",
+        "operationId": "get-floor-event-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique ID for the floor proceeding consisting of the congress number (e.g., 116), plus the session number (e.g., 2), plus the proceeding date in YYYYMMDD format",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "eventid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FloorProceedingsGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/FloorProceedingsGetById200Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/floorproceedings/{id}": {
+      "get": {
+        "tags": [
+          "Floor Proceedings"
+        ],
+        "summary": "FloorProceeding by id",
+        "description": "Get floorProceeding by id",
+        "operationId": "get-floorproceeding-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique ID for the floor proceeding consisting of the congress number (e.g., 116), plus the session number (e.g., 2), plus the proceeding date in YYYYMMDD format",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FloorProceedingsGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/FloorProceedingsGetById200Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/members": {
+      "get": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Members",
+        "description": "Get all members",
+        "operationId": "get-members",
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembersGet200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembersGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/members/{id}": {
+      "get": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Member by id",
+        "description": "Get member by id",
+        "operationId": "get-member-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The member's id, per the Biographical Directory of the U.S. Congress, case insensitive.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembersGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembersGetById200Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/persons": {
+      "get": {
+        "tags": [
+          "Persons"
+        ],
+        "summary": "Persons",
+        "description": "Get all person",
+        "operationId": "get-persons",
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonsGet200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonsGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/persons/{id}": {
+      "get": {
+        "tags": [
+          "Persons"
+        ],
+        "summary": "Person by id",
+        "description": "Get person by id",
+        "operationId": "get-person-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The member's id, per the Biographical Directory of the U.S. Congress, case insensitive.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonsGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonsGetById200Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/votes": {
+      "get": {
+        "tags": [
+          "Votes"
+        ],
+        "summary": "Votes",
+        "description": "Get all votes",
+        "operationId": "get-votes",
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VotesGet200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/VotesGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/votes/{id}": {
+      "get": {
+        "tags": [
+          "Votes"
+        ],
+        "summary": "Vote by id",
+        "description": "Get vote by id",
+        "operationId": "get-vote-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique ID for the Vote, consisting of the congress number (e.g., 112), plus the session number (e.g., 2), plus the vote name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Normal results returned, per the provided query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VotesGetById200Response"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/VotesGetById200Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActionCode": {
+        "title": "ActionCode",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a specific type of action that occurred on the legislative floor",
+        "properties": {
+          "type": {
+            "pattern": "^ActionCode$",
+            "type": "string",
+            "description": "A constant of \"ActionCode\""
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The ID of the action code"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the action"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Committee": {
+        "type": "object",
+        "description": "Represents a group of legislators with jurisdiction over a specific legislative or administrative scope.",
+        "properties": {
+          "type": {
+            "pattern": "^Committee$",
+            "type": "string",
+            "description": "A constant of \"Committee\""
+          },
+          "id": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "A unique two-letter + two-number code used internally by the House to identify committees and subcommittees"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the committee"
+          },
+          "shortName": {
+            "type": "string",
+            "description": "The abbreviated or truncated name of the committee"
+          },
+          "sortName": {
+            "type": "string",
+            "description": "Committee name used for alphabetical sorting"
+          },
+          "committeeCongressAffiliation": {
+            "type": "array",
+            "description": "A collection of CommitteeCongressAffiliation items defining the relationship(s) between this committee and one or more congresses",
+            "items": {
+              "$ref": "#/components/schemas/CommitteeCongressAffiliation"
+            }
+          },
+          "committeeType": {
+            "$ref": "#/components/schemas/CommitteeType",
+            "description": "The type of committee"
+          },
+          "note": {
+            "type": "array",
+            "description": "A collection of notes describing or documenting this committee",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            }
+          }
+        }
+      },
+      "CommitteeReference": {
+        "type": "object",
+        "properties": {
+          "committee": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The unique URI identifying the referenced committee."
+          }
+        }
+      },
+      "CommitteeCongressAffiliation": {
+        "title": "CommitteeCongressAffiliation",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents the affiliation between a committee and a congress.",
+        "properties": {
+          "type": {
+            "pattern": "^CommitteeCongressAffiliation$",
+            "type": "string",
+            "description": "A constant of \"CommitteeCongressAffiliation\""
+          },
+          "congress": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The unique URI of the Congress with which the committee is affiliated"
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date of the committee's affiliation with the congress"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date, in ISO format, of the committee's affiliation with the congress"
+          },
+          "startCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that startDate is approximate"
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date of the committee's affiliation with the congress"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date, in ISO format, of the committee's affiliation with the congress"
+          },
+          "endCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that endDate is approximate"
+          },
+          "organizationalMeetingDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date that the organizational committee meeting was held"
+          },
+          "organizationalMeetingDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The ISO format date that the organizational committee meeting was held"
+          },
+          "majorityRatio": {
+            "type": "integer",
+            "description": "The number of seats allotted in a committee with the majority party having more seats"
+          },
+          "minorityRatio": {
+            "type": "integer",
+            "description": "The number of seats allotted in a committee to the minority party with the minority party having fewer seats"
+          },
+          "currentMember": {
+            "type": "array",
+            "description": "A collection of the current members of the committee within the current congress",
+            "items": {
+              "$ref": "#/components/schemas/PersonReference"
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the relationship between the committee and the congress"
+          },
+          "parentCommittee": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The unique URI of this committee's parent committee"
+          },
+          "location": {
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Place"
+              },
+              {
+                "$ref": "#/components/schemas/PostalAddress"
+              }
+            ],
+            "description": "The postal address of the committee"
+          },
+          "note": {
+            "type": "array",
+            "description": "A collection of notes describing or documenting this committee",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommitteeMeeting": {
+        "title": "CommitteeMeeting",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a grouping of people gathering under the auspices of a committee.",
+        "properties": {
+          "type": {
+            "pattern": "^CommitteeMeeting$",
+            "type": "string",
+            "description": "A constant of \"CommitteeMeeting\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this CommitteeMeeting."
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The numeric event ID for the meeting on the U.S. House calendar"
+          },
+          "name": {
+            "type": "string",
+            "description": "The published meeting title"
+          },
+          "committeeMeetingType": {
+            "$ref": "#/components/schemas/CommitteeMeetingType",
+            "description": "The type of committee meeting."
+          },
+          "databaseCreationDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time that the entry was created or added in the database"
+          },
+          "databaseCreationDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time, in ISO format, that the entry was created or added in the database"
+          },
+          "dateModified": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time that the entry was updated."
+          },
+          "dateModifiedISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time, in ISO format, that the entry was updated."
+          },
+          "firstPublicationDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The initial date and time that the committee meeting was published"
+          },
+          "firstPublicationDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The initial date and time, in ISO format, that the committee meeting was published"
+          },
+          "lastPublicationDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date and time that the committee meeting was published"
+          },
+          "lastPublicationDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date and time, in ISO format, that the committee meeting was published"
+          },
+          "congressSession": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The unique URI of the congressional session during which this meeting is scheduled"
+          },
+          "committeeMeetingSession": {
+            "type": "array",
+            "description": "A collection of the sessions of which this meeting is comprised",
+            "items": {
+              "$ref": "#/components/schemas/CommitteeMeetingSession"
+            }
+          },
+          "meetingStatus": {
+            "$ref": "#/components/schemas/MeetingStatus",
+            "description": "The status of the meeting"
+          },
+          "url": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The internet address for published details regarding the meeting"
+          },
+          "organizer": {
+            "$ref": "#/components/schemas/CommitteeReference"
+          },
+          "participant": {
+            "type": "array",
+            "description": "A collection of the additional committee(s) that are participating in this meeting",
+            "items": {
+              "$ref": "#/components/schemas/CommitteeMeetingParticipant"
+            }
+          },
+          "location": {
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Place"
+              },
+              {
+                "$ref": "#/components/schemas/PostalAddress"
+              }
+            ],
+            "description": "The postal address of the repository"
+          },
+          "document": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            },
+            "description": "A collection of documents relevant to this committee meeting"
+          },
+          "fieldHearing": {
+            "type": "boolean",
+            "description": "If true, indicates that the committee meeting is being held outside of a United States Congressional Office in Washington DC"
+          },
+          "note": {
+            "type": "array",
+            "description": "A collection of notes providing additional details regarding the meeting",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            }
+          },
+          "witness": {
+            "type": "array",
+            "description": "A collection of Witness items representing those testifying in the meeting",
+            "items": {
+              "$ref": "#/components/schemas/Witness"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommitteeMeetingParticipant": {
+        "type": "object",
+        "description": "Represents a committee participating in a committee meeting.",
+        "properties": {
+          "type": {
+            "pattern": "^Committee$",
+            "type": "string"
+          },
+          "participant": {
+            "$ref": "#/components/schemas/CommitteeReference"
+          }
+        }
+      },
+      "CommitteeMeetingSession": {
+        "title": "CommitteeMeetingSession",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a scheduled component of a committee meeting.  Committee meetings consist of one or more sessions.",
+        "properties": {
+          "type": {
+            "pattern": "^CommitteeMeetingSession$",
+            "type": "string",
+            "description": "A constant of \"CommitteeMeetingSession\""
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The session start date and time"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The session start date and time in ISO format"
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date and time of the session"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The session end date and time in ISO format"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Congress": {
+        "title": "Congress",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a term of the national legislative body of the United States.",
+        "properties": {
+          "type": {
+            "pattern": "^Congress$",
+            "type": "string",
+            "description": "A constants of \"Congress\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this object."
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The unique ID for the Congress"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the congress"
+          },
+          "congressNumber": {
+            "type": "integer",
+            "description": "The Congress number in numeric format"
+          },
+          "congressType": {
+            "$ref": "#/components/schemas/CongressType",
+            "description": "The congress type: \"Continental\", \"Stamp Act\", \"Confederation\", \"US\""
+          },
+          "congressSession": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CongressSession"
+            },
+            "description": "The linked data element connecting the property to the Object"
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date of the congress"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date, in ISO format, of the congress"
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date of the congress"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date, in ISO format, of the congress"
+          },
+          "note": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            },
+            "description": "A note describing or documenting an item"
+          },
+          "regionInformation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegionInformation"
+            },
+            "description": "A note attached to a geographic location"
+          },
+          "seatMaximum": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SeatMaximum"
+            },
+            "description": "The linked data element connecting the property to the Object"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CongressSession": {
+        "title": "CongressSession",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents one of the annual series of meetings of a congress.",
+        "properties": {
+          "type": {
+            "pattern": "^CongressSession$",
+            "type": "string",
+            "description": "A constant of \"CongressSession\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this object."
+          },
+          "name": {
+            "type": "string",
+            "description": "The session name"
+          },
+          "sessionNumber": {
+            "type": "integer",
+            "description": "The numeric value of the session of Congress"
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date of the session"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date, in ISO format, of the session"
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date of the session"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date, in ISO format, of the session"
+          },
+          "chamber": {
+            "$ref": "#/components/schemas/ChamberType",
+            "description": "conducting the session"
+          },
+          "location": {
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Place"
+              },
+              {
+                "$ref": "#/components/schemas/PostalAddress"
+              }
+            ],
+            "description": "The place or postal address of the session"
+          },
+          "membershipSummary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MembershipSummary"
+            },
+            "description": "The majority and minority party count during the session"
+          },
+          "note": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            },
+            "description": "A note describing or documenting an item"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConstituentRegion": {
+        "title": "ConstituentRegion",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a geography-based population subset represented within the congress (e.g., district or state).",
+        "properties": {
+          "type": {
+            "pattern": "^ConstituentRegion$",
+            "type": "string",
+            "description": "A constant of \"ConstituentRegion\""
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the region"
+          },
+          "regionType": {
+            "$ref": "#/components/schemas/RegionType",
+            "description": "The state, district or territory"
+          },
+          "regionNumber": {
+            "type": "integer",
+            "description": "The geographic location within the state with unique congressional representation. Districts are identified with a two-digit number (i.e., 01, 02 or 00). \"00\" designates an \"At-Large\" district: A  district that constitutes the entirety of its parent region (e.g., a state).\n",
+            "format": "int32"
+          },
+          "regionCode": {
+            "type": "string",
+            "description": "The region's postal abbreviation"
+          },
+          "activeRegion": {
+            "type": "boolean",
+            "description": "If true, the region is currently active"
+          },
+          "atLarge": {
+            "type": "boolean",
+            "description": "If true, the region constitutes the entirety of its parent region's congressional representation"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DischargePetition": {
+        "title": "DischargePetition",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a means of bringing a bill out of committee and to the floor for consideration without a report from the committee by \"discharging\" the committee from further consideration of a bill or resolution.",
+        "properties": {
+          "type": {
+            "pattern": "^DischargePetition$",
+            "type": "string",
+            "description": "A constant of \"DischargePetition\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this object."
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The unique ID for the discharge petition consisting of the congress number (e.g., 116), plus the session number (e.g., 2), plus the discharge petition number"
+          },
+          "name": {
+            "type": "string",
+            "description": "The petition's name consisting of a four-digit year and one or two digit petition number."
+          },
+          "congressSession": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI of the congressional session during which this petition was submitted"
+          },
+          "dischargePetitionNumber": {
+            "type": "integer",
+            "description": "The sequential numeric value assigned to the discharge petition. This number starts at \"1\" at the beginning of each Congress"
+          },
+          "locBillInfo": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The internet address for text of and details regarding the petition"
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date on which the petition was introduced in congress"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date, in ISO format, on which the petition was introduced in congress. Time portion is not significant."
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date that Members are able to be added to the Discharge Petition"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date, in ISO format, that Members are able to be added to the Discharge Petition.  Time portion is not significant."
+          },
+          "publishedDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date that an item or document was published, either print or electronic"
+          },
+          "publishedDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date, in ISO format, that an item or document was published, either print or electronic.  Time portion is not significant."
+          },
+          "dischargeDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string"
+          },
+          "dischargeDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string"
+          },
+          "dischargeCalendarNumber": {
+            "type": "integer",
+            "description": "The discharge petition number added to the calendar"
+          },
+          "sponsor": {
+            "$ref": "#/components/schemas/PetitionSponsor"
+          },
+          "signer": {
+            "type": "array",
+            "description": "The collection of petition signer items returned by the API.",
+            "items": {
+              "$ref": "#/components/schemas/PetitionSigner"
+            }
+          },
+          "dateModified": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "description": "The date and time that this petitions was last updated",
+            "type": "string"
+          },
+          "dateModifiedISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "description": "The date and time, in ISO format, that this petition was last updated",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Document": {
+        "title": "Document",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a written or electronic item that provides information or evidence.",
+        "properties": {
+          "type": {
+            "pattern": "^Document$",
+            "type": "string",
+            "description": "A constant of \"Document\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this object."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the document"
+          },
+          "uploaderName": {
+            "type": "string",
+            "description": "The name of the person who uploaded the document"
+          },
+          "subject": {
+            "type": "string",
+            "description": "The primary theme or topic of the document"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the research record which may contain the personal papers of a Member of Congress"
+          },
+          "dateCreated": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "description": "The date and time that the document was created",
+            "type": "string"
+          },
+          "dateCreatedISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "description": "The date and time, in ISO format, that the document was created",
+            "type": "string"
+          },
+          "publishedDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time that an item or document was published, either print or electronic"
+          },
+          "publishedDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time, in ISO format, that an item or document was published, either print or electronic"
+          },
+          "removedDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date that an item was removed"
+          },
+          "removedDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date in ISO format that an item was removed"
+          },
+          "publisher": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Person"
+              },
+              {
+                "$ref": "#/components/schemas/Organization"
+              },
+              {
+                "$ref": "#/components/schemas/Committee"
+              },
+              {
+                "$ref": "#/components/schemas/Url"
+              }
+            ],
+            "description": "Preparer of material for public distribution"
+          },
+          "versionNumber": {
+            "type": "string",
+            "description": "The document version number"
+          },
+          "legislativeStage": {
+            "type": "object",
+            "description": "The status of the measure in the Legislative process. 'PIH' is Pre-Introduced House and 'SUS' is a Suspension.  All other stages/versions can be found here: https://www.govinfo.gov/help/bills#versions."
+          },
+          "file": {
+            "type": "array",
+            "description": "A collection of File items associated with this document",
+            "items": {
+              "$ref": "#/components/schemas/File"
+            }
+          },
+          "legisNumber": {
+            "type": "string",
+            "description": "The issue or measure number"
+          },
+          "locBillInfo": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The internet address for text of and details regarding the document"
+          },
+          "documentCode": {
+            "type": "string",
+            "description": "The code or acronym for the name describing the document",
+            "$ref": "#/components/schemas/DocumentCode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "File": {
+        "title": "File",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a collection of data stored as a single entity, with a unique name or reference.",
+        "properties": {
+          "type": {
+            "pattern": "^File$",
+            "type": "string",
+            "description": "A constant of \"File\""
+          },
+          "url": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The internet address by which the file may be accessed"
+          },
+          "dateCreated": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time that the file was created"
+          },
+          "dateCreatedISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time, in ISO format, that the file was created"
+          },
+          "dateIssued": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time that the file was issued"
+          },
+          "dateIssuedISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time, in ISO format, that the file was issued"
+          },
+          "format": {
+            "type": "string",
+            "description": "The type of format that the file is in"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FloorEvent": {
+        "title": "FloorEvent",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a unique action occurring within the daily proceedings of a legislative chamber.",
+        "properties": {
+          "type": {
+            "pattern": "^FloorEvent$",
+            "type": "string",
+            "description": "A constant of \"FloorEvent\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this FloorEvent."
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the FloorEvent"
+          },
+          "dateModified": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "description": "The date and time that this event was last updated",
+            "type": "string"
+          },
+          "dateModifiedISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "description": "The date and time, in ISO format, that this event was last updated",
+            "type": "string"
+          },
+          "actionTime": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time the action occurred"
+          },
+          "actionTimeISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time, in ISO format, the action occurred"
+          },
+          "legisNumber": {
+            "type": "string",
+            "description": "The issue or measure number"
+          },
+          "locBillInfo": {
+            "pattern": ".+:.+",
+            "description": "The internet address for published details regarding the legislation relevant to the floor event",
+            "type": "string"
+          },
+          "vote": {
+            "pattern": ".+:.+",
+            "description": "The unique URI for a vote that occurred during this floor event",
+            "type": "string"
+          },
+          "actionCode": {
+            "$ref": "#/components/schemas/ActionCode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FloorProceeding": {
+        "title": "FloorProceeding",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a full legislative chamber's activities for a given legislative day.",
+        "properties": {
+          "type": {
+            "pattern": "^FloorProceeding$",
+            "type": "string",
+            "description": "A constant of \"FloorProceeding\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this object."
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The unique ID for the floor proceeding consisting of the congress number (e.g., 116), plus the session number (e.g., 2), plus the proceeding date in YYYYMMDD format"
+          },
+          "name": {
+            "type": "string",
+            "description": "This element is related to the \"name\" in the Committee container "
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date and time of the proceeding"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date and time, in ISO format, of the proceeding"
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date of the proceeding"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date, in ISO format, of the proceeding"
+          },
+          "prevEndDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date of the previous legislative Day"
+          },
+          "prevEndDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date, in ISO format, of the previous legislative Day"
+          },
+          "nextStartDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time that the House is next expected to convene"
+          },
+          "nextStartDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time, in ISO format, that the House is next expected to convene"
+          },
+          "floorEvent": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FloorEvent"
+            },
+            "description": "The collection of floor events of which the floor proceeding consists"
+          },
+          "congressSession": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The unique URI for the congresional session during which this floor proceeding occurred."
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImageObject": {
+        "title": "ImageObject",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a collection of visual data (picture) stored as a single entity, with a unique name or reference.",
+        "properties": {
+          "type": {
+            "pattern": "^ImageObject$",
+            "type": "string",
+            "description": "A constant of \"ImageObject\""
+          },
+          "contentUrl": {
+            "pattern": ".+:.+",
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Job": {
+        "title": "Job",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a role to which a person can be assigned.",
+        "properties": {
+          "type": {
+            "pattern": "^Job$",
+            "type": "string",
+            "description": "A constant of \"Job\""
+          },
+          "name": {
+            "type": "string",
+            "description": "This element is related to the \"name\" in the Committee container "
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the research record which may contain the personal papers of a Member of Congress"
+          },
+          "jobType": {
+            "$ref": "#/components/schemas/JobType",
+            "description": "A Congressional or Non Congressional job type"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobPosition": {
+        "title": "JobPosition",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents an instance of a person fulfilling a job.",
+        "properties": {
+          "type": {
+            "pattern": "^JobPosition$",
+            "type": "string",
+            "description": "A constant of \"JobPosition\""
+          },
+          "job": {
+            "$ref": "#/components/schemas/Job"
+          },
+          "person": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The unique URI of the person filling the job."
+          },
+          "worksFor": {
+            "pattern": ".+:.+",
+            "type": "string"
+          },
+          "worksFor_id": {
+            "pattern": ".+:.+",
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the research record which may contain the personal papers of a Member of Congress"
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date of the person's assignment to the job"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date, in ISO format, of the person's assignment to the job"
+          },
+          "startCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that startDate is approximate"
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date of the person's assignment to the job"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date, in ISO format, of the person's assignment to the job"
+          },
+          "endCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that endDate is approximate"
+          },
+          "departureReason": {
+            "type": "string",
+            "description": "The reason why the Person left a position"
+          },
+          "congressAffiliation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberCongressAffiliation"
+            },
+            "description": "A collection of MemberCongressAffiliation indicating the congresses during which the person was assigned to the job"
+          },
+          "committee": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The name of the committee"
+          },
+          "rank": {
+            "type": "integer",
+            "description": "A Member's ranking or standing in a committee, often based on seniority"
+          },
+          "predecessor": {
+            "$ref": "#/components/schemas/PredecessorInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemberCongressAffiliation": {
+        "title": "MemberCongressAffiliation",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents the relationship between a legislator and a congress.",
+        "properties": {
+          "type": {
+            "pattern": "^MemberCongressAffiliation$",
+            "type": "string",
+            "description": "A constant of \"MemberCongressAffiliation\""
+          },
+          "congress": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The national legislative body of the United States"
+          },
+          "congress_id": {
+            "type": "string"
+          },
+          "electionType": {
+            "$ref": "#/components/schemas/ElectionType",
+            "description": "A type of election"
+          },
+          "class": {
+            "type": "integer",
+            "description": "The Senate is divided into three classes for purposes of elections, this denotes that \"Class the Member belongs to: I, II, III\".\n"
+          },
+          "address": {
+            "$ref": "#/components/schemas/PostalAddress"
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Url"
+                },
+                {
+                  "$ref": "#/components/schemas/ImageObject"
+                }
+              ]
+            }
+          },
+          "electionDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date the Member was elected to serve in Congress via the General or Special election as certified by the state"
+          },
+          "electionDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date, in ISO format, the Member was elected to serve in Congress via the General or Special election as certified by the state. Time portion is not significant."
+          },
+          "electionCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that electionDate and electionDateISO are approximate"
+          },
+          "oathOfAccessDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date the oath was taken to access classified information"
+          },
+          "oathOfAccessDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date, in ISO format, the oath was taken to access classified information"
+          },
+          "oathOfOfficeSwornDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date the oath of office was taken"
+          },
+          "oathOfOfficeSwornDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date, in ISO format, the oath of office was taken. Time portion is not significant."
+          },
+          "oathOfOfficeSwornCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that oathOfOfficeSwornDate and oathOfOfficeSwornDateISO are approximate"
+          },
+          "oathOfOfficeSignedDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string"
+          },
+          "oathOfOfficeSignedDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string"
+          },
+          "oathOfOfficeSignedCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that oathOfOfficeSignedDate is approximate"
+          },
+          "appointmentDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date the Member was appointed"
+          },
+          "appointmentDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date, in ISO format, the Member was appointed. Time portion is not significant."
+          },
+          "appointmentCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that appointmentDate and appointmentDateISO are approximate"
+          },
+          "lateSwearingIn": {
+            "type": "boolean",
+            "description": "If true, indicates that Person was sworn in later than their counterparts."
+          },
+          "departureReason": {
+            "$ref": "#/components/schemas/DepartureReasonType",
+            "description": "The reason why the Person left a position"
+          },
+          "partyAffiliation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PartyAffiliation"
+            },
+            "description": "The political party the Member affiliates with"
+          },
+          "caucusAffiliation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PartyAffiliation"
+            },
+            "description": "The party the Member chooses to affiliate with if the Member is an Independent"
+          },
+          "jobPosition": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobPosition"
+            }
+          },
+          "leadershipPosition": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ballotFamilyName": {
+            "type": "string",
+            "description": "The Member's last name as it appeared on the ballot that elected Member to current Congress as certified by the Secretary of State and communicated to the Clerk of the House\n"
+          },
+          "ballotGivenName": {
+            "type": "string",
+            "description": "The Member's first name as it appeared on the ballot that elected Member to current Congress as certified by the Secretary of State and communicated to the Clerk of the House\n"
+          },
+          "ballotMiddleName": {
+            "type": "string",
+            "description": "The Member's middle name or initial as it appeared on the ballot that elected Member to current Congress as certified by the Secretary of State and communicated to the Clerk of the House\n"
+          },
+          "ballotNickName": {
+            "type": "string",
+            "description": "The Member's name as it appeared on the ballot that elected Member to current Congress as certified by the Secretary of State and communicated to the Clerk of the House\n"
+          },
+          "ballotHonorificSuffix": {
+            "type": "string",
+            "description": "Suffix(es) describing a person's title or degrees such as MD, PHD. The Member's generational name to distinguish parent from child such as Jr. or Sr.\n"
+          },
+          "ballotHonorificPrefix": {
+            "type": "string",
+            "description": "An honorific prefix preceding a Person's name such as Dr./Mrs./Mr. on the ballot"
+          },
+          "nameOnCertification": {
+            "type": "string",
+            "description": "A Member's name on the ballot (and on the certification of election) as certified by the Secretary of State or other governing official\n"
+          },
+          "duplicateName": {
+            "type": "boolean",
+            "description": "A duplicate or similar name of one or more Representatives. If the Member's name is the same or similar to another Member, the state digraph will be included and if needed, the first name of the Member\n"
+          },
+          "payrollStartDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date a Member’s payroll starts"
+          },
+          "payrollStartDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date, in ISO format, a Member’s payroll starts"
+          },
+          "payrollStartDateCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that payrollStartDate is approximate"
+          },
+          "payrollEndDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last day the Member serves in Congress according with official payroll"
+          },
+          "payrollEndDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last day, in ISO format, the Member serves in Congress according with official payroll"
+          },
+          "payrollEndCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that payrollEndDate is approximate"
+          },
+          "stateSeniority": {
+            "type": "string",
+            "description": "The informal rank of an elected Delegate, Resident Commissioner or Senator"
+          },
+          "hometown": {
+            "type": "string",
+            "description": "The city that the Member declares as their hometown, this can be where the Member is from or the city he or she currently represents\n"
+          },
+          "represents": {
+            "$ref": "#/components/schemas/ConstituentRegion"
+          },
+          "neverServed": {
+            "type": "boolean"
+          },
+          "note": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            },
+            "description": "A note describing or documenting an item"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MembershipSummary": {
+        "title": "MembershipSummary",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Provide summary statistics of the breakdown of a legislative body, at a party level.",
+        "properties": {
+          "type": {
+            "pattern": "^MembershipSummary$",
+            "type": "string",
+            "description": "A constant of \"MembershipSummary\""
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The first date to which these statistics apply"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The first date, in ISO format, to which these statistics apply. Time portion is not significant."
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date to which these statistics apply"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date, in ISO format, to which these statistics apply. Time portion is not significant."
+          },
+          "majorityParty": {
+            "$ref": "#/components/schemas/Party"
+          },
+          "minorityParty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Party"
+            },
+            "description": "The collection of parties in the minority"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PetitionSigner": {
+        "title": "PetitionSigner",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a signatory to a piece of legislation. Currently only used for discharge petitions.",
+        "properties": {
+          "type": {
+            "pattern": "^PetitionSigner$",
+            "type": "string",
+            "description": "A constant of \"PetitionSigner\""
+          },
+          "member": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A unique URI identifying the referenced person."
+          },
+          "petitionFamilyName": {
+            "type": "string",
+            "description": "The signer family name as documented on the discharge petition."
+          },
+          "petitionGivenName": {
+            "type": "string",
+            "description": "The signer given name as documented on the discharge petition."
+          },
+          "petitionMiddleName": {
+            "type": "string",
+            "description": "The signer middle name as documented on the discharge petition."
+          },
+          "petitionHonorificSuffix": {
+            "type": "string",
+            "description": "The signer honorific suffix as documented on the discharge petition."
+          },
+          "petitionFormalName": {
+            "type": "string",
+            "description": "The signer formal name as documented on the discharge petition."
+          },
+          "petitionParty": {
+            "type": "string",
+            "description": "The signer petition party code as documented on the discharge petition (e.g. 'D' for Democrat, 'R' for Republican, and 'I' for Independent)."
+          },
+          "petitionRegionNumber": {
+            "type": "integer",
+            "description": "The signer region (congressional district) number as documented on the discharge petition."
+          },
+          "petitionRegionCode": {
+            "type": "string",
+            "description": "The signer region code (state abbreviation) as documented on the discharge petition."
+          },
+          "dateAdded": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date a Member was added to the list of participants (signers) of a Discharge Petition"
+          },
+          "dateAddedISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date, in ISO format, a Member was added to the list of participants (signers) of a Discharge Petition"
+          },
+          "dateModified": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date a Member was added to the electronic document as a participant (signer)."
+          },
+          "dateModifiedISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date, in ISO format, a Member was added to the electronic document as a participant (signer)."
+          },
+          "dateWithdrawn": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time that additional Member(s) were withdrawn from the discharge petition"
+          },
+          "dateWithdrawnISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The date and time, in ISO format, that additional Member(s) were withdrawn from the discharge petition"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemberVote": {
+        "title": "MemberVote",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Provides details regarding a member's vote on a vote question",
+        "properties": {
+          "type": {
+            "pattern": "^MemberVote$",
+            "type": "string",
+            "description": "A constant of \"MemberVote\""
+          },
+          "member": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A unique URI identifying the referenced person."
+          },
+          "voteSortfield": {
+            "type": "string",
+            "nullable": true,
+            "description": "The voter's name for sorting purposes"
+          },
+          "voteName": {
+            "type": "string",
+            "nullable": true,
+            "description": "The voter's name for sorting purposes"
+          },
+          "voteParty": {
+            "type": "string",
+            "nullable": true,
+            "description": "The voter's political party represented by a single character"
+          },
+          "voteState": {
+            "type": "string",
+            "nullable": true,
+            "description": "The U.S. state represented by the voter"
+          },
+          "voteRole": {
+            "type": "string",
+            "nullable": true
+          },
+          "voteCast": {
+            "$ref": "#/components/schemas/VoteCastType",
+            "description": "The vote cast by the voter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemberVotes": {
+        "title": "MemberVotes",
+        "required": [
+          "type"
+        ],
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MemberVote"
+        },
+        "description": "Provides array of member votes"
+      },
+      "NameHistory": {
+        "title": "NameHistory",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Provides details regarding a Person's name during a specified period of time",
+        "properties": {
+          "type": {
+            "pattern": "^NameHistory$",
+            "type": "string",
+            "description": "A constant of \"NameHistory\""
+          },
+          "familyName": {
+            "type": "string",
+            "description": "Surname, family name(s)"
+          },
+          "givenName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string",
+            "description": "The middle name or middle Initial"
+          },
+          "honorificPrefix": {
+            "type": "string",
+            "description": "A form of address to show respect.  The official name of a Member of Congress only uses the following titles: \"Mr.\", \"Mrs.\", \"Ms.\" and “Miss.\"\n"
+          },
+          "honorificSuffix": {
+            "type": "string",
+            "description": "Generational family suffix used to distinguish parent from child with the same name"
+          },
+          "nickName": {
+            "type": "string",
+            "description": "A Member's shortened name or nickname. May appear in quotes or parentheses"
+          },
+          "otherName": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OtherName"
+            },
+            "description": "An additional name option"
+          },
+          "officialFamilyName": {
+            "type": "string",
+            "description": "The last name the Member assigns him/herself. It should match the Member's frank signature"
+          },
+          "officialGivenname": {
+            "type": "string",
+            "description": "The first name the Member assigns him/herself. It should match the Member's frank signature"
+          },
+          "officialMiddleName": {
+            "type": "string",
+            "description": "The middle name the Member assigns him/herself. It should match the Member's frank signature."
+          },
+          "officialHonorificPrefix": {
+            "type": "string",
+            "description": "A form of address to show respect. The official name of a Member of Congress only uses the following titles: \"Mr.\", \"Mrs.\", \"Ms.\" and “Miss.\"\n"
+          },
+          "officialHonorificSuffix": {
+            "type": "string",
+            "description": "Generational family suffix used to distinguish parent from child with the same name"
+          },
+          "officialNickName": {
+            "type": "string",
+            "description": "The nick name the Member assigns him/herself"
+          },
+          "honorificTitle": {
+            "type": "string",
+            "description": "A form of address to show respect, placed immediately before a person's name. Value for all Members of Congress: \"The Honorable\". It can be used before the formal name and official name\n"
+          },
+          "formalName": {
+            "type": "string",
+            "description": "A Member's name as it read aloud on the House floor. If the Member's name is the same or similar to another Member, the state digraph will be included and if needed, the first name of the Member\n"
+          },
+          "evsName": {
+            "type": "string",
+            "description": "The Member’s name as it is displayed on the Electronic Voting System (EVS)"
+          },
+          "additionalName": {
+            "type": "string"
+          },
+          "asciiName": {
+            "type": "string"
+          },
+          "duplicateName": {
+            "type": "boolean",
+            "description": "A duplicate or similar name of one or more Representatives. If the Member's name is the same or similar to another Member, the state digraph will be included and if needed, the first name of the Member\n"
+          },
+          "name": {
+            "type": "string"
+          },
+          "shortName": {
+            "type": "string"
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date of the name change event"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date, in ISO format, of the name change event"
+          },
+          "startCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that startDate is approximate"
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date that Members are able to be added to the Discharge Petition"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The last date, in ISO format, that Members are able to be added to the Discharge Petition"
+          },
+          "endCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that endDate is approximate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Note": {
+        "title": "Note",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a brief comment or explanation.",
+        "properties": {
+          "type": {
+            "pattern": "^Note$",
+            "type": "string",
+            "description": "A constant of \"Note\""
+          },
+          "content": {
+            "type": "string",
+            "description": "The text of the note"
+          },
+          "noteType": {
+            "$ref": "#/components/schemas/NoteType",
+            "description": "A type of note adding additional information or documentation"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Organization": {
+        "title": "Organization",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents an organization of people for a particular purpose (e.g., business).",
+        "properties": {
+          "type": {
+            "pattern": "^Organization$",
+            "type": "string",
+            "description": "A constant of \"Organization\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this object."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the organization"
+          },
+          "address": {
+            "$ref": "#/components/schemas/PostalAddress"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OtherName": {
+        "title": "OtherName",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "A reference to a person/entity not otherwise supported by the API.",
+        "properties": {
+          "type": {
+            "pattern": "^OtherName$",
+            "type": "string",
+            "description": "A constnat of \"OtherName\""
+          },
+          "kindOfName": {
+            "type": "string",
+            "description": "The description of the nameValue"
+          },
+          "nameValue": {
+            "type": "string",
+            "description": "The name associated with the kindOfName"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Party": {
+        "title": "Party",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents an organization of people that coordinates election candidates and policy objectives,",
+        "properties": {
+          "type": {
+            "pattern": "^Party$",
+            "type": "string",
+            "description": "A constant of \"Party\""
+          },
+          "name": {
+            "type": "string",
+            "description": "The party name"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PartyAffiliation": {
+        "title": "PartyAffiliation",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a relationship between and entity (e.g., member) and a political party",
+        "properties": {
+          "type": {
+            "pattern": "^PartyAffiliation$",
+            "type": "string",
+            "description": "A constant of \"PartyAffiliation\""
+          },
+          "party": {
+            "$ref": "#/components/schemas/Party"
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date of the party affiliation"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The start date, in ISO format, of the party affiliation"
+          },
+          "startCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that startDate is approximate"
+          },
+          "endDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date of the party affiliation"
+          },
+          "endDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The end date, in ISO format, of the party affiliation"
+          },
+          "endCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that endDate is approximate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Person": {
+        "title": "Person",
+        "type": "object",
+        "description": "Represents a Person/Member associated (past or present) with the U.S. House.",
+        "properties": {
+          "type": {
+            "pattern": "^Person$",
+            "type": "string",
+            "description": "A constant of \"Person\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this object."
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The unique alphanumeric identification for each member of Congress, same as usCongressBioId"
+          },
+          "usCongressBioId": {
+            "type": "string",
+            "description": "The unique alphanumeric identification for each member of Congress"
+          },
+          "usCongressBioUrl": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The internet address of this Person within the Biographical Directory of the U.S. Congress"
+          },
+          "familyName": {
+            "type": "string",
+            "description": "The Person's surname"
+          },
+          "givenName": {
+            "type": "string",
+            "description": "The Person's first name"
+          },
+          "middleName": {
+            "type": "string",
+            "description": "The Person's middle name or middle initial"
+          },
+          "honorificPrefix": {
+            "type": "string",
+            "description": "A form of address to show respect.  The official name of a Member of Congress only uses the following titles: \"Mr.\", \"Mrs.\", \"Ms.\" and “Miss.\"\n"
+          },
+          "honorificSuffix": {
+            "type": "string",
+            "description": "Generational family suffix used to distinguish Person from ancestors with the same name"
+          },
+          "nickName": {
+            "type": "string",
+            "description": "An informal name used to identity this Person"
+          },
+          "otherName": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OtherName"
+            },
+            "description": "A collection of names not otherwise supported by the API"
+          },
+          "officialFamilyName": {
+            "type": "string",
+            "description": "The last name the Person assigns him/herself. If a Member, it should match the Member's frank signature"
+          },
+          "officialGivenName": {
+            "type": "string",
+            "description": "The first name the Person assigns him/herself. If a Member, it should match the Member's frank signature"
+          },
+          "officialMiddleName": {
+            "type": "string",
+            "description": "The middle name the Person assigns him/herself. If a Member, it should match the Member's frank signature"
+          },
+          "officialHonorificPrefix": {
+            "type": "string",
+            "description": "A form of address to show respect. The official name of a Member of Congress only uses the following titles: \"Mr.\", \"Mrs.\", \"Ms.\" and “Miss.\"\n"
+          },
+          "officialHonorificSuffix": {
+            "type": "string",
+            "description": "Generational family suffix used to distinguish Person from ancestors with the same name"
+          },
+          "officialNickName": {
+            "type": "string",
+            "description": "The nick name the Person assigns him/herself"
+          },
+          "officialFullName": {
+            "type": "string",
+            "description": "The name the Person assigns him/herself. If a Member, it should match the Member's frank signature. It will contain the Member's first name, middle name, last name, and suffix (if not empty). It does not include the words, “The Honorable”, a suffix, or a honorificPrefix\n"
+          },
+          "honorificTitle": {
+            "type": "string",
+            "description": "A form of address to show respect, placed immediately before a person's name. Value for all Members of Congress: \"The Honorable\". It can be used before the formal name and official name\n"
+          },
+          "bioDisplayName": {
+            "type": "string",
+            "description": "The display name selected for a Member of Congress"
+          },
+          "formalName": {
+            "type": "string",
+            "description": "A Member's name as it read aloud on the House floor. If the Member's name is the same or similar to another Member, the state digraph will be included and if needed, the first name of the Member\n"
+          },
+          "evsName": {
+            "type": "string",
+            "description": "The Member’s name as it is displayed on the Electronic Voting System (EVS)"
+          },
+          "additionalName": {
+            "type": "string"
+          },
+          "unaccentedFamilyName": {
+            "type": "string"
+          },
+          "unaccentedGivenName": {
+            "type": "string"
+          },
+          "unaccentedMiddleName": {
+            "type": "string"
+          },
+          "namePronunciation": {
+            "type": "string",
+            "description": "The way to pronounce the last name"
+          },
+          "nameHistory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameHistory"
+            },
+            "description": "A collection of official name changes"
+          },
+          "birthPlace": {
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Place"
+              },
+              {
+                "$ref": "#/components/schemas/PostalAddress"
+              }
+            ],
+            "description": "The geographic location where the Person was born, this includes U.S. Military installations in foreign countries"
+          },
+          "birthDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The month, day, and year the Person was born"
+          },
+          "birthDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The month, day, and year the Person was born in ISO format. Time portion is not significant."
+          },
+          "birthCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that birthDate and birthDateISO are approximate"
+          },
+          "deathDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The day, month, and year a Person passed away"
+          },
+          "deathDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The day, month, and year a Person passed away in ISO format. Time portion is not significant."
+          },
+          "deathCirca": {
+            "type": "boolean",
+            "description": "If true, indicates that deathDate and deathDateISO are approximate"
+          },
+          "jobPosition": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobPosition"
+            },
+            "description": "A collection of job position"
+          },
+          "relationship": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relationship"
+            },
+            "description": "A collection of people to whom the Person is related"
+          },
+          "email": {
+            "type": "string"
+          },
+          "intermentPlace": {
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Place"
+              },
+              {
+                "$ref": "#/components/schemas/PostalAddress"
+              }
+            ],
+            "description": "The burial location of a deceased Person"
+          },
+          "prestigiousScholar": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Indicates which prestigious academic scholarship was awarded to this person"
+          },
+          "militaryAcademy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The name of the military academy, if the Person attended a United States military academy"
+          },
+          "militaryService": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Indicates the branch of the United States military in which the Person served"
+          },
+          "militaryServiceAward": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A collection detailing the military service award(s) recieved by the Person"
+          },
+          "neverServed": {
+            "type": "boolean"
+          },
+          "formerCongressionalStaff": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A Member of Congress employed by the United State Congress prior to becoming a Member of the House or Senate"
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Url"
+                },
+                {
+                  "$ref": "#/components/schemas/ImageObject"
+                }
+              ]
+            },
+            "description": "A collection of images of the Person"
+          },
+          "sameAs": {
+            "type": "array",
+            "items": {
+              "pattern": ".+:.+",
+              "type": "string"
+            },
+            "description": "The URI of Person entries that represent the same individual as this entry"
+          },
+          "url": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The internet address for the Person's website"
+          },
+          "socialMediaAccount": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SocialMediaAccount"
+            },
+            "description": "A collection of the Person's official social media account(s)"
+          },
+          "serviceTerm": {
+            "type": "string",
+            "description": "Calculated length of service terms. This does not denote seniority. Rather it shows the consecutive length of service and previous Congressional service where necessary\n"
+          },
+          "profileText": {
+            "type": "string",
+            "description": "The Persons's biographical information as displayed within the Biographical Directory of the U.S. Congress"
+          },
+          "note": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            },
+            "description": "A collection of note(s) describing or documenting the Person"
+          }
+        }
+      },
+      "PersonReference": {
+        "type": "object",
+        "description": "Provides a pointer to a person entity.",
+        "properties": {
+          "person": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A unique URI identifying the referenced person."
+          }
+        }
+      },
+      "PetitionSponsor": {
+        "title": "PetitionSponsor",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Documents the sponsorship relationship between a person and a discharge petition.",
+        "properties": {
+          "type": {
+            "pattern": "^PetitionSponsor$",
+            "type": "string",
+            "description": "A constant of \"PetitionSponsor\""
+          },
+          "petitionName": {
+            "type": "string",
+            "description": "The name of the sponsor as documented on the discharge petition."
+          },
+          "member": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A unique URI identifying the referenced person."
+          }
+        }
+      },
+      "Place": {
+        "type": "object",
+        "description": "Represents a named location.",
+        "properties": {
+          "type": {
+            "pattern": "^Place$",
+            "type": "string",
+            "description": "A constant of \"Place\""
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of this place"
+          },
+          "address": {
+            "$ref": "#/components/schemas/PostalAddress"
+          }
+        }
+      },
+      "PostalAddress": {
+        "title": "PostalAddress",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Provides the properties, recognized by the applicable postal service, by which mail may be routed to a specific location.",
+        "properties": {
+          "type": {
+            "pattern": "^PostalAddress$",
+            "type": "string",
+            "description": "A constant of \"PostalAddress\""
+          },
+          "streetAddress": {
+            "type": "string"
+          },
+          "addressLocality": {
+            "type": "string"
+          },
+          "addressRegion": {
+            "type": "string",
+            "description": "State abbreviation"
+          },
+          "addressCounty": {
+            "type": "string",
+            "description": "The county"
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "The United States Postal Service zip code that identifies an area of the country where mail is directed"
+          },
+          "addressCountry": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "tollFreeTelephone": {
+            "type": "string",
+            "description": "The toll free telephone number"
+          },
+          "officeTelephone": {
+            "type": "string",
+            "description": "The local telephone number assigned to the Member’s office (there may be multiple numbers)"
+          },
+          "ttyTelephone": {
+            "type": "string",
+            "description": "Text Telephone or Telecommunication Device for the deaf"
+          },
+          "room": {
+            "type": "string",
+            "description": "The room number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PredecessorInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "person": {
+            "type": "string"
+          },
+          "person_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Url": {
+        "type": "string",
+        "pattern": ".+:.+",
+        "description": "The internet address by which the resource may be accessed"
+      },
+      "RegionInformation": {
+        "title": "RegionInformation",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Provides notes and other information associated with a constituent region.",
+        "properties": {
+          "type": {
+            "pattern": "^RegionInformation$",
+            "type": "string",
+            "description": "A constant of \"RegionInformation\""
+          },
+          "constituentRegion": {
+            "$ref": "#/components/schemas/ConstituentRegion",
+            "description": "The regional location of the eletor"
+          },
+          "note": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            },
+            "description": "A collection of note associated with the constituent region."
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relationship": {
+        "title": "Relationship",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Defines a relationship between the entity in which this object appears an another entity.",
+        "properties": {
+          "type": {
+            "pattern": "^Relationship$",
+            "type": "string"
+          },
+          "relationshipType": {
+            "type": "string",
+            "description": "The way in which this Person is related to another Person."
+          },
+          "relatedTo": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The unique URI of the Person related to this Person"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SeatMaximum": {
+        "title": "SeatMaximum",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Defines the maximum quantity of available seats for a specific Congressional seat type.",
+        "properties": {
+          "type": {
+            "pattern": "^SeatMaximum$",
+            "type": "string",
+            "description": "Constant of \"SeatMaximum\""
+          },
+          "seatMaximumType": {
+            "$ref": "#/components/schemas/SeatMaximumType",
+            "description": "The type of congression seat for which this object defines a maximum"
+          },
+          "seatMaximumNumber": {
+            "type": "integer",
+            "description": "The maximum quantity of available seats for a specific Congressional seat type"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SocialMediaAccount": {
+        "title": "SocialMediaAccount",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents an internet website or application that allows an entity to share content and/or participate in social networking.",
+        "properties": {
+          "type": {
+            "pattern": "^SocialMediaAccount$",
+            "type": "string",
+            "description": "A constant of \"SocialMediaAccount\""
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the account"
+          },
+          "url": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The internet address of the social media account"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpeakerElectionVote": {
+        "title": "SpeakerElectionVote",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Provides details regarding a vote to determine the Speaker of The House.",
+        "properties": {
+          "type": {
+            "pattern": "^SpeakerElectionVote$",
+            "type": "string",
+            "description": "A constant of \"SpeakerElectionVote\""
+          },
+          "member": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A unique URI identifying the referenced person."
+          },
+          "voteSortfield": {
+            "type": "string",
+            "nullable": true
+          },
+          "voteName": {
+            "type": "string",
+            "nullable": true
+          },
+          "voteParty": {
+            "type": "string",
+            "nullable": true
+          },
+          "voteState": {
+            "type": "string",
+            "nullable": true
+          },
+          "voteRole": {
+            "type": "string",
+            "nullable": true
+          },
+          "voteCastSpeaker": {
+            "type": "string",
+            "description": "The name of the person who is receiving the vote for Speaker of the House. It is not mandated that the selected person be a Member of Congress.\n"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpeakerElectionVotes": {
+        "title": "SpeakerElectionVotes",
+        "required": [
+          "type"
+        ],
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SpeakerElectionVote"
+        },
+        "description": "Provides array of speaker election votes"
+      },
+      "Vote": {
+        "title": "Vote",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Represents a formal decision, by plebiscite, on a specific question.",
+        "properties": {
+          "type": {
+            "pattern": "^Vote$",
+            "type": "string",
+            "description": "A constant of \"Vote\""
+          },
+          "id": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "A URI used to uniquely identify and retrieve this object."
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The unique ID for the Vote, consisting of the congress number (e.g., 112), plus the session number (e.g., 2), plus the vote name"
+          },
+          "name": {
+            "type": "string",
+            "description": "The four-digit year plus the rollCallNumber"
+          },
+          "description": {
+            "type": "string",
+            "description": "A formal decision by a group of people with regards to a vote question"
+          },
+          "floorEvent": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The URI of the floor event during which this vote was conducted"
+          },
+          "startDate": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The vote's start date and time"
+          },
+          "startDateISO": {
+            "pattern": "^\\d{4}(-\\d\\d(-\\d\\d(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?)?)?$",
+            "type": "string",
+            "description": "The vote's start date and time, in ISO format"
+          },
+          "rollCallNumber": {
+            "type": "integer",
+            "description": "The number assigned to the recorded vote"
+          },
+          "voteLegisNum": {
+            "type": "string",
+            "description": "The number of the legislation associated with the vote question"
+          },
+          "voteQuestion": {
+            "type": "string",
+            "description": "The subject or measure that is up for a decision by vote"
+          },
+          "amendmentNumber": {
+            "type": "string",
+            "description": "The House or Senate amendment to a measure"
+          },
+          "amendmentAuthor": {
+            "type": "string",
+            "description": "The name of the Member who sponsored the proposed amendment (Name, Party, State, District)"
+          },
+          "voteType": {
+            "$ref": "#/components/schemas/VoteType",
+            "description": "The type of vote taking place"
+          },
+          "result": {
+            "$ref": "#/components/schemas/VoteResultType",
+            "description": "The vote result type"
+          },
+          "memberVote": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MemberVotes"
+              },
+              {
+                "$ref": "#/components/schemas/SpeakerElectionVotes"
+              }
+            ],
+            "description": "A collection of member votes cast on the vote question"
+          },
+          "votesPartyTotal": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoteTally"
+            },
+            "description": "The total number of votes by party"
+          },
+          "votesTotal": {
+            "$ref": "#/components/schemas/VoteTally",
+            "description": "The total number of votes"
+          },
+          "voteSpeakerTally": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoteSpeakerTally"
+            },
+            "description": "The total number of votes for speaker election"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VoteSpeakerTally": {
+        "title": "VoteSpeakerTally",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Provides summary statistics on the outcome of a vote.",
+        "properties": {
+          "type": {
+            "pattern": "^VoteSpeakerTally$",
+            "type": "string",
+            "description": "A constant of \"VoteSpeakerTally\""
+          },
+          "candidate": {
+            "type": "string",
+            "description": "A speaker candidate name"
+          },
+          "total": {
+            "type": "integer",
+            "description": "The total number a recorded vote for speaker candidate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VoteTally": {
+        "title": "VoteTally",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "Provides summary statistics on the outcome of a vote.",
+        "properties": {
+          "type": {
+            "pattern": "^VoteTally$",
+            "type": "string",
+            "description": "A constant of \"VoteTally\""
+          },
+          "party": {
+            "$ref": "#/components/schemas/Party"
+          },
+          "yeaTotal": {
+            "type": "integer",
+            "description": "The total number of Yea votes, a recorded vote in the affirmative"
+          },
+          "nayTotal": {
+            "type": "integer",
+            "description": "Recorded vote type. The total number of legislators voting against the question"
+          },
+          "presentTotal": {
+            "type": "integer",
+            "description": "The total number of Present votes, a recorded vote type"
+          },
+          "notVotingTotal": {
+            "type": "integer",
+            "description": "The total number of Members Not Voting on a Measure"
+          },
+          "voteParty": {
+            "type": "string",
+            "description": "Represents an Organization/party that voting member is associates/caucuses with"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Witness": {
+        "title": "Witness",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "description": "A person giving sworn testimony before congress.",
+        "properties": {
+          "type": {
+            "pattern": "^Witness$",
+            "type": "string",
+            "description": "A constant of \"Witness\""
+          },
+          "witnessCategory": {
+            "$ref": "#/components/schemas/WitnessCategoryType",
+            "description": "Identifies a Government - Federal as a witness"
+          },
+          "honorificPrefix": {
+            "type": "string",
+            "description": "A form of address to show respect.  The official name of a Member of Congress only uses the following titles: \"Mr.\", \"Mrs.\", \"Ms.\" and “Miss.\"\n"
+          },
+          "militaryTitle": {
+            "type": "string",
+            "description": "The military title held by an individual"
+          },
+          "givenName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string",
+            "description": "The middle name or middle Initial"
+          },
+          "nickName": {
+            "type": "string",
+            "description": "A Member's shortened name or nickname. May appear in quotes or parentheses"
+          },
+          "familyName": {
+            "type": "string",
+            "description": "Surname, family name(s)"
+          },
+          "honorificSuffix": {
+            "type": "string",
+            "description": "Generational family suffix used to distinguish parent from child with the same name"
+          },
+          "usCongressBioId": {
+            "type": "string",
+            "description": "The unique alphanumeric identification for each member of Congress"
+          },
+          "memberOf": {
+            "$ref": "#/components/schemas/Organization"
+          },
+          "job": {
+            "$ref": "#/components/schemas/Job"
+          },
+          "onBehalfOf": {
+            "pattern": ".+:.+",
+            "type": "string",
+            "description": "The organization, person or entity that the witness is representing when testifying"
+          },
+          "testified": {
+            "type": "boolean",
+            "description": "A boolean value identifying if the witness testified"
+          },
+          "panel": {
+            "type": "integer",
+            "description": "The panel group which a witness has testified on"
+          },
+          "document": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            },
+            "description": "A Congressional document"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChamberType": {
+        "title": "ChamberType",
+        "description": "The congressional branch.",
+        "type": "string",
+        "enum": [
+          "House",
+          "Senate"
+        ]
+      },
+      "CollectionType": {
+        "title": "CollectionType",
+        "description": "The type of file or document in collection",
+        "type": "string",
+        "enum": [
+          "BillsResolutionsAndAmendments",
+          "CommitteePrint",
+          "CongressionalReport"
+        ]
+      },
+      "CommitteeMeetingType": {
+        "title": "committeeMeetingType",
+        "description": "The type of committee meeting.",
+        "type": "string",
+        "enum": [
+          "HMTG (Markup)",
+          "HMKP (Hearing)",
+          "HHRG (General Meeting)"
+        ]
+      },
+      "CommitteeType": {
+        "title": "CommitteeType",
+        "description": "The type of committee",
+        "type": "string",
+        "enum": [
+          "StandingCommittee",
+          "SelectCommittee",
+          "SpecialSelectCommittee",
+          "PermanentSelectCommittee",
+          "JointCommittee",
+          "SubCommittee",
+          "Commission"
+        ]
+      },
+      "CongressType": {
+        "title": "CongressType",
+        "description": "The congress type.",
+        "type": "string",
+        "enum": [
+          "Continental",
+          "StampAct",
+          "Confederation",
+          "US"
+        ]
+      },
+      "DepartureReasonType": {
+        "title": "DepartureReasonType",
+        "description": "The reason why the Person left a position",
+        "type": "string",
+        "enum": [
+          "Retired",
+          "Died",
+          "Resigned",
+          "Expelled",
+          "ContestedElectionRuling",
+          "Disappeared",
+          "OtherDepartureReason"
+        ]
+      },
+      "DocumentCode": {
+        "type": "string",
+        "description": "The code or acronym for the name describing the document.",
+        "enum": [
+          "BR (Bills/Resolution)",
+          "CA (Committee Amendment)",
+          "CR (Committee Report)",
+          "CV (Committee Recorded Vote)",
+          "FA (Floor Amendment)",
+          "FR (Conference Report)",
+          "GD (Generic Document)",
+          "HA (House/Senate Amendment)",
+          "HC (Hearing Cover Page)",
+          "HM (Hearing Member Roster)",
+          "HQ (Hearing Questions for the record)",
+          "HT (Hearing Transcript)",
+          "HW (Hearing Witness List)",
+          "MS (Member Statements)",
+          "RU (Committee Rules)",
+          "SD (Support Document)",
+          "TC (Hearing Table of Contents)",
+          "WB (Witness Biography)",
+          "WD (Witness Support Document)",
+          "WS (Witness Statement)",
+          "WT (Witness Truth in Testimony)"
+        ]
+      },
+      "DocumentCategoryType": {
+        "title": "DocumentCategoryType",
+        "description": "The category of the type of document.",
+        "type": "string",
+        "enum": [
+          "WitnessBiography",
+          "WitnessStatement",
+          "WitnessSupportDocument",
+          "WitnessTruthInTestimony"
+        ]
+      },
+      "ElectionType": {
+        "title": "ElectionType",
+        "description": "A type of election",
+        "type": "string",
+        "enum": [
+          "General",
+          "Special",
+          "Runoff",
+          "SpecialRunoff"
+        ]
+      },
+      "JobType": {
+        "title": "JobType",
+        "description": "A Congressional or Non Congressional job position",
+        "type": "string",
+        "enum": [
+          "CongressMemberJob",
+          "CongressStaffJob",
+          "CongressLeadershipJob",
+          "CommitteeJob",
+          "OtherJob"
+        ]
+      },
+      "LegisType": {
+        "title": "LegisType",
+        "description": "A type of legislative proposal",
+        "type": "string",
+        "enum": [
+          "HouseBill",
+          "HouseAmendment",
+          "HouseResolution",
+          "HouseJointResolution",
+          "HouseConcurrentResolution",
+          "SenateBill",
+          "SenateAmendment",
+          "SenateResolution",
+          "SenateJointResolution",
+          "SenateConcurrentResolution"
+        ]
+      },
+      "MeetingStatus": {
+        "title": "MeetingStatus",
+        "description": "The status of the meeting.",
+        "type": "string",
+        "enum": [
+          "Scheduled",
+          "Canceled",
+          "Postponed",
+          "Rescheduled"
+        ]
+      },
+      "NoteType": {
+        "title": "NoteType",
+        "description": "A type of note adding additional information or documentation",
+        "type": "string",
+        "enum": [
+          "EndNote",
+          "FootNote",
+          "SideNote",
+          "PopUpNote",
+          "MeetingNote",
+          "ActionDescription"
+        ]
+      },
+      "RecordAccess": {
+        "title": "RecordAccess",
+        "description": "The level of access to the record available patrons either: Open, Closed or partially Restricted\n",
+        "type": "string",
+        "enum": [
+          "OpenRecord",
+          "ClosedRecord",
+          "PartiallyRestrictedRecord"
+        ]
+      },
+      "RecordType": {
+        "title": "RecordType",
+        "description": "none",
+        "type": "string",
+        "enum": [
+          "Artifact",
+          "Audio",
+          "AudioCassette",
+          "AudioDisc",
+          "AudioRecording",
+          "AudioReel",
+          "AudioTape",
+          "AudioVideo",
+          "AudioVisualMaterial",
+          "Cassette",
+          "Correspondence",
+          "DigitalAudioFile",
+          "DigitalFile",
+          "DigitalPaperImage",
+          "DVD",
+          "Exhibit",
+          "FilmReel",
+          "Interview",
+          "Memorabilia",
+          "Microfiche",
+          "Microfilm",
+          "MicrofilmReel",
+          "MiniDV",
+          "OpticalDisc",
+          "Paper",
+          "Photograph",
+          "PoliticalCommercial",
+          "Print",
+          "Reel",
+          "ResearchLibrariesInformationNetwork",
+          "Scrapbook",
+          "Tape",
+          "TelevisionShow",
+          "Transcript",
+          "VHSAudioTape",
+          "Video",
+          "VideoCassette",
+          "VideoReel",
+          "VideoTape",
+          "VisualMaterial",
+          "Website"
+        ]
+      },
+      "RegionType": {
+        "title": "RegionType",
+        "description": "The state, district or territory.",
+        "type": "string",
+        "enum": [
+          "StateRegion",
+          "DistrictRegion",
+          "TerritoryRegion"
+        ]
+      },
+      "VoteResultType": {
+        "title": "VoteResultType",
+        "description": "The vote result type",
+        "type": "string",
+        "enum": [
+          "Failed",
+          "Passed",
+          "Agreed to",
+          ".* (Elected Speaker Name)"
+        ]
+      },
+      "SeatMaximumType": {
+        "title": "SeatMaximumType",
+        "description": "The type of congression seat for which this object defines a maximum",
+        "type": "string",
+        "enum": [
+          "RepresentativeMaximum",
+          "DelegateMaximum",
+          "ResidentCommissionerMaximum",
+          "SenatorMaximum"
+        ]
+      },
+      "VoteCastType": {
+        "title": "VoteCastType",
+        "description": "The vote cast by the voter",
+        "type": "string",
+        "enum": [
+          "Yea|Aye",
+          "Nay|No",
+          "Present",
+          "Not Voting"
+        ]
+      },
+      "VoteType": {
+        "title": "VoteType",
+        "description": "The type of vote taking place",
+        "type": "string",
+        "enum": [
+          "RECORDED VOTE",
+          "YEA-AND-NAY",
+          "QUORUM",
+          "2/3 YEA-AND-NAY",
+          "2/3 RECORDED VOTE",
+          "3/5 YEA-AND-NAY"
+        ]
+      },
+      "WitnessCategoryType": {
+        "title": "WitnessCategoryType",
+        "description": "none",
+        "type": "string",
+        "enum": [
+          "Government - Local$",
+          "Government - State$",
+          "Government - Federal$",
+          "Non-Governmental$"
+        ]
+      },
+      "WitnessType": {
+        "title": "WitnessType",
+        "description": "Identifies a Member of Congress or a Non-Member as a witness",
+        "type": "string",
+        "enum": [
+          "MemberWitness",
+          "NonMemberWitness"
+        ]
+      },
+      "Metadata": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommitteesGet200Response": {
+        "type": "object",
+        "description": "API response object for GET of Committees.",
+        "properties": {
+          "odata.nextLink": {
+            "type": "string",
+            "pattern": ".+:.+",
+            "description": "Url used to fetch next page of results"
+          },
+          "results": {
+            "type": "array",
+            "description": "The collection of Committee items returned by the API.",
+            "items": {
+              "$ref": "#/components/schemas/Committee"
+            }
+          }
+        }
+      },
+      "CommitteesGetById200Response": {
+        "type": "object",
+        "description": "API response object for GET by Id of Committees.",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Committee"
+          }
+        }
+      },
+      "CongressesGet200Response": {
+        "type": "object",
+        "description": "API response object for GET of Congresses.",
+        "properties": {
+          "odata.nextLink": {
+            "type": "string",
+            "pattern": ".+:.+",
+            "description": "Url used to fetch next page of results"
+          },
+          "results": {
+            "type": "array",
+            "description": "The collection of Congress items returned by the API.",
+            "items": {
+              "$ref": "#/components/schemas/Congress"
+            }
+          }
+        }
+      },
+      "CongressesGetById200Response": {
+        "type": "object",
+        "description": "API response object for GET by Id of Congresses.",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Congress"
+          }
+        }
+      },
+      "FloorProceedingsGet200Response": {
+        "type": "object",
+        "description": "API response object for GET of Floor Proceedings.",
+        "properties": {
+          "odata.nextLink": {
+            "type": "string",
+            "pattern": ".+:.+",
+            "description": "Url used to fetch next page of results"
+          },
+          "results": {
+            "type": "array",
+            "description": "The collection of FloorProceeding items returned by the API.",
+            "items": {
+              "$ref": "#/components/schemas/FloorProceeding"
+            }
+          }
+        }
+      },
+      "FloorProceedingsGetById200Response": {
+        "type": "object",
+        "description": "API response object for GET by Id of Floor Proceedings.",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/FloorProceeding"
+          }
+        }
+      },
+      "DischargepetitionsGet200Response": {
+        "type": "object",
+        "description": "API response object for GET of Discharge Petitions.",
+        "properties": {
+          "odata.nextLink": {
+            "type": "string",
+            "pattern": ".+:.+",
+            "description": "Url used to fetch next page of results"
+          },
+          "results": {
+            "type": "array",
+            "description": "The collection of DischargePetition items returned by the API.",
+            "items": {
+              "$ref": "#/components/schemas/DischargePetition"
+            }
+          }
+        }
+      },
+      "DischargepetitionsGetById200Response": {
+        "type": "object",
+        "description": "API response object for GET by Id of Discharge Petitions.",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DischargePetition"
+          }
+        }
+      },
+      "CommitteeMeetingsGet200Response": {
+        "type": "object",
+        "description": "API response object for GET of Committee Meetings.",
+        "properties": {
+          "odata.nextLink": {
+            "type": "string",
+            "pattern": ".+:.+",
+            "description": "Url used to fetch next page of results"
+          },
+          "results": {
+            "type": "array",
+            "description": "The collection of CommitteeMeeting items returned by the API.",
+            "items": {
+              "$ref": "#/components/schemas/CommitteeMeeting"
+            }
+          }
+        }
+      },
+      "CommitteeMeetingsGetById200Response": {
+        "type": "object",
+        "description": "API response object for GET by Id of Committee Meetings.",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CommitteeMeeting"
+          }
+        }
+      },
+      "MembersGet200Response": {
+        "type": "object",
+        "description": "API response object for GET of Members.",
+        "properties": {
+          "odata.nextLink": {
+            "type": "string",
+            "pattern": ".+:.+",
+            "description": "Url used to fetch next page of results"
+          },
+          "results": {
+            "type": "array",
+            "description": "The collection of Person items returned by the API.",
+            "items": {
+              "$ref": "#/components/schemas/Person"
+            }
+          }
+        }
+      },
+      "MembersGetById200Response": {
+        "type": "object",
+        "description": "API response object for GET by Id of Members.",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Person"
+          }
+        }
+      },
+      "PersonsGet200Response": {
+        "type": "object",
+        "description": "API response object for GET of Persons.",
+        "properties": {
+          "odata.nextLink": {
+            "type": "string",
+            "pattern": ".+:.+",
+            "description": "Url used to fetch next page of results"
+          },
+          "results": {
+            "type": "array",
+            "description": "The collection of Person items returned by the API.",
+            "items": {
+              "$ref": "#/components/schemas/Person"
+            }
+          }
+        }
+      },
+      "PersonsGetById200Response": {
+        "type": "object",
+        "description": "API response object for GET by Id of Persons.",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Person"
+          }
+        }
+      },
+      "VotesGet200Response": {
+        "type": "object",
+        "description": "API response object for GET of Votes.",
+        "properties": {
+          "odata.nextLink": {
+            "type": "string",
+            "pattern": ".+:.+",
+            "description": "Url used to fetch next page of results"
+          },
+          "results": {
+            "type": "array",
+            "description": "The collection of Vote items returned by the API.",
+            "items": {
+              "$ref": "#/components/schemas/Vote"
+            }
+          }
+        }
+      },
+      "VotesGetById200Response": {
+        "type": "object",
+        "description": "API response object for GET by Id of Votes.",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Vote"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apiKeyHeader": {
+        "type": "apiKey",
+        "name": "Ocp-Apim-Subscription-Key",
+        "in": "header"
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "name": "subscription-key",
+        "in": "query"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ]
+}
